@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>رحلتي | تتبع الوزن والانضباط</title>
   
-  <!-- إعدادات PWA وشريط الحالة -->
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="theme-color" content="#080808">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,9 +14,6 @@
   <link rel="icon" type="image/svg+xml" href="./icon.svg">
 
   <style>
-    /* ============================================================
-       الهوية البصرية ولوحة الألوان
-       ============================================================ */
     :root {
       --bg-deep: #080808;
       --card-bg: #121212;
@@ -47,9 +43,7 @@
       user-select: none;
     }
 
-    input, textarea, select {
-      user-select: text;
-    }
+    input, textarea, select { user-select: text; }
 
     body {
       background-color: var(--bg-deep);
@@ -170,16 +164,12 @@
       transition: all 0.25s ease;
     }
 
-    .nav-item.active {
-      color: var(--text-main);
-    }
-
+    .nav-item.active { color: var(--text-main); }
     .nav-item.active svg {
       stroke: var(--maroon-accent);
       filter: drop-shadow(0 0 6px var(--maroon-accent));
       transform: translateY(-2px);
     }
-
     .nav-item.active::after {
       content: '';
       position: absolute;
@@ -195,10 +185,7 @@
       display: none;
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .page-section.active {
-      display: block;
-    }
+    .page-section.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
@@ -239,9 +226,7 @@
     }
 
     @media (min-width: 480px) {
-      .stats-grid-4 {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .stats-grid-4 { grid-template-columns: repeat(4, 1fr); }
     }
 
     .stat-box {
@@ -328,9 +313,7 @@
       width: 100%;
     }
 
-    .btn:active {
-      transform: scale(0.98);
-    }
+    .btn:active { transform: scale(0.98); }
 
     .btn-maroon {
       background: linear-gradient(135deg, var(--maroon-primary), var(--maroon-accent));
@@ -339,18 +322,10 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .btn-maroon:hover {
-      box-shadow: 0 6px 20px rgba(148, 27, 61, 0.55);
-    }
-
     .btn-secondary {
       background: #1e1e1e;
       color: var(--text-main);
       border: 1px solid var(--border-subtle);
-    }
-
-    .btn-secondary:hover {
-      background: #292929;
     }
 
     .btn-outline-danger {
@@ -374,9 +349,7 @@
     }
 
     @media (min-width: 480px) {
-      .quick-actions-row {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .quick-actions-row { grid-template-columns: repeat(3, 1fr); }
     }
 
     .chart-container {
@@ -409,34 +382,10 @@
       transition: border-color 0.2s ease;
     }
 
-    .history-item:hover {
-      border-color: var(--maroon-border);
-    }
-
-    .item-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .item-main-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text-main);
-    }
-
-    .item-subtitle {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-    }
-
-    .item-badge {
-      font-size: 0.8rem;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-weight: 700;
-    }
-
+    .item-meta { display: flex; flex-direction: column; gap: 2px; }
+    .item-main-title { font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+    .item-subtitle { font-size: 0.76rem; color: var(--text-muted); }
+    .item-badge { font-size: 0.8rem; padding: 4px 10px; border-radius: 8px; font-weight: 700; }
     .badge-loss { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
     .badge-gain { background: rgba(239, 68, 68, 0.15); color: #f87171; }
     .badge-same { background: rgba(255, 255, 255, 0.08); color: #d4d4d4; }
@@ -501,7 +450,7 @@
       color: var(--text-muted);
       border-radius: 20px;
       font-size: 0.74rem;
-      padding: 5px 12px;
+      padding: 6px 14px;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -510,6 +459,94 @@
       background: var(--maroon-primary);
       color: #fff;
       border-color: var(--maroon-accent);
+      box-shadow: 0 0 10px var(--maroon-glow);
+    }
+
+    /* أنماط بطاقات التمارين الثلاثة التفاعلية */
+    .exercise-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .exercise-select-card {
+      background: #181818;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exercise-select-card:hover {
+      border-color: var(--maroon-border);
+      background: #202020;
+    }
+
+    .exercise-select-card.selected {
+      border-color: var(--maroon-accent);
+      background: linear-gradient(180deg, #2a0b14, #181818);
+      box-shadow: 0 0 12px var(--maroon-glow);
+    }
+
+    .exercise-card-num {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .exercise-select-card.selected .exercise-card-num {
+      background: var(--maroon-primary);
+      color: #fff;
+    }
+
+    .exercise-card-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* نافذة العرض البصري لحركة التمرين */
+    .exercise-visual-display {
+      background: #0f0f0f;
+      border: 1px solid var(--maroon-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .exercise-visual-svg {
+      width: 100%;
+      max-width: 240px;
+      height: 130px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .exercise-instruction-box {
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: #ddd;
+      text-align: right;
+      line-height: 1.6;
     }
 
     .split-slider-container {
@@ -620,7 +657,6 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      transition: all 0.3s ease;
     }
 
     .achievement-card.unlocked {
@@ -680,9 +716,7 @@
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .modal-overlay.active .modal-sheet {
-      transform: translateY(0);
-    }
+    .modal-overlay.active .modal-sheet { transform: translateY(0); }
 
     .modal-header {
       display: flex;
@@ -782,10 +816,8 @@
 </head>
 <body>
 
-  <!-- التنبيهات العائمة -->
   <div id="toastContainer" class="toast-container"></div>
 
-  <!-- الهيدر العلوي -->
   <header class="top-header">
     <div class="brand-wrap">
       <img src="./icon.svg" alt="رحلتي" class="brand-logo-img">
@@ -805,7 +837,6 @@
         "الانضباط هو الجسر بين ما أنت عليه الآن، وما تريد أن تصبح عليه."
       </div>
 
-      <!-- بطاقة تنبيه وزن الجمعة -->
       <div id="fridayReminderCard" class="friday-alert" style="display: none;">
         <span style="font-size: 1.6rem;">⚖️</span>
         <div>
@@ -814,7 +845,6 @@
         </div>
       </div>
 
-      <!-- بطاقة التحدي الكبرى -->
       <div class="card maroon-glow-card">
         <div class="card-title">
           <span>مسار التحدي الرئيسي</span>
@@ -850,10 +880,9 @@
         </div>
       </div>
 
-      <!-- أزرار الإجراءات السريعة (تتضمن زر تمرين الدمبل الجديد) -->
       <div class="quick-actions-row">
         <button class="btn btn-maroon" onclick="openDumbbellWorkoutModal()">
-          <span>🏋️‍♂️</span> تمرين دمبل منزلي
+          <span>🏋️‍♂️</span> تمارين الدمبل
         </button>
         <button class="btn btn-secondary" onclick="openModal('addMealModal')">
           <span>🥗</span> إضافة وجبة
@@ -869,7 +898,6 @@
         </button>
       </div>
 
-      <!-- ملخص طاقة اليوم -->
       <div class="card">
         <div class="card-title">
           <span>ملخص طاقة اليوم (<span id="todaySummaryDate">اليوم</span>)</span>
@@ -900,7 +928,6 @@
         </div>
       </div>
 
-      <!-- بطاقة الوزن السريع -->
       <div class="card">
         <div class="card-title">
           <span>مؤشر الوزن الحالي</span>
@@ -950,7 +977,6 @@
         </div>
       </div>
 
-      <!-- الرسم البياني للوزن -->
       <div class="card">
         <div class="card-title">
           <span>منحنى تغير الوزن</span>
@@ -962,7 +988,6 @@
         <div id="chartTooltip" style="text-align: center; font-size: 0.8rem; color: #ff6b8b; min-height: 20px;"></div>
       </div>
 
-      <!-- جدول السجلات السابقة -->
       <div class="card">
         <div class="card-title">سجل القياسات الأسبوعية</div>
         <div id="weightHistoryList" class="history-list"></div>
@@ -971,7 +996,6 @@
 
     <!-- 3. صفحة السعرات والعجز اليومي -->
     <section id="pageCalories" class="page-section">
-      <!-- شريط التنقل بين الأيام -->
       <div class="date-nav-bar">
         <button class="date-nav-btn" onclick="shiftActiveDate(-1)">❮</button>
         <div style="text-align: center;">
@@ -981,7 +1005,6 @@
         <button class="date-nav-btn" onclick="shiftActiveDate(1)">❯</button>
       </div>
 
-      <!-- ميزان الطاقة والعجز -->
       <div class="energy-balance-card">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 700;">العجز الحراري التقديري لليوم</div>
         <div id="energyDeficitDisplay" class="energy-val neutral">0</div>
@@ -993,7 +1016,6 @@
         </div>
       </div>
 
-      <!-- وجبات اليوم -->
       <div class="card">
         <div class="card-title">
           <span>الوجبات المستهلكة (<span id="totalFoodCalToday">0</span> سعرة)</span>
@@ -1002,7 +1024,6 @@
         <div id="todayMealsList" class="history-list"></div>
       </div>
 
-      <!-- تمارين ونشاط اليوم -->
       <div class="card">
         <div class="card-title">
           <span>النشاط وحرق التمارين (<span id="totalWorkoutCalToday">0</span> سعرة)</span>
@@ -1014,7 +1035,6 @@
         <div id="todayWorkoutsList" class="history-list"></div>
       </div>
 
-      <!-- الملخص الأسبوعي -->
       <div class="card">
         <div class="card-title">متوسط الأسبوع الحالي</div>
         <div class="stats-grid">
@@ -1044,7 +1064,6 @@
           قارن بين صورتك عند بداية التحدي وآخر صورة سجلتها بسحب الفاصل في المنتصف.
         </p>
 
-        <!-- أداة المقارنة التفاعلية بسحب الفاصل -->
         <div id="splitSliderBox" class="split-slider-container">
           <img id="splitImgBefore" class="split-img" src="" alt="صورة البداية">
           <div id="splitAfterWrapper" class="split-img-after-wrap">
@@ -1061,7 +1080,6 @@
         </div>
       </div>
 
-      <!-- معرض جميع الصور المسجلة -->
       <div class="card">
         <div class="card-title">ألبوم توثيق التحدي</div>
         <div id="photosTimelineGrid" class="photo-grid"></div>
@@ -1079,7 +1097,6 @@
         <div class="badge-grid" id="badgesContainer"></div>
       </div>
 
-      <!-- إعدادات التحدي والسعرات -->
       <div class="card">
         <div class="card-title">إعدادات ملفك الشخصي وسعرات المحافظة</div>
         
@@ -1139,9 +1156,6 @@
         <div class="form-group">
           <label class="form-label">سعرات المحافظة اليومية الأساسية (سعرة/يوم)</label>
           <input type="number" id="cfgMaintenance" class="form-control" placeholder="اضغط على زر التقدير أو أدخلها يدوياً">
-          <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;">
-            * ملاحظة: هذه القيمة تمثل احتياج جسمك دون احتساب التمارين الإضافية لتجنب الازدواجية في الحساب.
-          </div>
         </div>
 
         <div style="display: flex; gap: 8px; margin-top: 10px;">
@@ -1150,7 +1164,6 @@
         </div>
       </div>
 
-      <!-- النسخ الاحتياطي وإدارة البيانات -->
       <div class="card">
         <div class="card-title">النسخ الاحتياطي وإدارة التخزين</div>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">
@@ -1184,7 +1197,6 @@
 
   </main>
 
-  <!-- شريط التنقل السفلي للهواتف -->
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="navigateTo('dashboard')">
       <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -1209,31 +1221,29 @@
   </nav>
 
   <!-- ============================================================
-       النوافذ المنبثقة (Modals)
+       نافذة تمارين الدمبل المنزلية الـ 15 مع الرؤية البصرية والحركية
        ============================================================ -->
-
-  <!-- 1. نافذة تمرين الدمبل المنزلي الذكي (تم استخراجه من دليلك المصور) -->
   <div id="smartDumbbellModal" class="modal-overlay">
-    <div class="modal-sheet" style="max-height: 92vh;">
+    <div class="modal-sheet" style="max-height: 94vh;">
       <div class="modal-header">
         <div>
-          <h3 style="font-size: 1.15rem; font-weight: 800;">🏋️‍♂️ جلسة تمرين الدمبل المنزلي</h3>
-          <div style="font-size: 0.76rem; color: var(--text-muted);">دليل تمارين الجسم الكامل بالدمبل</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800;">🏋️‍♂️ تمارين الدمبل للجسم كامل</h3>
+          <div style="font-size: 0.74rem; color: #ff85a0;">دليل تمارين الدمبل: 3 تمارين لكل عضلة مع طريقة الأداء</div>
         </div>
         <button class="modal-close-btn" onclick="closeDumbbellWorkoutModal()">✕</button>
       </div>
 
-      <!-- شاشة المؤقت والسعرات الحية -->
-      <div style="background: linear-gradient(135deg, #200810, #111); border: 1px solid var(--maroon-accent); border-radius: var(--radius-md); padding: 14px; text-align: center; margin-bottom: 16px;">
+      <!-- المؤقت الحي وحرق الطاقة المباشر -->
+      <div style="background: linear-gradient(135deg, #220710, #111); border: 1px solid var(--maroon-accent); border-radius: var(--radius-md); padding: 14px; text-align: center; margin-bottom: 14px;">
         <div style="display: flex; justify-content: space-around; align-items: center;">
           <div>
-            <div style="font-size: 0.72rem; color: var(--text-muted);">وقت التمرين المباشر</div>
-            <div id="workoutTimerDisplay" style="font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace;">00:00</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">وقت الجلسة الفعلي</div>
+            <div id="workoutTimerDisplay" style="font-size: 1.85rem; font-weight: 900; color: #fff; font-family: monospace;">00:00</div>
           </div>
-          <div style="height: 35px; width: 1px; background: rgba(255,255,255,0.1);"></div>
+          <div style="height: 38px; width: 1px; background: rgba(255,255,255,0.12);"></div>
           <div>
-            <div style="font-size: 0.72rem; color: var(--text-muted);">الحرق التقديري التفاعلي</div>
-            <div id="liveBurnedCaloriesDisplay" style="font-size: 1.8rem; font-weight: 900; color: #4ade80;">0 <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">سعرة</span></div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">الحرق المحسوب المباشر</div>
+            <div id="liveBurnedCaloriesDisplay" style="font-size: 1.85rem; font-weight: 900; color: #4ade80;">0 <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">سعرة</span></div>
           </div>
         </div>
         
@@ -1243,28 +1253,49 @@
         </div>
       </div>
 
-      <!-- تبويبات العضلات من الصورة -->
-      <div class="form-group">
-        <label class="form-label">المجموعة العضلية المستهدفة (من الصورة):</label>
+      <!-- تبويبات العضلات الخمسة من دليلك المصور -->
+      <div class="form-group" style="margin-bottom: 8px;">
+        <label class="form-label">اختر العضلة المستهدفة:</label>
         <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
-          <button type="button" class="preset-chip active" style="background: var(--maroon-primary); color: #fff;" onclick="selectMuscleGroup('shoulder', this)">أكتاف (Shoulder)</button>
-          <button type="button" class="preset-chip" onclick="selectMuscleGroup('back', this)">ظهر (Back)</button>
-          <button type="button" class="preset-chip" onclick="selectMuscleGroup('chest', this)">صدر (Chest)</button>
-          <button type="button" class="preset-chip" onclick="selectMuscleGroup('arms', this)">ذراعين (Arms)</button>
-          <button type="button" class="preset-chip" onclick="selectMuscleGroup('legs', this)">أرجل (Legs)</button>
+          <button type="button" class="preset-chip active" id="chip-shoulder" onclick="switchMuscleGroupTab('shoulder')">أكتاف (Shoulder)</button>
+          <button type="button" class="preset-chip" id="chip-back" onclick="switchMuscleGroupTab('back')">ظهر (Back)</button>
+          <button type="button" class="preset-chip" id="chip-chest" onclick="switchMuscleGroupTab('chest')">صدر (Chest)</button>
+          <button type="button" class="preset-chip" id="chip-arms" onclick="switchMuscleGroupTab('arms')">ذراعين (Arms)</button>
+          <button type="button" class="preset-chip" id="chip-legs" onclick="switchMuscleGroupTab('legs')">أرجل (Legs)</button>
         </div>
       </div>
 
-      <!-- اختيار التمرين المحدد -->
-      <div class="form-group">
-        <label class="form-label">التمرين المحدد:</label>
-        <select id="selectedExerciseName" class="form-control" onchange="calculateLiveWorkoutCalories()"></select>
+      <!-- شبكة عرض التمارين الثلاثة الخاصة بالعضلة -->
+      <div class="form-group" style="margin-bottom: 10px;">
+        <label class="form-label" style="display: flex; justify-content: space-between;">
+          <span>التمارين الثلاثة المتاحة للعضلة:</span>
+          <span style="color: #ff6b8b; font-weight: normal;">(اضغط على التمرين لرؤية طريقة الأداء)</span>
+        </label>
+        <div class="exercise-cards-grid" id="muscleExerciseCardsRow">
+          <!-- يتم حقن التمارين الثلاثة برمجياً هنا -->
+        </div>
       </div>
 
-      <!-- عداد الوزن والجولات والتكرارات -->
-      <div class="stats-grid" style="margin-bottom: 12px;">
+      <!-- شاشة العرض الحركية التفاعلية لشرح طريقة التمرين بالرسم والخطوات -->
+      <div class="exercise-visual-display">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <strong id="displayExerciseTitle" style="color: #ff7597; font-size: 0.95rem;">-</strong>
+          <span id="targetRepsTag" style="font-size: 0.72rem; background: #650F27; padding: 2px 8px; border-radius: 4px; font-weight: bold;">30erps / 5</span>
+        </div>
+
+        <div id="exerciseSvgContainer">
+          <!-- يتم عرض الرسم الحركي والتوضيحي للوضعية والمسار -->
+        </div>
+
+        <div class="exercise-instruction-box" id="exerciseInstructions">
+          جاري تجهيز الشرح التكنيكي...
+        </div>
+      </div>
+
+      <!-- عداد وزن الدمبل والجولات والتكرارات -->
+      <div class="stats-grid" style="margin-bottom: 10px;">
         <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label">وزن الدمبل لليد الواحدة (كغ)</label>
+          <label class="form-label">وزن الدمبل لليد (كغ)</label>
           <div style="display: flex; align-items: center; gap: 6px;">
             <button type="button" class="date-nav-btn" onclick="stepVal('dumbbellWeightInput', -1)">-</button>
             <input type="number" step="0.5" id="dumbbellWeightInput" class="form-control" value="7.5" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
@@ -1276,7 +1307,7 @@
           <label class="form-label">عدد الجولات (Sets)</label>
           <div style="display: flex; align-items: center; gap: 6px;">
             <button type="button" class="date-nav-btn" onclick="stepVal('setsCountInput', -1)">-</button>
-            <input type="number" id="setsCountInput" class="form-control" value="4" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
+            <input type="number" id="setsCountInput" class="form-control" value="5" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
             <button type="button" class="date-nav-btn" onclick="stepVal('setsCountInput', 1)">+</button>
           </div>
         </div>
@@ -1286,19 +1317,18 @@
         <label class="form-label">عدد التكرارات في الجولة (Reps)</label>
         <div style="display: flex; align-items: center; gap: 8px;">
           <button type="button" class="date-nav-btn" onclick="stepVal('repsCountInput', -2)">-</button>
-          <input type="number" id="repsCountInput" class="form-control" value="15" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
+          <input type="number" id="repsCountInput" class="form-control" value="30" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
           <button type="button" class="date-nav-btn" onclick="stepVal('repsCountInput', 2)">+</button>
         </div>
         <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;">
-          <span class="preset-chip" onclick="setReps(10)">10 عدات</span>
+          <span class="preset-chip" onclick="setReps(12)">12 عدة</span>
           <span class="preset-chip" onclick="setReps(15)">15 عدة</span>
           <span class="preset-chip" onclick="setReps(20)">20 عدة</span>
-          <span class="preset-chip" onclick="setReps(30)">30 عدة (كثافة عالية)</span>
+          <span class="preset-chip active" onclick="setReps(30)">30 عدة (حسب دليلك 🔥)</span>
         </div>
       </div>
 
-      <!-- زر الحفظ المباشر -->
-      <div style="margin-top: 18px;">
+      <div style="margin-top: 14px;">
         <button type="button" class="btn btn-maroon" onclick="finishAndSaveDumbbellWorkout()">
           <span>💾</span> حفظ التمرين واحتساب السعرات في سجل اليوم
         </button>
@@ -1306,7 +1336,7 @@
     </div>
   </div>
 
-  <!-- 2. نافذة تسجيل الوزن -->
+  <!-- النوافذ الأخرى: وزن، وجبة، نشاط، صورة -->
   <div id="addWeightModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1323,7 +1353,7 @@
           <input type="date" id="inputWeightDate" class="form-control" required>
         </div>
         <div class="form-group">
-          <label class="form-label">ملاحظات اختيارية (قياس الصباح، بعد الصيام، إلخ)</label>
+          <label class="form-label">ملاحظات اختيارية</label>
           <input type="text" id="inputWeightNote" class="form-control" placeholder="ملاحظة قصيرة">
         </div>
         <button type="submit" class="btn btn-maroon" style="margin-top: 10px;">حفظ القياس</button>
@@ -1331,7 +1361,6 @@
     </div>
   </div>
 
-  <!-- 3. نافذة إضافة وجبة طعام -->
   <div id="addMealModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1361,7 +1390,6 @@
           <span class="preset-chip" onclick="applyFoodPreset('بيضتان مسلوقتان', 140)">بيضتان (140 سعرة)</span>
           <span class="preset-chip" onclick="applyFoodPreset('سلطة خضراء مع زيت زيتون', 110)">سلطة خضراء (110 سعرة)</span>
           <span class="preset-chip" onclick="applyFoodPreset('شوفان بالحليب 50غ', 260)">شوفان وحليب (260 سعرة)</span>
-          <span class="preset-chip" onclick="applyFoodPreset('تمر 3 حبات', 65)">3 حبات تمر (65 سعرة)</span>
         </div>
 
         <div class="stats-grid">
@@ -1379,7 +1407,6 @@
     </div>
   </div>
 
-  <!-- 4. نافذة تسجيل تمرين ونشاط مخصص -->
   <div id="addWorkoutModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1390,14 +1417,6 @@
         <div class="form-group">
           <label class="form-label">اسم التمرين / النشاط *</label>
           <input type="text" id="inputWorkoutName" class="form-control" required placeholder="مثال: مشي سريع، دراجة">
-        </div>
-
-        <div style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 4px;">أنشطة شائعة:</div>
-        <div class="food-presets-container">
-          <span class="preset-chip" onclick="applyWorkoutPreset('مشي سريع', 30, 150)">مشي 30 د (150 سعرة)</span>
-          <span class="preset-chip" onclick="applyWorkoutPreset('ركض معتدل', 25, 260)">ركض 25 د (260 سعرة)</span>
-          <span class="preset-chip" onclick="applyWorkoutPreset('دراجة ثابتة', 30, 200)">دراجة 30 د (200 سعرة)</span>
-          <span class="preset-chip" onclick="applyWorkoutPreset('تمارين كارديو منزلية', 20, 160)">كارديو منزلي (160 سعرة)</span>
         </div>
 
         <div class="stats-grid">
@@ -1415,7 +1434,6 @@
     </div>
   </div>
 
-  <!-- 5. نافذة رفع وتوثيق صورة -->
   <div id="addPhotoModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1446,26 +1464,19 @@
             <input type="date" id="inputPhotoDate" class="form-control">
           </div>
           <div class="form-group">
-            <label class="form-label">الوزن التقريبي وقت الصورة (كغ)</label>
+            <label class="form-label">الوزن التقريبي (كغ)</label>
             <input type="number" step="0.1" id="inputPhotoWeight" class="form-control" placeholder="اختياري">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">ملاحظة اختيارية</label>
-          <input type="text" id="inputPhotoNote" class="form-control" placeholder="مثال: بعد إكمال الشهر الأول">
-        </div>
-        <button type="submit" id="savePhotoSubmitBtn" class="btn btn-maroon" style="margin-top: 8px;">ضغط وحفظ الصورة محلياً</button>
+        <button type="submit" id="savePhotoSubmitBtn" class="btn btn-maroon" style="margin-top: 8px;">حفظ الصورة محلياً</button>
       </form>
     </div>
   </div>
 
   <!-- ============================================================
-       المنطق البرمجي وقاعدة البيانات (Vanilla JavaScript)
+       المنطق البرمجي وقاعدة البيانات المستمرة IndexedDB
        ============================================================ -->
   <script>
-    /* ==========================================
-       1. الثوابت وإعدادات التحدي الافتراضية
-       ========================================== */
     const DEFAULT_CONFIG = {
       appName: 'رحلتي',
       startDate: '2026-10-11',
@@ -1491,43 +1502,164 @@
     let deferredPrompt = null;
     let dbInstance = null;
 
-    /* قائمة تمارين الدمبل المستخرجة من صورتك */
-    const DUMBBELL_EXERCISES = {
+    /* ============================================================
+       قائمة التمارين الـ 15 كاملة (3 تمارين لكل عضلة) مع الرسوم الحركية التفاعلية
+       ============================================================ */
+    const DUMBBELL_DATA = {
       shoulder: [
-        { id: 'sh1', name: 'رفرفة كتف خلفي بالدمبل منحني (Bent-over Rear Fly)' },
-        { id: 'sh2', name: 'ضغط أكتاف بالدمبل وقوفاً (Standing Shoulder Press)' },
-        { id: 'sh3', name: 'رفرفة جانبية وأمامية للكتف (Lateral & Front Raise)' }
+        {
+          id: 'sh1',
+          name: 'رفرفة كتف خلفي بالدمبل منحنياً',
+          en: 'Bent-Over Rear Delt Fly',
+          repsTarget: '30erps / 5',
+          setup: 'انحنِ بالجذع للأمام بزاوية 45 درجة مع ثني الركبتين قليلاً والظهر مستقيم تماماً، وامسك الدمبلين لأسفل.',
+          motion: 'ارفع الذراعين جانباً للأعلى كالجناحين مع ثني طفيف في الكوع، مع التركيز على عصر لوحي الكتف الخلفي.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="70" cy="35" r="9" fill="#f5f5f5"/><line x1="70" y1="44" x2="110" y2="70" stroke="#ff4d79" stroke-width="6" stroke-linecap="round"/><line x1="110" y1="70" x2="135" y2="105" stroke="#941B3D" stroke-width="5" stroke-linecap="round"/><line x1="90" y1="58" x2="95" y2="90" stroke="#f5f5f5" stroke-width="4" stroke-linecap="round"/><circle cx="95" cy="92" r="7" fill="#650F27" stroke="#fff" stroke-width="2"/><path d="M 95 90 C 105 70, 115 50, 130 45" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="4 4"/><polygon points="135,45 125,40 128,50" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">مسار رفع الجناحين للخلف</text></svg>`
+        },
+        {
+          id: 'sh2',
+          name: 'ضغط أكتاف أمامي بالدمبل',
+          en: 'Standing Dumbbell Shoulder Press',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً وثبّت عضلات البطن، وارفع الدمبلين بمحاذاة الأذنين والكتفين بحيث يكون الكوع بزاوية 90 درجة.',
+          motion: 'ادفع الدمبلين للأعلى عمودياً فوق رأسك دون قفل الكوعين تماماً، ثم انزل ببطء وتحكم إلى نقطة البداية.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="30" r="9" fill="#f5f5f5"/><line x1="100" y1="39" x2="100" y2="78" stroke="#ff4d79" stroke-width="6" stroke-linecap="round"/><line x1="100" y1="78" x2="88" y2="110" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="78" x2="112" y2="110" stroke="#941B3D" stroke-width="5"/><circle cx="70" cy="30" r="6" fill="#650F27" stroke="#fff" stroke-width="1.5"/><circle cx="130" cy="30" r="6" fill="#650F27" stroke="#fff" stroke-width="1.5"/><path d="M 70 30 L 70 12 M 130 30 L 130 12" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/><polygon points="70,8 65,15 75,15" fill="#22c55e"/><polygon points="130,8 125,15 135,15" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">دفع عمودي مستقيم للأعلى</text></svg>`
+        },
+        {
+          id: 'sh3',
+          name: 'رفرفة كتف جانبي بالدمبل',
+          en: 'Dumbbell Lateral Raises',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً واجعل الدمبلين بجانبي فخذيك، مع ميلان خفيف جداً للأمام وثني بسيط في الكوعين.',
+          motion: 'ارفع الدمبلين جانبياً للأعلى حتى يوازي الكوعان مستوى الكتف، واثبت لجزء من الثانية ثم أنزل بتركيز.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="28" r="9" fill="#f5f5f5"/><line x1="100" y1="37" x2="100" y2="78" stroke="#ff4d79" stroke-width="6"/><line x1="100" y1="78" x2="90" y2="110" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="78" x2="110" y2="110" stroke="#941B3D" stroke-width="5"/><path d="M 78 70 C 65 55, 55 45, 45 42" stroke="#22c55e" stroke-width="3" stroke-dasharray="3 3"/><circle cx="45" cy="42" r="6" fill="#650F27" stroke="#fff"/><path d="M 122 70 C 135 55, 145 45, 155 42" stroke="#22c55e" stroke-width="3" stroke-dasharray="3 3"/><circle cx="155" cy="42" r="6" fill="#650F27" stroke="#fff"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">رفع الكوعين لمستوى الكتف</text></svg>`
+        }
       ],
       back: [
-        { id: 'bk1', name: 'تجديف دمبل مزدوج منحني (Bent-over Dumbbell Row)' },
-        { id: 'bk2', name: 'سحب دمبل فردي منحنياً (One-Arm Dumbbell Row)' },
-        { id: 'bk3', name: 'ديدليفت روماني بالدمبل للظهر السفلي (Romanian Deadlift)' }
+        {
+          id: 'bk1',
+          name: 'تجديف دمبل مزدوج منحنياً',
+          en: 'Bent-Over Dumbbell Row (Prone)',
+          repsTarget: '30erps / 5',
+          setup: 'انحنِ بجذعك بزاوية تقارب 45 درجة، حافظ على عمودك الفقري مستقيماً والركبتين مرنتين، واجعل الدمبلين متدليين.',
+          motion: 'اسحب الدمبلين للأعلى باتجاه أسفل البطن وعصر عضلات الظهر واللاتس، مع توجيه الكوعين للخلف.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="65" cy="35" r="9" fill="#f5f5f5"/><line x1="65" y1="44" x2="115" y2="65" stroke="#ff4d79" stroke-width="6"/><line x1="115" y1="65" x2="140" y2="105" stroke="#941B3D" stroke-width="5"/><line x1="90" y1="55" x2="105" y2="40" stroke="#22c55e" stroke-width="4"/><circle cx="108" cy="40" r="7" fill="#650F27" stroke="#fff"/><line x1="90" y1="80" x2="105" y2="45" stroke="#22c55e" stroke-width="2" stroke-dasharray="3 3"/><polygon points="105,38 98,46 108,48" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">سحب الكوعين باتجاه الحوض</text></svg>`
+        },
+        {
+          id: 'bk2',
+          name: 'سحب دمبل فردي / محايد',
+          en: 'Neutral Grip Dumbbell Row',
+          repsTarget: '30erps / 5',
+          setup: 'قف بثبات وانحنِ للأمام، اجعل القبضة محايدة (الراحتان متقابلتان) لتركيز إضافي على كثافة الظهر والترابيس الوسطى.',
+          motion: 'اسحب الدمبلين بتركيز شديد على سحب الأكواع ملاصقة للجسم وتثبيت الصدر في مكانه دون أرجحة الجذع.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="60" cy="38" r="9" fill="#f5f5f5"/><line x1="60" y1="47" x2="110" y2="68" stroke="#ff4d79" stroke-width="6"/><line x1="110" y1="68" x2="135" y2="105" stroke="#941B3D" stroke-width="5"/><circle cx="95" cy="45" r="7" fill="#650F27" stroke="#fff"/><path d="M 95 75 L 95 48" stroke="#22c55e" stroke-width="3"/><polygon points="95,44 90,52 100,52" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">سحب مباشر ملاصق للجذع</text></svg>`
+        },
+        {
+          id: 'bk3',
+          name: 'ديدليفت روماني بالدمبل',
+          en: 'Romanian Dumbbell Deadlift',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً وامسك الدمبلين أمام فخذيك، مع رجوع الحوض للخلف ببطء وثني طفيف جداً وغير متزايد في الركبة.',
+          motion: 'انزل بالدمبلين ملاصقين لساقيك حتى منتصف القصبة مع الشعور بتمدد الظهر وأوتار الفخذ، ثم اصعد بعصر عضلاتك.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="85" cy="25" r="9" fill="#f5f5f5"/><line x1="85" y1="34" x2="115" y2="60" stroke="#ff4d79" stroke-width="6"/><line x1="115" y1="60" x2="120" y2="105" stroke="#941B3D" stroke-width="5"/><circle cx="100" cy="85" r="6" fill="#650F27" stroke="#fff"/><path d="M 100 45 L 100 80" stroke="#22c55e" stroke-width="3" stroke-dasharray="3 3"/><polygon points="100,85 95,77 105,77" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">نزول محايد مع دفع الحوض للخلف</text></svg>`
+        }
       ],
       chest: [
-        { id: 'ch1', name: 'ضغط صدر أرضي بالدمبل (Dumbbell Floor Press)' },
-        { id: 'ch2', name: 'ضغط صدر أرضي قبضة ضيقة (Close-Grip Hex Press)' },
-        { id: 'ch3', name: 'تفتيح صدر أرضي بالدمبل (Dumbbell Floor Fly)' }
+        {
+          id: 'ch1',
+          name: 'ضغط صدر أرضي بالدمبل',
+          en: 'Dumbbell Floor Press (Wide)',
+          repsTarget: '30erps / 5',
+          setup: 'استلقِ على ظهرك على الأرض، واثنِ ركبتيك مع تثبيت القدمين، وامسك الدمبلين بحيث يلامس الكوعان الأرض بزاوية 75 درجة.',
+          motion: 'ادفع الدمبلين للأعلى بعصر عضلات الصدر حتى تلتقي الأوزان فوق الصدر مباشرة، ثم أنزل ببطء حتى تلامس الأرض.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><line x1="30" y1="95" x2="170" y2="95" stroke="#333" stroke-width="3"/><line x1="50" y1="90" x2="125" y2="90" stroke="#ff4d79" stroke-width="6"/><circle cx="40" cy="88" r="8" fill="#f5f5f5"/><line x1="125" y1="90" x2="140" y2="70" stroke="#941B3D" stroke-width="5"/><line x1="140" y1="70" x2="155" y2="90" stroke="#941B3D" stroke-width="5"/><circle cx="90" cy="50" r="7" fill="#650F27" stroke="#fff"/><path d="M 90 85 L 90 55" stroke="#22c55e" stroke-width="3"/><polygon points="90,48 85,58 95,58" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">دفع للأعلى مع أمان أوتار الكتف</text></svg>`
+        },
+        {
+          id: 'ch2',
+          name: 'ضغط صدر أرضي بقبضة ضيقة',
+          en: 'Close-Grip Dumbbell Hex Press',
+          repsTarget: '30erps / 5',
+          setup: 'استلقِ أرضاً، وألصق الدمبلين ببعضهما فوق منتصف الصدر مع توجيه الراحتين للداخل وضغط الأوزان باستمرار باتجاه بعضها.',
+          motion: 'ادفع الدمبلين معاً للأعلى مع الحفاظ على تلاصقهما التام، للتركيز الشديد على الخط الأوسط للصدر والترايسبس.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><line x1="30" y1="95" x2="170" y2="95" stroke="#333" stroke-width="3"/><line x1="50" y1="90" x2="125" y2="90" stroke="#ff4d79" stroke-width="6"/><circle cx="40" cy="88" r="8" fill="#f5f5f5"/><rect x="85" y="45" width="16" height="10" rx="3" fill="#650F27" stroke="#fff"/><path d="M 93 85 L 93 58" stroke="#22c55e" stroke-width="3.5"/><polygon points="93,52 88,60 98,60" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">تلاصق الدمبلين المستمر وعصر الصدر</text></svg>`
+        },
+        {
+          id: 'ch3',
+          name: 'تفتيح صدر أرضي بالدمبل',
+          en: 'Dumbbell Floor Flyes',
+          repsTarget: '30erps / 5',
+          setup: 'استلقِ على الأرض، وافتح الذراعين جانباً مع ثني بسيط وثابت في الكوعين، كأنك تحتضن برميلاً كبيراً.',
+          motion: 'اجمع الدمبلين للأعلى بحركة قوسية نصف دائرية فوق منتصف صدرك، ثم افتح ببطء حتى تلمس أطراف كوعيك الأرض بأمان.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><line x1="30" y1="95" x2="170" y2="95" stroke="#333" stroke-width="3"/><circle cx="40" cy="88" r="8" fill="#f5f5f5"/><line x1="50" y1="90" x2="125" y2="90" stroke="#ff4d79" stroke-width="6"/><path d="M 60 75 C 75 55, 85 45, 95 42" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="3 3"/><path d="M 130 75 C 115 55, 105 45, 95 42" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="3 3"/><circle cx="95" cy="42" r="6" fill="#650F27" stroke="#fff"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">حركة نصف دائرية مع عصر الصدر</text></svg>`
+        }
       ],
       arms: [
-        { id: 'ar1', name: 'تبادل بايسبس بالدمبل واقفاً (Bicep Curls)' },
-        { id: 'ar2', name: 'هامر كيرل للذراع والساعد (Hammer Curls)' },
-        { id: 'ar3', name: 'ترايسبس خلفي بالدمبل (Overhead Tricep Extension)' }
+        {
+          id: 'ar1',
+          name: 'تبادل بايسبس بالدمبل واقفاً',
+          en: 'Alternating Dumbbell Bicep Curl',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً وثبّت كوعيك ملاصقين لجوانب خصرك، وامسك الدمبلين مع لف قبضة اليد للأعلى أثناء الصعود.',
+          motion: 'ارفع الدمبل للأعلى بعصر عضلة البايسبس بقوة في القمة، ثم أنزل ببطء وتحكم تام مع تبديل اليدين أو معاً.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="25" r="9" fill="#f5f5f5"/><line x1="100" y1="34" x2="100" y2="75" stroke="#ff4d79" stroke-width="6"/><line x1="100" y1="75" x2="90" y2="110" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="75" x2="110" y2="110" stroke="#941B3D" stroke-width="5"/><circle cx="118" cy="48" r="6" fill="#650F27" stroke="#fff"/><path d="M 118 75 C 125 65, 125 55, 118 52" stroke="#22c55e" stroke-width="3"/><polygon points="116,48 112,56 122,55" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">ثبات الكوع ملاصقاً للخاصرة</text></svg>`
+        },
+        {
+          id: 'ar2',
+          name: 'هامر كيرل للذراع والساعد',
+          en: 'Hammer Curls (Neutral Grip)',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً واجعل قبضتي اليدين متقابلتين كأنك تمسك مطرقة، مع إبقاء الكوعين ثابتين في نفس النقطة.',
+          motion: 'ارفع الدمبلين للأعلى دون تدوير المعصم لاستهداف العضلة العضدية وعضلات الساعد لبناء ذراع قوية.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="25" r="9" fill="#f5f5f5"/><line x1="100" y1="34" x2="100" y2="75" stroke="#ff4d79" stroke-width="6"/><rect x="114" y="45" width="8" height="14" rx="2" fill="#650F27" stroke="#fff"/><path d="M 118 78 L 118 62" stroke="#22c55e" stroke-width="3"/><polygon points="118,58 113,65 123,65" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">قبضة محايدة رأسية مثل المطرقة</text></svg>`
+        },
+        {
+          id: 'ar3',
+          name: 'ترايسبس خلفي بالدمبل / كيرل واسع',
+          en: 'Overhead Triceps / Concentration',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً وارفع الدمبل خلف الرأس مع توجيه الكوع للأعلى، أو كيرل بتركيز شديد للذراعين معاً.',
+          motion: 'افرد الذراع للأعلى مع تثبيت الكوع لاستهداف الرأس الطويل للترايسبس ونحت الذراع بالكامل.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="30" r="9" fill="#f5f5f5"/><line x1="100" y1="39" x2="100" y2="78" stroke="#ff4d79" stroke-width="6"/><circle cx="95" cy="18" r="6" fill="#650F27" stroke="#fff"/><path d="M 85 45 C 80 30, 85 20, 93 18" stroke="#22c55e" stroke-width="2.5"/><polygon points="95,18 88,23 96,26" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">فرد للأعلى مع عزل تام للكوع</text></svg>`
+        }
       ],
       legs: [
-        { id: 'lg1', name: 'طعنات بالدمبل للأرجل (Dumbbell Walking Lunges)' },
-        { id: 'lg2', name: 'سكوات أمامي بالدمبل (Dumbbell Front Squat)' },
-        { id: 'lg3', name: 'سكوات حقيبة جانبي (Suitcase / Goblet Squat)' }
+        {
+          id: 'lg1',
+          name: 'طعنات المشي بالدمبل للأرجل',
+          en: 'Dumbbell Walking / Static Lunges',
+          repsTarget: '30erps / 5',
+          setup: 'امسك الدمبلين بجانبيك، وتقدم بخطوة واسعة للأمام مع بقاء الجذع مستقيماً وعينيك للأمام.',
+          motion: 'اهبط بالركبة الخلفية نحو الأرض حتى تقترب بزاوية 90 درجة دون ملامسة الأرض، ثم ادفع بكعب القدم الأمامية للصعود.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="22" r="9" fill="#f5f5f5"/><line x1="100" y1="31" x2="100" y2="65" stroke="#ff4d79" stroke-width="6"/><line x1="100" y1="65" x2="125" y2="80" stroke="#941B3D" stroke-width="5"/><line x1="125" y1="80" x2="125" y2="108" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="65" x2="75" y2="90" stroke="#941B3D" stroke-width="5"/><line x1="75" y1="90" x2="60" y2="105" stroke="#941B3D" stroke-width="5"/><circle cx="105" cy="55" r="6" fill="#650F27" stroke="#fff"/><path d="M 100 65 L 100 80" stroke="#22c55e" stroke-width="3"/><polygon points="100,85 95,77 105,77" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">هبوط مستقيم بزاوية 90 درجة</text></svg>`
+        },
+        {
+          id: 'lg2',
+          name: 'سكوات أمامي بالدمبل فوق الكتفين',
+          en: 'Front Rack Dumbbell Squat',
+          repsTarget: '30erps / 5',
+          setup: 'ارفع الدمبلين ليستندا بثبات فوق كتفيك، باعد بين قدميك بمستوى عرض الكتفين مع توجيه المشطين للخارج قليلاً.',
+          motion: 'اهبط بالحوض للأسفل والخلف مع الحفاظ على الصدر مرفوعاً والكوعين للأعلى، ثم اصعد بقوة دفع الكعبين.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="28" r="9" fill="#f5f5f5"/><line x1="100" y1="37" x2="100" y2="65" stroke="#ff4d79" stroke-width="6"/><circle cx="90" cy="35" r="5" fill="#650F27" stroke="#fff"/><circle cx="110" cy="35" r="5" fill="#650F27" stroke="#fff"/><line x1="100" y1="65" x2="80" y2="85" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="65" x2="120" y2="85" stroke="#941B3D" stroke-width="5"/><path d="M 100 65 L 100 85" stroke="#22c55e" stroke-width="3"/><polygon points="100,88 95,80 105,80" fill="#22c55e"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">سكوات عميق مع الصدر المرفوع</text></svg>`
+        },
+        {
+          id: 'lg3',
+          name: 'سكوات حقيبة جانبي بالدمبل لأسفل',
+          en: 'Suitcase / Goblet Dumbbell Squat',
+          repsTarget: '30erps / 5',
+          setup: 'قف مستقيماً واجعل الدمبلين متدليين بجانبي فخذيك، وحافظ على استقامة الظهر وعينيك للأمام.',
+          motion: 'اهبط بأسلوب السكوات بحيث ينزل الدمبلان بمحاذاة كاحليك دون انحناء الظهر، ثم اصعد بعصر عضلات الفخذ والمؤخرة.',
+          svg: `<svg viewBox="0 0 200 120" class="exercise-visual-svg"><circle cx="100" cy="25" r="9" fill="#f5f5f5"/><line x1="100" y1="34" x2="100" y2="70" stroke="#ff4d79" stroke-width="6"/><circle cx="78" cy="65" r="6" fill="#650F27" stroke="#fff"/><circle cx="122" cy="65" r="6" fill="#650F27" stroke="#fff"/><line x1="100" y1="70" x2="85" y2="92" stroke="#941B3D" stroke-width="5"/><line x1="100" y1="70" x2="115" y2="92" stroke="#941B3D" stroke-width="5"/><path d="M 78 50 L 78 75 M 122 50 L 122 75" stroke="#22c55e" stroke-width="2.5"/><text x="100" y="115" fill="#aaa" font-size="10" text-anchor="middle">نزول محكوم مع توازن الوزن جانباً</text></svg>`
+        }
       ]
     };
 
+    let activeMuscleTab = 'shoulder';
+    let selectedExerciseIndex = 0;
     let workoutTimerInterval = null;
     let workoutSecondsElapsed = 0;
     let isTimerRunning = false;
-    let currentActiveMuscle = 'shoulder';
 
-    /* ==========================================
-       2. قاعدة البيانات المحلية المتطورة IndexedDB
-       ========================================== */
+    /* تهيئة قاعدة البيانات المحلية IndexedDB */
     function initIndexedDB() {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open('RahlatiDB', 1);
@@ -1557,11 +1689,7 @@
           dbInstance = e.target.result;
           resolve(dbInstance);
         };
-
-        request.onerror = (e) => {
-          console.error('IndexedDB Error:', e);
-          reject(e);
-        };
+        request.onerror = (e) => reject(e);
       });
     }
 
@@ -1608,9 +1736,6 @@
       });
     }
 
-    /* ==========================================
-       3. مساعدات التواريخ والأرقام
-       ========================================== */
     function getTodayDateString() {
       const d = new Date();
       return formatDateToISO(d);
@@ -1646,9 +1771,7 @@
       return isNaN(val) ? 0 : val;
     }
 
-    /* ==========================================
-       4. تهيئة التطبيق عند الفتح
-       ========================================== */
+    /* تشغيل التطبيق */
     document.addEventListener('DOMContentLoaded', async () => {
       const savedConfig = localStorage.getItem('rahlati_config');
       if (savedConfig) {
@@ -1693,9 +1816,6 @@
       renderBadges();
     }
 
-    /* ==========================================
-       5. منطق بطاقة التحدي وحساب الأيام
-       ========================================== */
     function updateChallengeMetrics() {
       const now = new Date();
       now.setHours(0, 0, 0, 0);
@@ -1748,9 +1868,6 @@
       document.getElementById('headerSubtitle').textContent = formatArabicDate(getTodayDateString());
     }
 
-    /* ==========================================
-       6. لوحة التحكم السريعة (Dashboard)
-       ========================================== */
     function updateDashboardSummary() {
       const today = getTodayDateString();
       document.getElementById('todaySummaryDate').textContent = (appState.activeDate === today) ? 'اليوم' : appState.activeDate;
@@ -1813,456 +1930,12 @@
       }
     }
 
-    /* ==========================================
-       7. نظام تتبع الوزن والرسم البياني
-       ========================================== */
-    async function handleSaveWeight(e) {
-      e.preventDefault();
-      const weightVal = normalizeNumber(document.getElementById('inputWeightVal').value);
-      const dateVal = document.getElementById('inputWeightDate').value;
-      const noteVal = document.getElementById('inputWeightNote').value.trim();
-
-      if (weightVal <= 0 || !dateVal) {
-        return showToast('يرجى إدخال وزن وتاريخ صحيحين', 'danger');
-      }
-
-      const existing = appState.weights.find(w => w.date === dateVal);
-      if (existing) {
-        if (!confirm(`يوجد وزن مسجل بالفعل في تاريخ (${dateVal}) وهو ${existing.weight} كغ. هل تريد تحديثه بالوزن الجديد؟`)) {
-          return;
-        }
-        existing.weight = weightVal;
-        existing.note = noteVal;
-        await dbPut('weights', existing);
-        showToast('تم تحديث القياس السابق بنجاح');
-      } else {
-        const newRecord = { weight: weightVal, date: dateVal, note: noteVal };
-        const id = await dbPut('weights', newRecord);
-        newRecord.id = id;
-        appState.weights.push(newRecord);
-        showToast('تم تسجيل الوزن بنجاح');
-      }
-
-      if (!appState.config.baselineWeight) {
-        appState.config.baselineWeight = weightVal;
-        saveConfig();
-      }
-
-      appState.weights.sort((a, b) => new Date(a.date) - new Date(b.date));
-      closeModal('addWeightModal');
-      document.getElementById('inputWeightVal').value = '';
-      document.getElementById('inputWeightNote').value = '';
-
-      refreshAllUI();
-    }
-
-    async function deleteWeight(id) {
-      if (!confirm('هل أنت متأكد من حذف هذا القياس؟')) return;
-      await dbDelete('weights', id);
-      appState.weights = appState.weights.filter(w => w.id !== id);
-      showToast('تم حذف السجل');
-      refreshAllUI();
-    }
-
-    function renderWeightTab() {
-      const baseW = normalizeNumber(appState.config.baselineWeight);
-      document.getElementById('weightStatBaseline').textContent = baseW > 0 ? baseW : '-';
-      document.getElementById('weightStatCount').textContent = appState.weights.length;
-
-      const historyContainer = document.getElementById('weightHistoryList');
-      if (appState.weights.length === 0) {
-        document.getElementById('weightStatCurrent').textContent = '-';
-        document.getElementById('weightStatTotalLoss').textContent = '-';
-        historyContainer.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-icon">⚖️</div>
-            <p>لم تسجل أي وزن بعد في رحلتك.</p>
-            <button class="btn btn-maroon btn-sm" style="margin-top: 10px;" onclick="openModal('addWeightModal')">سجل وزنك الأول</button>
-          </div>
-        `;
-        drawWeightCanvas([]);
-        return;
-      }
-
-      const latest = appState.weights[appState.weights.length - 1];
-      document.getElementById('weightStatCurrent').textContent = latest.weight;
-
-      if (baseW > 0) {
-        const totalDiff = (latest.weight - baseW).toFixed(1);
-        const sign = totalDiff > 0 ? `+${totalDiff}` : `${totalDiff}`;
-        document.getElementById('weightStatTotalLoss').textContent = `${sign} كغ`;
-      } else {
-        document.getElementById('weightStatTotalLoss').textContent = '-';
-      }
-
-      let html = '';
-      const reversedWeights = [...appState.weights].reverse();
-
-      reversedWeights.forEach((w) => {
-        const originalIndex = appState.weights.findIndex(x => x.id === w.id);
-        let diffBadge = '';
-        if (originalIndex > 0) {
-          const prev = appState.weights[originalIndex - 1];
-          const diff = (w.weight - prev.weight).toFixed(1);
-          if (diff < 0) {
-            diffBadge = `<span class="item-badge badge-loss">${diff} كغ ↓</span>`;
-          } else if (diff > 0) {
-            diffBadge = `<span class="item-badge badge-gain">+${diff} كغ ↑</span>`;
-          } else {
-            diffBadge = `<span class="item-badge badge-same">0.0 كغ =</span>`;
-          }
-        } else {
-          diffBadge = `<span class="item-badge badge-same">الوزن الأولي</span>`;
-        }
-
-        html += `
-          <div class="history-item">
-            <div class="item-meta">
-              <div class="item-main-title">${w.weight} كغ</div>
-              <div class="item-subtitle">${formatArabicDate(w.date)} ${w.note ? `• ${w.note}` : ''}</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              ${diffBadge}
-              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteWeight(${w.id})">حذف</button>
-            </div>
-          </div>
-        `;
-      });
-
-      historyContainer.innerHTML = html;
-      drawWeightCanvas(appState.weights);
-    }
-
-    function drawWeightCanvas(data) {
-      const canvas = document.getElementById('weightCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const dpr = window.devicePixelRatio || 1;
-
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-
-      const width = rect.width;
-      const height = rect.height;
-
-      ctx.clearRect(0, 0, width, height);
-
-      if (!data || data.length === 0) {
-        ctx.fillStyle = '#666';
-        ctx.font = '13px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('لا توجد بيانات كافية لرسم المنحنى البياني', width / 2, height / 2);
-        return;
-      }
-
-      const padding = { top: 25, right: 35, bottom: 35, left: 35 };
-      const plotW = width - padding.left - padding.right;
-      const plotH = height - padding.top - padding.bottom;
-
-      const weights = data.map(d => d.weight);
-      let minW = Math.min(...weights);
-      let maxW = Math.max(...weights);
-      if (minW === maxW) { minW -= 2; maxW += 2; }
-      minW = Math.floor(minW - 1);
-      maxW = Math.ceil(maxW + 1);
-
-      ctx.strokeStyle = '#222';
-      ctx.lineWidth = 1;
-      ctx.fillStyle = '#777';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'right';
-
-      const gridSteps = 4;
-      for (let i = 0; i <= gridSteps; i++) {
-        const val = minW + ((maxW - minW) / gridSteps) * i;
-        const y = padding.top + plotH - ((val - minW) / (maxW - minW)) * plotH;
-        ctx.beginPath();
-        ctx.moveTo(padding.left, y);
-        ctx.lineTo(width - padding.right, y);
-        ctx.stroke();
-        ctx.fillText(val.toFixed(1), padding.left - 6, y + 3);
-      }
-
-      const points = data.map((d, i) => {
-        const x = data.length === 1 ? padding.left + plotW / 2 : padding.left + (i / (data.length - 1)) * plotW;
-        const y = padding.top + plotH - ((d.weight - minW) / (maxW - minW)) * plotH;
-        return { x, y, data: d };
-      });
-
-      const grad = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
-      grad.addColorStop(0, 'rgba(148, 27, 61, 0.45)');
-      grad.addColorStop(1, 'rgba(148, 27, 61, 0.0)');
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, height - padding.bottom);
-      points.forEach(p => ctx.lineTo(p.x, p.y));
-      ctx.lineTo(points[points.length - 1].x, height - padding.bottom);
-      ctx.closePath();
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-      for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(points[i].x, points[i].y);
-      }
-      ctx.strokeStyle = '#ff4d79';
-      ctx.lineWidth = 2.5;
-      ctx.shadowColor = 'rgba(255, 77, 121, 0.5)';
-      ctx.shadowBlur = 8;
-      ctx.stroke();
-      ctx.shadowBlur = 0;
-
-      points.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#650F27';
-        ctx.fill();
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      });
-
-      canvas.onclick = (e) => {
-        const clickRect = canvas.getBoundingClientRect();
-        const clickX = e.clientX - clickRect.left;
-        let closest = points[0];
-        let minDist = 99999;
-        points.forEach(p => {
-          const d = Math.abs(p.x - clickX);
-          if (d < minDist) { minDist = d; closest = p; }
-        });
-        const tt = document.getElementById('chartTooltip');
-        tt.textContent = `📅 ${closest.data.date} : الوزن ${closest.data.weight} كغ ${closest.data.note ? `(${closest.data.note})` : ''}`;
-      };
-    }
-
-    /* ==========================================
-       8. قسم السعرات والعجز الحراري
-       ========================================== */
-    function shiftActiveDate(days) {
-      const d = parseISODate(appState.activeDate);
-      d.setDate(d.getDate() + days);
-      appState.activeDate = formatDateToISO(d);
-      document.getElementById('calorieDateSelector').value = appState.activeDate;
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    function onDateSelectorChange(val) {
-      if (!val) return;
-      appState.activeDate = val;
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    function applyFoodPreset(name, cal) {
-      document.getElementById('inputMealName').value = name;
-      document.getElementById('inputMealCal').value = cal;
-    }
-
-    function applyWorkoutPreset(name, dur, cal) {
-      document.getElementById('inputWorkoutName').value = name;
-      document.getElementById('inputWorkoutDuration').value = dur;
-      document.getElementById('inputWorkoutCal').value = cal;
-    }
-
-    async function handleSaveMeal(e) {
-      e.preventDefault();
-      const type = document.getElementById('inputMealType').value;
-      const name = document.getElementById('inputMealName').value.trim();
-      const cal = normalizeNumber(document.getElementById('inputMealCal').value);
-      const portion = document.getElementById('inputMealPortion').value.trim();
-
-      if (!name || cal <= 0) return showToast('يرجى إدخال اسم الوجبة والسعرات', 'danger');
-
-      const item = {
-        date: appState.activeDate,
-        type,
-        name,
-        calories: cal,
-        portion,
-        time: new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' })
-      };
-
-      const id = await dbPut('meals', item);
-      item.id = id;
-      appState.meals.push(item);
-
-      closeModal('addMealModal');
-      document.getElementById('inputMealName').value = '';
-      document.getElementById('inputMealCal').value = '';
-      document.getElementById('inputMealPortion').value = '';
-      showToast('تمت إضافة الوجبة بنجاح');
-
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    async function deleteMeal(id) {
-      await dbDelete('meals', id);
-      appState.meals = appState.meals.filter(m => m.id !== id);
-      showToast('تم حذف الوجبة');
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    async function handleSaveWorkout(e) {
-      e.preventDefault();
-      const name = document.getElementById('inputWorkoutName').value.trim();
-      const duration = normalizeNumber(document.getElementById('inputWorkoutDuration').value);
-      const cal = normalizeNumber(document.getElementById('inputWorkoutCal').value);
-
-      if (!name || cal <= 0) return showToast('يرجى إدخال اسم التمرين وسعرات الحرق', 'danger');
-
-      const item = {
-        date: appState.activeDate,
-        name,
-        duration: duration || null,
-        calories: cal
-      };
-
-      const id = await dbPut('workouts', item);
-      item.id = id;
-      appState.workouts.push(item);
-
-      closeModal('addWorkoutModal');
-      document.getElementById('inputWorkoutName').value = '';
-      document.getElementById('inputWorkoutDuration').value = '';
-      document.getElementById('inputWorkoutCal').value = '';
-      showToast('تم تسجيل النشاط بنجاح');
-
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    async function deleteWorkout(id) {
-      await dbDelete('workouts', id);
-      appState.workouts = appState.workouts.filter(w => w.id !== id);
-      showToast('تم حذف التمرين');
-      renderCalorieTab();
-      updateDashboardSummary();
-    }
-
-    function renderCalorieTab() {
-      const todayStr = getTodayDateString();
-      if (appState.activeDate === todayStr) {
-        document.getElementById('calorieDateLabel').textContent = 'اليوم';
-      } else {
-        document.getElementById('calorieDateLabel').textContent = formatArabicDate(appState.activeDate);
-      }
-
-      const dateMeals = appState.meals.filter(m => m.date === appState.activeDate);
-      const mealsContainer = document.getElementById('todayMealsList');
-      const totalFood = dateMeals.reduce((sum, m) => sum + normalizeNumber(m.calories), 0);
-      document.getElementById('totalFoodCalToday').textContent = totalFood;
-
-      if (dateMeals.length === 0) {
-        mealsContainer.innerHTML = '<div class="empty-state" style="padding: 16px;"><p>لا توجد وجبات مسجلة لهذا اليوم بعد.</p></div>';
-      } else {
-        mealsContainer.innerHTML = dateMeals.map(m => `
-          <div class="history-item">
-            <div class="item-meta">
-              <div class="item-main-title">[${m.type}] ${m.name}</div>
-              <div class="item-subtitle">${m.portion ? `${m.portion} • ` : ''}${m.time || ''}</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="item-badge badge-same" style="color: #ff94af;">${m.calories} سعرة</span>
-              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteMeal(${m.id})">✕</button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const dateWorkouts = appState.workouts.filter(w => w.date === appState.activeDate);
-      const workoutsContainer = document.getElementById('todayWorkoutsList');
-      const totalBurn = dateWorkouts.reduce((sum, w) => sum + normalizeNumber(w.calories), 0);
-      document.getElementById('totalWorkoutCalToday').textContent = totalBurn;
-
-      if (dateWorkouts.length === 0) {
-        workoutsContainer.innerHTML = '<div class="empty-state" style="padding: 16px;"><p>لا توجد تمارين مسجلة لهذا اليوم بعد.</p></div>';
-      } else {
-        workoutsContainer.innerHTML = dateWorkouts.map(w => `
-          <div class="history-item">
-            <div class="item-meta">
-              <div class="item-main-title">${w.name}</div>
-              <div class="item-subtitle">${w.details ? `${w.details} • ` : ''}${w.duration ? `${w.duration} دقيقة` : 'نشاط بدني'}</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="item-badge badge-loss">${w.calories} سعرة حرق</span>
-              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteWorkout(${w.id})">✕</button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const maint = normalizeNumber(appState.config.maintenanceCalories);
-      const deficitEl = document.getElementById('energyDeficitDisplay');
-      const formulaEl = document.getElementById('energyFormulaDisplay');
-
-      if (maint > 0) {
-        const totalEnergy = maint + totalBurn;
-        const deficit = totalEnergy - totalFood;
-
-        if (deficit > 0) {
-          deficitEl.textContent = `عجز ${deficit} سعرة`;
-          deficitEl.className = 'energy-val deficit';
-        } else if (deficit < 0) {
-          deficitEl.textContent = `فائض ${Math.abs(deficit)} سعرة`;
-          deficitEl.className = 'energy-val surplus';
-        } else {
-          deficitEl.textContent = `متوازن تماماً`;
-          deficitEl.className = 'energy-val neutral';
-        }
-
-        formulaEl.textContent = `إجمالي الطاقة [${maint} محافظة + ${totalBurn} تمرين] − [${totalFood} أكل] = ${deficit} سعرة`;
-      } else {
-        deficitEl.textContent = `${totalFood} سعرة أكل`;
-        deficitEl.className = 'energy-val neutral';
-        formulaEl.textContent = `لم يتم تحديد سعرات المحافظة. توجه للإعدادات لحساب العجز اليومي.`;
-      }
-
-      computeWeeklyAverages();
-    }
-
-    function computeWeeklyAverages() {
-      const uniqueDays = [...new Set(appState.meals.map(m => m.date))];
-      if (uniqueDays.length === 0) {
-        document.getElementById('weekAvgIntake').textContent = '0';
-        document.getElementById('weekAvgDeficit').textContent = '0';
-        document.getElementById('weekActiveDaysCount').textContent = 'لا توجد بيانات كافية لحساب المتوسط.';
-        return;
-      }
-
-      let totalIntake = 0;
-      let totalDeficit = 0;
-      const maint = normalizeNumber(appState.config.maintenanceCalories);
-
-      uniqueDays.forEach(d => {
-        const dayFood = appState.meals.filter(m => m.date === d).reduce((s, m) => s + normalizeNumber(m.calories), 0);
-        const dayBurn = appState.workouts.filter(w => w.date === d).reduce((s, w) => s + normalizeNumber(w.calories), 0);
-        totalIntake += dayFood;
-        if (maint > 0) {
-          totalDeficit += (maint + dayBurn) - dayFood;
-        }
-      });
-
-      const avgIntake = Math.round(totalIntake / uniqueDays.length);
-      const avgDeficit = maint > 0 ? Math.round(totalDeficit / uniqueDays.length) : '-';
-
-      document.getElementById('weekAvgIntake').textContent = avgIntake;
-      document.getElementById('weekAvgDeficit').textContent = avgDeficit;
-      document.getElementById('weekActiveDaysCount').textContent = `محسوبة بناءً على ${uniqueDays.length} يوم/أيام تحتوي على وجبات فعلية.`;
-    }
-
-    /* ==========================================
-       9. نظام تمرين الدمبل الذكي والمؤقت (من صورتك)
-       ========================================== */
+    /* ============================================================
+       منطق نافذة تمارين الدمبل التفاعلية الـ 15 مع طريقة التمرين الحركية
+       ============================================================ */
     function openDumbbellWorkoutModal() {
       openModal('smartDumbbellModal');
-      selectMuscleGroup('shoulder');
+      switchMuscleGroupTab('shoulder');
       calculateLiveWorkoutCalories();
     }
 
@@ -2270,23 +1943,58 @@
       closeModal('smartDumbbellModal');
     }
 
-    function selectMuscleGroup(muscleKey, elementBtn = null) {
-      currentActiveMuscle = muscleKey;
-      if (elementBtn) {
-        const parent = elementBtn.parentElement;
-        parent.querySelectorAll('.preset-chip').forEach(c => {
-          c.style.background = '#202020';
-          c.style.color = 'var(--text-muted)';
-        });
-        elementBtn.style.background = 'var(--maroon-primary)';
-        elementBtn.style.color = '#fff';
-      }
+    function switchMuscleGroupTab(muscleKey) {
+      activeMuscleTab = muscleKey;
+      selectedExerciseIndex = 0;
 
-      const select = document.getElementById('selectedExerciseName');
-      select.innerHTML = DUMBBELL_EXERCISES[muscleKey].map(ex => `
-        <option value="${ex.name}">${ex.name}</option>
+      // تحديث أزرار العضلات
+      ['shoulder', 'back', 'chest', 'arms', 'legs'].forEach(key => {
+        const btn = document.getElementById(`chip-${key}`);
+        if (btn) {
+          if (key === muscleKey) {
+            btn.classList.add('active');
+            btn.style.background = 'var(--maroon-primary)';
+            btn.style.color = '#fff';
+          } else {
+            btn.classList.remove('active');
+            btn.style.background = '#202020';
+            btn.style.color = 'var(--text-muted)';
+          }
+        }
+      });
+
+      renderMuscleExerciseCards();
+    }
+
+    // عرض التمارين الثلاثة التابعة للعضلة المختارة
+    function renderMuscleExerciseCards() {
+      const container = document.getElementById('muscleExerciseCardsRow');
+      const exercises = DUMBBELL_DATA[activeMuscleTab];
+
+      container.innerHTML = exercises.map((ex, idx) => `
+        <div class="exercise-select-card ${idx === selectedExerciseIndex ? 'selected' : ''}" onclick="selectSpecificExercise(${idx})">
+          <span class="exercise-card-num">تمرين ${idx + 1}</span>
+          <span class="exercise-card-name">${ex.name}</span>
+        </div>
       `).join('');
 
+      renderSelectedExerciseDetail();
+    }
+
+    function selectSpecificExercise(index) {
+      selectedExerciseIndex = index;
+      renderMuscleExerciseCards();
+    }
+
+    function renderSelectedExerciseDetail() {
+      const ex = DUMBBELL_DATA[activeMuscleTab][selectedExerciseIndex];
+      document.getElementById('displayExerciseTitle').textContent = `${ex.name} (${ex.en})`;
+      document.getElementById('targetRepsTag').textContent = ex.repsTarget;
+      document.getElementById('exerciseSvgContainer').innerHTML = ex.svg;
+      document.getElementById('exerciseInstructions').innerHTML = `
+        <div style="margin-bottom: 4px;"><strong>1. وضعية البداية:</strong> ${ex.setup}</div>
+        <div><strong>2. مسار الحركة والتنفس:</strong> ${ex.motion}</div>
+      `;
       calculateLiveWorkoutCalories();
     }
 
@@ -2341,11 +2049,11 @@
     function calculateLiveWorkoutCalories() {
       const userWeight = normalizeNumber(appState.config.baselineWeight) || 80;
       const dumbbellWeight = normalizeNumber(document.getElementById('dumbbellWeightInput').value) || 7.5;
-      const sets = normalizeNumber(document.getElementById('setsCountInput').value) || 3;
-      const reps = normalizeNumber(document.getElementById('repsCountInput').value) || 12;
+      const sets = normalizeNumber(document.getElementById('setsCountInput').value) || 5;
+      const reps = normalizeNumber(document.getElementById('repsCountInput').value) || 30;
 
       const durationHours = Math.max(workoutSecondsElapsed, 120) / 3600;
-      const baseTimeCalories = 5.0 * userWeight * durationHours;
+      const baseTimeCalories = 5.2 * userWeight * durationHours;
 
       const totalWeightMoved = sets * reps * (dumbbellWeight * 2);
       const mechanicalWorkCalories = (totalWeightMoved * 0.045); 
@@ -2358,7 +2066,7 @@
 
     async function finishAndSaveDumbbellWorkout() {
       const burned = calculateLiveWorkoutCalories();
-      const exName = document.getElementById('selectedExerciseName').value;
+      const ex = DUMBBELL_DATA[activeMuscleTab][selectedExerciseIndex];
       const dumbbellWeight = document.getElementById('dumbbellWeightInput').value;
       const sets = document.getElementById('setsCountInput').value;
       const reps = document.getElementById('repsCountInput').value;
@@ -2366,7 +2074,7 @@
 
       const workoutRecord = {
         date: appState.activeDate,
-        name: `دمبل: ${exName}`,
+        name: `دمبل: ${ex.name}`,
         duration: durationMins,
         calories: burned,
         details: `${sets} جولات × ${reps} عدة (وزن: ${dumbbellWeight} كغ)`
@@ -2378,15 +2086,397 @@
 
       resetWorkoutTimer();
       closeDumbbellWorkoutModal();
-      showToast(`تم تسجيل ${burned} سعرة حرق من تمرين الدمبل بنجاح!`);
+      showToast(`تم تسجيل ${burned} سعرة حرق من تمرين ${ex.name}!`);
 
       renderCalorieTab();
       updateDashboardSummary();
     }
 
-    /* ==========================================
-       10. سجل الصور ومقارنة التحول المنزلقة
-       ========================================== */
+    /* إدارة الوزن والوجبات والصور */
+    async function handleSaveWeight(e) {
+      e.preventDefault();
+      const weightVal = normalizeNumber(document.getElementById('inputWeightVal').value);
+      const dateVal = document.getElementById('inputWeightDate').value;
+      const noteVal = document.getElementById('inputWeightNote').value.trim();
+
+      if (weightVal <= 0 || !dateVal) return showToast('يرجى إدخال وزن وتاريخ صحيحين', 'danger');
+
+      const existing = appState.weights.find(w => w.date === dateVal);
+      if (existing) {
+        if (!confirm(`يوجد وزن مسجل بتاريخ (${dateVal}). هل تريد تحديثه؟`)) return;
+        existing.weight = weightVal;
+        existing.note = noteVal;
+        await dbPut('weights', existing);
+        showToast('تم تحديث القياس بنجاح');
+      } else {
+        const newRecord = { weight: weightVal, date: dateVal, note: noteVal };
+        const id = await dbPut('weights', newRecord);
+        newRecord.id = id;
+        appState.weights.push(newRecord);
+        showToast('تم تسجيل الوزن بنجاح');
+      }
+
+      if (!appState.config.baselineWeight) {
+        appState.config.baselineWeight = weightVal;
+        saveConfig();
+      }
+
+      appState.weights.sort((a, b) => new Date(a.date) - new Date(b.date));
+      closeModal('addWeightModal');
+      document.getElementById('inputWeightVal').value = '';
+      refreshAllUI();
+    }
+
+    async function deleteWeight(id) {
+      if (!confirm('حذف هذا القياس؟')) return;
+      await dbDelete('weights', id);
+      appState.weights = appState.weights.filter(w => w.id !== id);
+      showToast('تم حذف السجل');
+      refreshAllUI();
+    }
+
+    function renderWeightTab() {
+      const baseW = normalizeNumber(appState.config.baselineWeight);
+      document.getElementById('weightStatBaseline').textContent = baseW > 0 ? baseW : '-';
+      document.getElementById('weightStatCount').textContent = appState.weights.length;
+
+      const historyContainer = document.getElementById('weightHistoryList');
+      if (appState.weights.length === 0) {
+        document.getElementById('weightStatCurrent').textContent = '-';
+        document.getElementById('weightStatTotalLoss').textContent = '-';
+        historyContainer.innerHTML = '<div class="empty-state"><p>لم تسجل أي وزن بعد.</p></div>';
+        drawWeightCanvas([]);
+        return;
+      }
+
+      const latest = appState.weights[appState.weights.length - 1];
+      document.getElementById('weightStatCurrent').textContent = latest.weight;
+
+      if (baseW > 0) {
+        const totalDiff = (latest.weight - baseW).toFixed(1);
+        const sign = totalDiff > 0 ? `+${totalDiff}` : `${totalDiff}`;
+        document.getElementById('weightStatTotalLoss').textContent = `${sign} كغ`;
+      } else {
+        document.getElementById('weightStatTotalLoss').textContent = '-';
+      }
+
+      let html = '';
+      const reversedWeights = [...appState.weights].reverse();
+
+      reversedWeights.forEach((w) => {
+        const originalIndex = appState.weights.findIndex(x => x.id === w.id);
+        let diffBadge = '';
+        if (originalIndex > 0) {
+          const prev = appState.weights[originalIndex - 1];
+          const diff = (w.weight - prev.weight).toFixed(1);
+          if (diff < 0) diffBadge = `<span class="item-badge badge-loss">${diff} كغ ↓</span>`;
+          else if (diff > 0) diffBadge = `<span class="item-badge badge-gain">+${diff} كغ ↑</span>`;
+          else diffBadge = `<span class="item-badge badge-same">0.0 كغ =</span>`;
+        } else {
+          diffBadge = `<span class="item-badge badge-same">الوزن الأولي</span>`;
+        }
+
+        html += `
+          <div class="history-item">
+            <div class="item-meta">
+              <div class="item-main-title">${w.weight} كغ</div>
+              <div class="item-subtitle">${formatArabicDate(w.date)} ${w.note ? `• ${w.note}` : ''}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              ${diffBadge}
+              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteWeight(${w.id})">حذف</button>
+            </div>
+          </div>
+        `;
+      });
+
+      historyContainer.innerHTML = html;
+      drawWeightCanvas(appState.weights);
+    }
+
+    function drawWeightCanvas(data) {
+      const canvas = document.getElementById('weightCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+      ctx.clearRect(0, 0, width, height);
+
+      if (!data || data.length === 0) {
+        ctx.fillStyle = '#666';
+        ctx.font = '13px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('لا توجد بيانات كافية لرسم المنحنى البياني', width / 2, height / 2);
+        return;
+      }
+
+      const padding = { top: 25, right: 35, bottom: 35, left: 35 };
+      const plotW = width - padding.left - padding.right;
+      const plotH = height - padding.top - padding.bottom;
+
+      const weights = data.map(d => d.weight);
+      let minW = Math.floor(Math.min(...weights) - 1);
+      let maxW = Math.ceil(Math.max(...weights) + 1);
+
+      ctx.strokeStyle = '#222';
+      ctx.lineWidth = 1;
+      ctx.fillStyle = '#777';
+      ctx.font = '10px sans-serif';
+      ctx.textAlign = 'right';
+
+      for (let i = 0; i <= 4; i++) {
+        const val = minW + ((maxW - minW) / 4) * i;
+        const y = padding.top + plotH - ((val - minW) / (maxW - minW)) * plotH;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(width - padding.right, y);
+        ctx.stroke();
+        ctx.fillText(val.toFixed(1), padding.left - 6, y + 3);
+      }
+
+      const points = data.map((d, i) => {
+        const x = data.length === 1 ? padding.left + plotW / 2 : padding.left + (i / (data.length - 1)) * plotW;
+        const y = padding.top + plotH - ((d.weight - minW) / (maxW - minW)) * plotH;
+        return { x, y, data: d };
+      });
+
+      const grad = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+      grad.addColorStop(0, 'rgba(148, 27, 61, 0.45)');
+      grad.addColorStop(1, 'rgba(148, 27, 61, 0.0)');
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, height - padding.bottom);
+      points.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.lineTo(points[points.length - 1].x, height - padding.bottom);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+      ctx.strokeStyle = '#ff4d79';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      points.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#650F27';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+
+      canvas.onclick = (e) => {
+        const clickRect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - clickRect.left;
+        let closest = points[0];
+        let minDist = 99999;
+        points.forEach(p => {
+          const d = Math.abs(p.x - clickX);
+          if (d < minDist) { minDist = d; closest = p; }
+        });
+        document.getElementById('chartTooltip').textContent = `📅 ${closest.data.date} : الوزن ${closest.data.weight} كغ`;
+      };
+    }
+
+    function shiftActiveDate(days) {
+      const d = parseISODate(appState.activeDate);
+      d.setDate(d.getDate() + days);
+      appState.activeDate = formatDateToISO(d);
+      document.getElementById('calorieDateSelector').value = appState.activeDate;
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    function onDateSelectorChange(val) {
+      if (!val) return;
+      appState.activeDate = val;
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    function applyFoodPreset(name, cal) {
+      document.getElementById('inputMealName').value = name;
+      document.getElementById('inputMealCal').value = cal;
+    }
+
+    async function handleSaveMeal(e) {
+      e.preventDefault();
+      const type = document.getElementById('inputMealType').value;
+      const name = document.getElementById('inputMealName').value.trim();
+      const cal = normalizeNumber(document.getElementById('inputMealCal').value);
+      const portion = document.getElementById('inputMealPortion').value.trim();
+
+      if (!name || cal <= 0) return showToast('يرجى إدخال اسم الوجبة والسعرات', 'danger');
+
+      const item = {
+        date: appState.activeDate,
+        type,
+        name,
+        calories: cal,
+        portion,
+        time: new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      const id = await dbPut('meals', item);
+      item.id = id;
+      appState.meals.push(item);
+      closeModal('addMealModal');
+      document.getElementById('inputMealName').value = '';
+      document.getElementById('inputMealCal').value = '';
+      showToast('تمت إضافة الوجبة بنجاح');
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    async function deleteMeal(id) {
+      await dbDelete('meals', id);
+      appState.meals = appState.meals.filter(m => m.id !== id);
+      showToast('تم حذف الوجبة');
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    async function handleSaveWorkout(e) {
+      e.preventDefault();
+      const name = document.getElementById('inputWorkoutName').value.trim();
+      const duration = normalizeNumber(document.getElementById('inputWorkoutDuration').value);
+      const cal = normalizeNumber(document.getElementById('inputWorkoutCal').value);
+
+      if (!name || cal <= 0) return showToast('يرجى ملء البيانات', 'danger');
+
+      const item = { date: appState.activeDate, name, duration: duration || null, calories: cal };
+      const id = await dbPut('workouts', item);
+      item.id = id;
+      appState.workouts.push(item);
+      closeModal('addWorkoutModal');
+      document.getElementById('inputWorkoutName').value = '';
+      document.getElementById('inputWorkoutCal').value = '';
+      showToast('تم حفظ النشاط');
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    async function deleteWorkout(id) {
+      await dbDelete('workouts', id);
+      appState.workouts = appState.workouts.filter(w => w.id !== id);
+      showToast('تم حذف التمرين');
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    function renderCalorieTab() {
+      const todayStr = getTodayDateString();
+      document.getElementById('calorieDateLabel').textContent = (appState.activeDate === todayStr) ? 'اليوم' : formatArabicDate(appState.activeDate);
+
+      const dateMeals = appState.meals.filter(m => m.date === appState.activeDate);
+      const mealsContainer = document.getElementById('todayMealsList');
+      const totalFood = dateMeals.reduce((sum, m) => sum + normalizeNumber(m.calories), 0);
+      document.getElementById('totalFoodCalToday').textContent = totalFood;
+
+      if (dateMeals.length === 0) {
+        mealsContainer.innerHTML = '<div class="empty-state" style="padding: 16px;"><p>لا توجد وجبات مسجلة لهذا اليوم.</p></div>';
+      } else {
+        mealsContainer.innerHTML = dateMeals.map(m => `
+          <div class="history-item">
+            <div class="item-meta">
+              <div class="item-main-title">[${m.type}] ${m.name}</div>
+              <div class="item-subtitle">${m.portion ? `${m.portion} • ` : ''}${m.time || ''}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="item-badge badge-same" style="color: #ff94af;">${m.calories} سعرة</span>
+              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteMeal(${m.id})">✕</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const dateWorkouts = appState.workouts.filter(w => w.date === appState.activeDate);
+      const workoutsContainer = document.getElementById('todayWorkoutsList');
+      const totalBurn = dateWorkouts.reduce((sum, w) => sum + normalizeNumber(w.calories), 0);
+      document.getElementById('totalWorkoutCalToday').textContent = totalBurn;
+
+      if (dateWorkouts.length === 0) {
+        workoutsContainer.innerHTML = '<div class="empty-state" style="padding: 16px;"><p>لا توجد تمارين مسجلة لهذا اليوم.</p></div>';
+      } else {
+        workoutsContainer.innerHTML = dateWorkouts.map(w => `
+          <div class="history-item">
+            <div class="item-meta">
+              <div class="item-main-title">${w.name}</div>
+              <div class="item-subtitle">${w.details ? `${w.details} • ` : ''}${w.duration ? `${w.duration} دقيقة` : 'نشاط بدني'}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="item-badge badge-loss">${w.calories} سعرة حرق</span>
+              <button class="btn btn-secondary btn-sm" style="padding: 4px 8px; color: var(--danger);" onclick="deleteWorkout(${w.id})">✕</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const maint = normalizeNumber(appState.config.maintenanceCalories);
+      const deficitEl = document.getElementById('energyDeficitDisplay');
+      const formulaEl = document.getElementById('energyFormulaDisplay');
+
+      if (maint > 0) {
+        const totalEnergy = maint + totalBurn;
+        const deficit = totalEnergy - totalFood;
+
+        if (deficit > 0) {
+          deficitEl.textContent = `عجز ${deficit} سعرة`;
+          deficitEl.className = 'energy-val deficit';
+        } else if (deficit < 0) {
+          deficitEl.textContent = `فائض ${Math.abs(deficit)} سعرة`;
+          deficitEl.className = 'energy-val surplus';
+        } else {
+          deficitEl.textContent = `متوازن تماماً`;
+          deficitEl.className = 'energy-val neutral';
+        }
+
+        formulaEl.textContent = `إجمالي الطاقة [${maint} محافظة + ${totalBurn} تمرين] − [${totalFood} أكل] = ${deficit} سعرة`;
+      } else {
+        deficitEl.textContent = `${totalFood} سعرة أكل`;
+        deficitEl.className = 'energy-val neutral';
+        formulaEl.textContent = `أدخل سعرات المحافظة في الإعدادات لحساب العجز اليومي.`;
+      }
+
+      computeWeeklyAverages();
+    }
+
+    function computeWeeklyAverages() {
+      const uniqueDays = [...new Set(appState.meals.map(m => m.date))];
+      if (uniqueDays.length === 0) {
+        document.getElementById('weekAvgIntake').textContent = '0';
+        document.getElementById('weekAvgDeficit').textContent = '0';
+        document.getElementById('weekActiveDaysCount').textContent = 'لا توجد بيانات كافية لحساب المتوسط.';
+        return;
+      }
+
+      let totalIntake = 0;
+      let totalDeficit = 0;
+      const maint = normalizeNumber(appState.config.maintenanceCalories);
+
+      uniqueDays.forEach(d => {
+        const dayFood = appState.meals.filter(m => m.date === d).reduce((s, m) => s + normalizeNumber(m.calories), 0);
+        const dayBurn = appState.workouts.filter(w => w.date === d).reduce((s, w) => s + normalizeNumber(w.calories), 0);
+        totalIntake += dayFood;
+        if (maint > 0) totalDeficit += (maint + dayBurn) - dayFood;
+      });
+
+      document.getElementById('weekAvgIntake').textContent = Math.round(totalIntake / uniqueDays.length);
+      document.getElementById('weekAvgDeficit').textContent = maint > 0 ? Math.round(totalDeficit / uniqueDays.length) : '-';
+      document.getElementById('weekActiveDaysCount').textContent = `محسوبة بناءً على ${uniqueDays.length} يوم/أيام تحتوي على وجبات فعلية.`;
+    }
+
     function previewSelectedImage(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -2406,7 +2496,6 @@
           img.onload = () => {
             let width = img.width;
             let height = img.height;
-
             if (width > maxDimension || height > maxDimension) {
               if (width > height) {
                 height = Math.round((height * maxDimension) / width);
@@ -2416,7 +2505,6 @@
                 height = maxDimension;
               }
             }
-
             const canvas = document.createElement('canvas');
             canvas.width = width;
             canvas.height = height;
@@ -2438,7 +2526,7 @@
       if (!fileInput.files || !fileInput.files[0]) return showToast('يرجى اختيار صورة', 'danger');
 
       const submitBtn = document.getElementById('savePhotoSubmitBtn');
-      submitBtn.textContent = 'جاري الضغط والحفظ...';
+      submitBtn.textContent = 'جاري الحفظ...';
       submitBtn.disabled = true;
 
       try {
@@ -2446,16 +2534,8 @@
         const type = document.getElementById('inputPhotoType').value;
         const date = document.getElementById('inputPhotoDate').value || getTodayDateString();
         const weight = normalizeNumber(document.getElementById('inputPhotoWeight').value);
-        const note = document.getElementById('inputPhotoNote').value.trim();
 
-        const record = {
-          type,
-          date,
-          weight: weight || null,
-          note,
-          dataUrl: compressedBase64
-        };
-
+        const record = { type, date, weight: weight || null, dataUrl: compressedBase64 };
         const id = await dbPut('photos', record);
         record.id = id;
         appState.photos.unshift(record);
@@ -2463,26 +2543,23 @@
         closeModal('addPhotoModal');
         fileInput.value = '';
         document.getElementById('photoPreviewBox').style.display = 'none';
-        showToast('تم حفظ الصورة محلياً بنجاح');
-
+        showToast('تم حفظ الصورة بنجاح');
         renderPhotosTab();
         renderBadges();
-        checkStorageEstimate();
       } catch (err) {
-        showToast('تعذر معالجة الصورة، تأكد من صحة الملف', 'danger');
+        showToast('تعذر معالجة الصورة', 'danger');
       } finally {
-        submitBtn.textContent = 'ضغط وحفظ الصورة محلياً';
+        submitBtn.textContent = 'حفظ الصورة محلياً';
         submitBtn.disabled = false;
       }
     }
 
     async function deletePhoto(id) {
-      if (!confirm('هل تريد حذف هذه الصورة؟')) return;
+      if (!confirm('حذف هذه الصورة؟')) return;
       await dbDelete('photos', id);
       appState.photos = appState.photos.filter(p => p.id !== id);
       showToast('تم حذف الصورة');
       renderPhotosTab();
-      checkStorageEstimate();
     }
 
     function renderPhotosTab() {
@@ -2513,7 +2590,6 @@
               <div style="font-weight: 700; color: #ff6b8b;">${p.type === 'baseline' ? '🏁 صورة البداية' : (p.type === 'final' ? '🏆 صورة النهاية' : '📸 تقدم')}</div>
               <div>${formatArabicDate(p.date)}</div>
               ${p.weight ? `<div>الوزن: ${p.weight} كغ</div>` : ''}
-              ${p.note ? `<div>${p.note}</div>` : ''}
               <button class="btn btn-secondary btn-sm" style="margin-top: 6px; padding: 2px 6px; color: var(--danger); width: 100%; font-size: 0.72rem;" onclick="deletePhoto(${p.id})">حذف</button>
             </div>
           </div>
@@ -2538,20 +2614,12 @@
 
       container.addEventListener('mousedown', () => isDragging = true);
       window.addEventListener('mouseup', () => isDragging = false);
-      window.addEventListener('mousemove', (e) => {
-        if (isDragging) updateSplit(e.clientX);
-      });
-
+      window.addEventListener('mousemove', (e) => { if (isDragging) updateSplit(e.clientX); });
       container.addEventListener('touchstart', () => isDragging = true);
       window.addEventListener('touchend', () => isDragging = false);
-      window.addEventListener('touchmove', (e) => {
-        if (isDragging && e.touches[0]) updateSplit(e.touches[0].clientX);
-      });
+      window.addEventListener('touchmove', (e) => { if (isDragging && e.touches[0]) updateSplit(e.touches[0].clientX); });
     }
 
-    /* ==========================================
-       11. نظام أوسمة الانضباط والتحفيز
-       ========================================== */
     function renderBadges() {
       const totalDays = Math.max(1, Math.round((parseISODate(appState.config.endDate) - parseISODate(appState.config.startDate)) / 86400000));
       const now = new Date();
@@ -2559,66 +2627,24 @@
       const daysPassed = Math.max(0, Math.round((now - parseISODate(appState.config.startDate)) / 86400000));
 
       const badges = [
-        {
-          id: 'b1',
-          name: 'بداية الرحلة',
-          desc: 'بدء التحدي وقطع العهد مع الذات',
-          icon: '🚀',
-          unlocked: daysPassed >= 0
-        },
-        {
-          id: 'b2',
-          name: 'أول خطوة على الميزان',
-          desc: 'تسجيل أول قراءة وزن حقيقية',
-          icon: '⚖️',
-          unlocked: appState.weights.length >= 1
-        },
-        {
-          id: 'b3',
-          name: 'أسبوع من الانضباط',
-          desc: 'إكمال 7 أيام في مسار التحدي',
-          icon: '🔥',
-          unlocked: daysPassed >= 7
-        },
-        {
-          id: 'b4',
-          name: 'شهر كامل من الالتزام',
-          desc: 'تسجيل 4 قياسات أسبوعية أو 30 يوماً',
-          icon: '🛡️',
-          unlocked: appState.weights.length >= 4 || daysPassed >= 30
-        },
-        {
-          id: 'b5',
-          name: 'عين على الهدف',
-          desc: 'توثيق أول صورة لمتابعة التحول',
-          icon: '📸',
-          unlocked: appState.photos.length >= 1
-        },
-        {
-          id: 'b6',
-          name: 'بطل التحدي',
-          desc: 'الوصول إلى نهاية المدة وإكمال الرحلة',
-          icon: '👑',
-          unlocked: daysPassed >= totalDays
-        }
+        { id: 'b1', name: 'بداية الرحلة', desc: 'بدء التحدي وقطع العهد', icon: '🚀', unlocked: daysPassed >= 0 },
+        { id: 'b2', name: 'أول قياس وزن', desc: 'تسجيل أول قراءة وزن حقيقية', icon: '⚖️', unlocked: appState.weights.length >= 1 },
+        { id: 'b3', name: 'أسبوع انضباط', desc: 'إكمال 7 أيام في مسار التحدي', icon: '🔥', unlocked: daysPassed >= 7 },
+        { id: 'b4', name: 'شهر التزام', desc: 'تسجيل 4 قياسات أو 30 يوماً', icon: '🛡️', unlocked: appState.weights.length >= 4 || daysPassed >= 30 },
+        { id: 'b5', name: 'عين على الهدف', desc: 'توثيق أول صورة لمتابعة التحول', icon: '📸', unlocked: appState.photos.length >= 1 },
+        { id: 'b6', name: 'بطل التحدي', desc: 'الوصول إلى نهاية المدة وإكمال الرحلة', icon: '👑', unlocked: daysPassed >= totalDays }
       ];
 
-      const container = document.getElementById('badgesContainer');
-      container.innerHTML = badges.map(b => `
+      document.getElementById('badgesContainer').innerHTML = badges.map(b => `
         <div class="achievement-card ${b.unlocked ? 'unlocked' : ''}">
           <div class="achievement-icon">${b.icon}</div>
           <div style="font-weight: 800; font-size: 0.88rem; color: ${b.unlocked ? '#fff' : '#888'};">${b.name}</div>
           <div style="font-size: 0.72rem; color: var(--text-muted);">${b.desc}</div>
-          <div style="font-size: 0.68rem; font-weight: 700; color: ${b.unlocked ? '#4ade80' : '#555'};">
-            ${b.unlocked ? '✓ تم الإنجاز' : 'قيد التقدم'}
-          </div>
+          <div style="font-size: 0.68rem; font-weight: 700; color: ${b.unlocked ? '#4ade80' : '#555'};">${b.unlocked ? '✓ تم الإنجاز' : 'قيد التقدم'}</div>
         </div>
       `).join('');
     }
 
-    /* ==========================================
-       12. الإعدادات وحساب السعرات التلقائي
-       ========================================== */
     function fillSettingsUI() {
       const c = appState.config;
       document.getElementById('cfgStartDate').value = c.startDate;
@@ -2638,27 +2664,15 @@
       const height = normalizeNumber(document.getElementById('cfgHeight').value);
       const activity = normalizeNumber(document.getElementById('cfgActivity').value);
 
-      let currentW = 0;
-      if (appState.weights.length > 0) {
-        currentW = appState.weights[appState.weights.length - 1].weight;
-      } else {
-        currentW = normalizeNumber(document.getElementById('cfgBaselineWeight').value);
-      }
+      let currentW = appState.weights.length > 0 ? appState.weights[appState.weights.length - 1].weight : normalizeNumber(document.getElementById('cfgBaselineWeight').value);
 
-      if (!currentW || !height || !age) {
-        return showToast('يرجى التأكد من ملء الوزن والطول والعمر لحساب السعرات', 'danger');
-      }
+      if (!currentW || !height || !age) return showToast('يرجى ملء الوزن والطول والعمر', 'danger');
 
       let bmr = (10 * currentW) + (6.25 * height) - (5 * age);
-      if (gender === 'male') {
-        bmr += 5;
-      } else {
-        bmr -= 161;
-      }
-
+      bmr = (gender === 'male') ? bmr + 5 : bmr - 161;
       const tdee = Math.round(bmr * activity);
       document.getElementById('cfgMaintenance').value = tdee;
-      showToast(`سعرات المحافظة التقديرية: ${tdee} سعرة/يوم`);
+      showToast(`سعرات المحافظة التقديرية: ${tdee} سعرة`);
     }
 
     function saveSettings() {
@@ -2681,9 +2695,6 @@
       localStorage.setItem('rahlati_config', JSON.stringify(appState.config));
     }
 
-    /* ==========================================
-       13. النسخ الاحتياطي الكامل والاستيراد
-       ========================================== */
     async function exportFullBackup() {
       const backupData = {
         version: '1.0',
@@ -2694,7 +2705,6 @@
         workouts: appState.workouts,
         photos: appState.photos
       };
-
       const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(backupData));
       const downloadAnchor = document.createElement('a');
       downloadAnchor.setAttribute('href', dataStr);
@@ -2702,7 +2712,7 @@
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
-      showToast('تم تصدير ملف النسخة الاحتياطية');
+      showToast('تم تصدير النسخة الاحتياطية بنجاح');
     }
 
     async function importFullBackup(e) {
@@ -2713,55 +2723,21 @@
       reader.onload = async (event) => {
         try {
           const imported = JSON.parse(event.target.result);
-          if (!imported || (!imported.config && !imported.weights)) {
-            throw new Error('الملف غير صالح');
-          }
-
-          if (!confirm(`سيتم استبدال البيانات الحالية بالنسخة الاحتياطية التي تتضمن (${imported.weights?.length || 0} قياس وزن و ${imported.photos?.length || 0} صورة). هل أنت متأكد؟`)) {
-            return;
-          }
+          if (!confirm(`استبدال البيانات الحالية بالنسخة الاحتياطية؟`)) return;
 
           await dbClearAll();
-
-          if (imported.config) {
-            appState.config = imported.config;
-            saveConfig();
-          }
-
-          if (imported.weights && Array.isArray(imported.weights)) {
-            for (const w of imported.weights) {
-              delete w.id;
-              await dbPut('weights', w);
-            }
-          }
-
-          if (imported.meals && Array.isArray(imported.meals)) {
-            for (const m of imported.meals) {
-              delete m.id;
-              await dbPut('meals', m);
-            }
-          }
-
-          if (imported.workouts && Array.isArray(imported.workouts)) {
-            for (const wo of imported.workouts) {
-              delete wo.id;
-              await dbPut('workouts', wo);
-            }
-          }
-
-          if (imported.photos && Array.isArray(imported.photos)) {
-            for (const p of imported.photos) {
-              delete p.id;
-              await dbPut('photos', p);
-            }
-          }
+          if (imported.config) { appState.config = imported.config; saveConfig(); }
+          if (imported.weights) { for (const w of imported.weights) { delete w.id; await dbPut('weights', w); } }
+          if (imported.meals) { for (const m of imported.meals) { delete m.id; await dbPut('meals', m); } }
+          if (imported.workouts) { for (const wo of imported.workouts) { delete wo.id; await dbPut('workouts', wo); } }
+          if (imported.photos) { for (const p of imported.photos) { delete p.id; await dbPut('photos', p); } }
 
           await loadAllDatabaseRecords();
           fillSettingsUI();
           refreshAllUI();
-          showToast('تمت استعادة النسخة الاحتياطية بنجاح');
+          showToast('تمت استعادة البيانات بنجاح');
         } catch (err) {
-          showToast('فشل الاستيراد: ملف النسخة الاحتياطية تالف أو غير متوافق', 'danger');
+          showToast('فشل الاستيراد: ملف تالف', 'danger');
         }
       };
       reader.readAsText(file);
@@ -2769,10 +2745,8 @@
     }
 
     async function confirmResetAllData() {
-      const q1 = confirm('تحذير: هل أنت متأكد من رغبتك في حذف جميع بيانات رحلتك وصورك وأوزانك نهائياً؟');
-      if (!q1) return;
-      const q2 = prompt('لتأكيد الحذف التام، اكتب كلمة: "تأكيد"');
-      if (q2 === 'تأكيد') {
+      if (!confirm('هل أنت متأكد من حذف جميع بيانات رحلتك نهائياً؟')) return;
+      if (prompt('اكتب كلمة "تأكيد" للبدء من جديد:') === 'تأكيد') {
         await dbClearAll();
         localStorage.removeItem('rahlati_config');
         appState.config = { ...DEFAULT_CONFIG };
@@ -2782,7 +2756,7 @@
         appState.photos = [];
         fillSettingsUI();
         refreshAllUI();
-        showToast('تم مسح جميع البيانات والبدء من جديد');
+        showToast('تم مسح جميع البيانات بنجاح');
       }
     }
 
@@ -2794,21 +2768,15 @@
           const usedMB = (est.usage / (1024 * 1024)).toFixed(1);
           el.textContent = `مساحة التخزين المستهلكة محلياً: ${usedMB} ميغابايت (IndexedDB)`;
         } catch (e) {
-          el.textContent = 'مساحة التخزين متوفرة محلياً على جهازك.';
+          el.textContent = 'التخزين المحلي متوفر على هاتفك.';
         }
       }
     }
 
-    /* ==========================================
-       14. تثبيت التطبيق PWA والتنقل
-       ========================================== */
     function initPwaHandling() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js')
-          .then(() => console.log('Service Worker Registered'))
-          .catch(err => console.log('SW registration skipped', err));
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
       }
-
       window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
@@ -2820,15 +2788,12 @@
     function triggerPwaInstall() {
       if (deferredPrompt) {
         deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choice) => {
-          if (choice.outcome === 'accepted') {
-            showToast('شكراً لتثبيت «رحلتي» على هاتفك!');
-          }
+        deferredPrompt.userChoice.then(() => {
           deferredPrompt = null;
           document.getElementById('pwaInstallBtn').style.display = 'none';
         });
       } else {
-        alert('لتثبيت التطبيق على آيفون (iOS): اضغط على زر المشاركة ثم اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).\n\nعلى أندرويد: افتح خيارات المتصفح واختر "تثبيت التطبيق".');
+        alert('على آيفون: اضغط مشاركة ثم "إضافة إلى الشاشة الرئيسية".\nعلى أندرويد: اضغط خيارات المتصفح ثم "تثبيت التطبيق".');
       }
     }
 
@@ -2854,9 +2819,7 @@
       const btn = document.querySelectorAll('.bottom-nav .nav-item')[navIndices.indexOf(pageId)];
       if (btn) btn.classList.add('active');
 
-      if (pageId === 'weight') {
-        setTimeout(() => drawWeightCanvas(appState.weights), 50);
-      }
+      if (pageId === 'weight') setTimeout(() => drawWeightCanvas(appState.weights), 50);
     }
 
     function openModal(id) {
