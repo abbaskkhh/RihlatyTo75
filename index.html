@@ -64,13 +64,11 @@
       padding-bottom: 90px;
     }
 
-    /* شريط التمرير */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-deep); }
     ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--maroon-primary); }
 
-    /* الهيدر العلوي */
     .top-header {
       position: sticky;
       top: 0;
@@ -121,7 +119,6 @@
       text-align: left;
     }
 
-    /* الحاوية الرئيسية للتطبيق */
     .container {
       width: 100%;
       max-width: 680px;
@@ -130,7 +127,6 @@
       flex: 1;
     }
 
-    /* شريط التنقل السفلي للهاتف */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -195,7 +191,6 @@
       border-radius: 2px;
     }
 
-    /* الصفحات */
     .page-section {
       display: none;
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -210,7 +205,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* بطاقات النظام */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
@@ -237,11 +231,6 @@
       margin-bottom: 14px;
     }
 
-    .card-title svg {
-      color: var(--maroon-accent);
-    }
-
-    /* شبكة الإحصائيات */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -281,7 +270,6 @@
       color: var(--text-muted);
     }
 
-    /* شريط التقدم الزمني للتحدي */
     .progress-bar-wrap {
       width: 100%;
       height: 10px;
@@ -300,7 +288,6 @@
       transition: width 0.8s ease-in-out;
     }
 
-    /* الاقتباس اليومي */
     .quote-box {
       background: rgba(101, 15, 39, 0.12);
       border-right: 3px solid var(--maroon-accent);
@@ -312,7 +299,6 @@
       font-style: italic;
     }
 
-    /* تنبيه وزن الجمعة */
     .friday-alert {
       background: linear-gradient(90deg, #300813, #16080d);
       border: 1px solid var(--maroon-accent);
@@ -325,7 +311,6 @@
       box-shadow: 0 0 18px var(--maroon-glow);
     }
 
-    /* الأزرار العامة */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -390,11 +375,10 @@
 
     @media (min-width: 480px) {
       .quick-actions-row {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    /* الرسوم البيانية */
     .chart-container {
       width: 100%;
       height: 220px;
@@ -408,7 +392,6 @@
       display: block;
     }
 
-    /* القوائم والجداول */
     .history-list {
       display: flex;
       flex-direction: column;
@@ -458,7 +441,6 @@
     .badge-gain { background: rgba(239, 68, 68, 0.15); color: #f87171; }
     .badge-same { background: rgba(255, 255, 255, 0.08); color: #d4d4d4; }
 
-    /* حاسبة العجز والسعرات */
     .date-nav-bar {
       display: flex;
       align-items: center;
@@ -519,18 +501,17 @@
       color: var(--text-muted);
       border-radius: 20px;
       font-size: 0.74rem;
-      padding: 4px 10px;
+      padding: 5px 12px;
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .preset-chip:hover {
+    .preset-chip:hover, .preset-chip.active {
       background: var(--maroon-primary);
       color: #fff;
       border-color: var(--maroon-accent);
     }
 
-    /* معرض الصور ومقارنة التحول المنزلقة */
     .split-slider-container {
       position: relative;
       width: 100%;
@@ -561,12 +542,6 @@
       overflow: hidden;
       border-left: 2px solid var(--maroon-accent);
       box-shadow: 0 0 12px var(--maroon-accent);
-    }
-
-    .split-img-after-wrap .split-img {
-      width: 100%;
-      height: 100%;
-      /* يتم تعديل عرض المحتوى عبر JS لتطابق المنظور */
     }
 
     .split-handle {
@@ -629,7 +604,6 @@
       color: var(--text-muted);
     }
 
-    /* الأوسمة والإنجازات */
     .badge-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -673,7 +647,6 @@
       box-shadow: 0 0 12px var(--maroon-accent);
     }
 
-    /* النوافذ المنبثقة (Modals) */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -729,7 +702,6 @@
       font-size: 1.1rem;
     }
 
-    /* الحقول ونماذج الإدخال */
     .form-group {
       margin-bottom: 14px;
       text-align: right;
@@ -761,7 +733,6 @@
       box-shadow: 0 0 8px var(--maroon-glow);
     }
 
-    /* الإشعارات العائمة (Toasts) */
     .toast-container {
       position: fixed;
       top: 20px;
@@ -796,7 +767,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* الحالات الفارغة */
     .empty-state {
       text-align: center;
       padding: 36px 16px;
@@ -880,16 +850,19 @@
         </div>
       </div>
 
-      <!-- أزرار الإجراءات السريعة -->
+      <!-- أزرار الإجراءات السريعة (تتضمن زر تمرين الدمبل الجديد) -->
       <div class="quick-actions-row">
+        <button class="btn btn-maroon" onclick="openDumbbellWorkoutModal()">
+          <span>🏋️‍♂️</span> تمرين دمبل منزلي
+        </button>
         <button class="btn btn-secondary" onclick="openModal('addMealModal')">
           <span>🥗</span> إضافة وجبة
         </button>
-        <button class="btn btn-secondary" onclick="openModal('addWorkoutModal')">
-          <span>🔥</span> تسجيل تمرين
-        </button>
         <button class="btn btn-secondary" onclick="openModal('addWeightModal')">
           <span>⚖️</span> وزن اليوم
+        </button>
+        <button class="btn btn-secondary" onclick="openModal('addWorkoutModal')">
+          <span>🔥</span> نشاط آخر
         </button>
         <button class="btn btn-secondary" onclick="navigateTo('photos')">
           <span>📸</span> توثيق صورة
@@ -992,9 +965,7 @@
       <!-- جدول السجلات السابقة -->
       <div class="card">
         <div class="card-title">سجل القياسات الأسبوعية</div>
-        <div id="weightHistoryList" class="history-list">
-          <!-- يتم الحقن برمجياً -->
-        </div>
+        <div id="weightHistoryList" class="history-list"></div>
       </div>
     </section>
 
@@ -1028,20 +999,19 @@
           <span>الوجبات المستهلكة (<span id="totalFoodCalToday">0</span> سعرة)</span>
           <button class="btn btn-maroon btn-sm" onclick="openModal('addMealModal')">+ وجبة</button>
         </div>
-        <div id="todayMealsList" class="history-list">
-          <!-- يتم ملؤها ديناميكياً -->
-        </div>
+        <div id="todayMealsList" class="history-list"></div>
       </div>
 
       <!-- تمارين ونشاط اليوم -->
       <div class="card">
         <div class="card-title">
           <span>النشاط وحرق التمارين (<span id="totalWorkoutCalToday">0</span> سعرة)</span>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('addWorkoutModal')">+ تمرين</button>
+          <div style="display: flex; gap: 6px;">
+            <button class="btn btn-maroon btn-sm" onclick="openDumbbellWorkoutModal()">🏋️‍♂️ تمرين دمبل</button>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('addWorkoutModal')">+ تمرين مخصص</button>
+          </div>
         </div>
-        <div id="todayWorkoutsList" class="history-list">
-          <!-- يتم ملؤها ديناميكياً -->
-        </div>
+        <div id="todayWorkoutsList" class="history-list"></div>
       </div>
 
       <!-- الملخص الأسبوعي -->
@@ -1094,9 +1064,7 @@
       <!-- معرض جميع الصور المسجلة -->
       <div class="card">
         <div class="card-title">ألبوم توثيق التحدي</div>
-        <div id="photosTimelineGrid" class="photo-grid">
-          <!-- يتم الحقن برمجياً -->
-        </div>
+        <div id="photosTimelineGrid" class="photo-grid"></div>
       </div>
 
       <div style="font-size: 0.76rem; color: var(--text-sub); text-align: center; margin-top: 10px;">
@@ -1106,12 +1074,9 @@
 
     <!-- 5. صفحة التقدم والأوسمة والإعدادات -->
     <section id="pageProgress" class="page-section">
-      <!-- أوسمة الانضباط -->
       <div class="card maroon-glow-card">
         <div class="card-title">أوسمة الانضباط والالتزام</div>
-        <div class="badge-grid" id="badgesContainer">
-          <!-- يتم التحديث عبر الكود -->
-        </div>
+        <div class="badge-grid" id="badgesContainer"></div>
       </div>
 
       <!-- إعدادات التحدي والسعرات -->
@@ -1247,7 +1212,101 @@
        النوافذ المنبثقة (Modals)
        ============================================================ -->
 
-  <!-- 1. نافذة تسجيل الوزن -->
+  <!-- 1. نافذة تمرين الدمبل المنزلي الذكي (تم استخراجه من دليلك المصور) -->
+  <div id="smartDumbbellModal" class="modal-overlay">
+    <div class="modal-sheet" style="max-height: 92vh;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800;">🏋️‍♂️ جلسة تمرين الدمبل المنزلي</h3>
+          <div style="font-size: 0.76rem; color: var(--text-muted);">دليل تمارين الجسم الكامل بالدمبل</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeDumbbellWorkoutModal()">✕</button>
+      </div>
+
+      <!-- شاشة المؤقت والسعرات الحية -->
+      <div style="background: linear-gradient(135deg, #200810, #111); border: 1px solid var(--maroon-accent); border-radius: var(--radius-md); padding: 14px; text-align: center; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-around; align-items: center;">
+          <div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">وقت التمرين المباشر</div>
+            <div id="workoutTimerDisplay" style="font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace;">00:00</div>
+          </div>
+          <div style="height: 35px; width: 1px; background: rgba(255,255,255,0.1);"></div>
+          <div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">الحرق التقديري التفاعلي</div>
+            <div id="liveBurnedCaloriesDisplay" style="font-size: 1.8rem; font-weight: 900; color: #4ade80;">0 <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">سعرة</span></div>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px;">
+          <button id="timerToggleBtn" class="btn btn-maroon btn-sm" onclick="toggleWorkoutTimer()">▶ بدء المؤقت</button>
+          <button class="btn btn-secondary btn-sm" onclick="resetWorkoutTimer()">إعادة ضبط</button>
+        </div>
+      </div>
+
+      <!-- تبويبات العضلات من الصورة -->
+      <div class="form-group">
+        <label class="form-label">المجموعة العضلية المستهدفة (من الصورة):</label>
+        <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
+          <button type="button" class="preset-chip active" style="background: var(--maroon-primary); color: #fff;" onclick="selectMuscleGroup('shoulder', this)">أكتاف (Shoulder)</button>
+          <button type="button" class="preset-chip" onclick="selectMuscleGroup('back', this)">ظهر (Back)</button>
+          <button type="button" class="preset-chip" onclick="selectMuscleGroup('chest', this)">صدر (Chest)</button>
+          <button type="button" class="preset-chip" onclick="selectMuscleGroup('arms', this)">ذراعين (Arms)</button>
+          <button type="button" class="preset-chip" onclick="selectMuscleGroup('legs', this)">أرجل (Legs)</button>
+        </div>
+      </div>
+
+      <!-- اختيار التمرين المحدد -->
+      <div class="form-group">
+        <label class="form-label">التمرين المحدد:</label>
+        <select id="selectedExerciseName" class="form-control" onchange="calculateLiveWorkoutCalories()"></select>
+      </div>
+
+      <!-- عداد الوزن والجولات والتكرارات -->
+      <div class="stats-grid" style="margin-bottom: 12px;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">وزن الدمبل لليد الواحدة (كغ)</label>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button type="button" class="date-nav-btn" onclick="stepVal('dumbbellWeightInput', -1)">-</button>
+            <input type="number" step="0.5" id="dumbbellWeightInput" class="form-control" value="7.5" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
+            <button type="button" class="date-nav-btn" onclick="stepVal('dumbbellWeightInput', 1)">+</button>
+          </div>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">عدد الجولات (Sets)</label>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button type="button" class="date-nav-btn" onclick="stepVal('setsCountInput', -1)">-</button>
+            <input type="number" id="setsCountInput" class="form-control" value="4" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
+            <button type="button" class="date-nav-btn" onclick="stepVal('setsCountInput', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">عدد التكرارات في الجولة (Reps)</label>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" class="date-nav-btn" onclick="stepVal('repsCountInput', -2)">-</button>
+          <input type="number" id="repsCountInput" class="form-control" value="15" style="text-align: center;" oninput="calculateLiveWorkoutCalories()">
+          <button type="button" class="date-nav-btn" onclick="stepVal('repsCountInput', 2)">+</button>
+        </div>
+        <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;">
+          <span class="preset-chip" onclick="setReps(10)">10 عدات</span>
+          <span class="preset-chip" onclick="setReps(15)">15 عدة</span>
+          <span class="preset-chip" onclick="setReps(20)">20 عدة</span>
+          <span class="preset-chip" onclick="setReps(30)">30 عدة (كثافة عالية)</span>
+        </div>
+      </div>
+
+      <!-- زر الحفظ المباشر -->
+      <div style="margin-top: 18px;">
+        <button type="button" class="btn btn-maroon" onclick="finishAndSaveDumbbellWorkout()">
+          <span>💾</span> حفظ التمرين واحتساب السعرات في سجل اليوم
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. نافذة تسجيل الوزن -->
   <div id="addWeightModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1272,7 +1331,7 @@
     </div>
   </div>
 
-  <!-- 2. نافذة إضافة وجبة طعام -->
+  <!-- 3. نافذة إضافة وجبة طعام -->
   <div id="addMealModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1295,7 +1354,6 @@
           <input type="text" id="inputMealName" class="form-control" required placeholder="مثال: صدر دجاج مع رز وسلطة">
         </div>
 
-        <!-- أمثلة وجبات عربية سريعة -->
         <div style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 4px;">أمثلة سريعة:</div>
         <div class="food-presets-container">
           <span class="preset-chip" onclick="applyFoodPreset('صدر دجاج مشوي 150غ', 245)">دجاج مشوي (245 سعرة)</span>
@@ -1321,7 +1379,7 @@
     </div>
   </div>
 
-  <!-- 3. نافذة تسجيل تمرين ونشاط -->
+  <!-- 4. نافذة تسجيل تمرين ونشاط مخصص -->
   <div id="addWorkoutModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1331,17 +1389,15 @@
       <form onsubmit="handleSaveWorkout(event)">
         <div class="form-group">
           <label class="form-label">اسم التمرين / النشاط *</label>
-          <input type="text" id="inputWorkoutName" class="form-control" required placeholder="مثال: مشي سريع، تمارين حديد">
+          <input type="text" id="inputWorkoutName" class="form-control" required placeholder="مثال: مشي سريع، دراجة">
         </div>
 
-        <!-- أمثلة تمارين سريعة -->
         <div style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 4px;">أنشطة شائعة:</div>
         <div class="food-presets-container">
           <span class="preset-chip" onclick="applyWorkoutPreset('مشي سريع', 30, 150)">مشي 30 د (150 سعرة)</span>
-          <span class="preset-chip" onclick="applyWorkoutPreset('تمارين مقاومة وحديد', 45, 220)">حديد 45 د (220 سعرة)</span>
           <span class="preset-chip" onclick="applyWorkoutPreset('ركض معتدل', 25, 260)">ركض 25 د (260 سعرة)</span>
           <span class="preset-chip" onclick="applyWorkoutPreset('دراجة ثابتة', 30, 200)">دراجة 30 د (200 سعرة)</span>
-          <span class="preset-chip" onclick="applyWorkoutPreset('تمارين منزلية كارديو', 20, 160)">كارديو منزلي (160 سعرة)</span>
+          <span class="preset-chip" onclick="applyWorkoutPreset('تمارين كارديو منزلية', 20, 160)">كارديو منزلي (160 سعرة)</span>
         </div>
 
         <div class="stats-grid">
@@ -1354,12 +1410,12 @@
             <input type="number" id="inputWorkoutCal" class="form-control" required placeholder="مثال: 250">
           </div>
         </div>
-        <button type="submit" class="btn btn-maroon" style="margin-top: 8px;">حفظ التمرين</button>
+        <button type="submit" class="btn btn-maroon" style="margin-top: 8px;">حفظ النشاط</button>
       </form>
     </div>
   </div>
 
-  <!-- 4. نافذة رفع وتوثيق صورة -->
+  <!-- 5. نافذة رفع وتوثيق صورة -->
   <div id="addPhotoModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1380,7 +1436,6 @@
           <input type="file" id="inputPhotoFile" class="form-control" accept="image/*" required onchange="previewSelectedImage(event)">
         </div>
 
-        <!-- معاينة الصورة المصغرة -->
         <div id="photoPreviewBox" style="display: none; margin-bottom: 12px; text-align: center;">
           <img id="photoPreviewImg" src="" style="max-height: 200px; border-radius: var(--radius-sm); border: 1px solid var(--maroon-border);">
         </div>
@@ -1413,8 +1468,8 @@
        ========================================== */
     const DEFAULT_CONFIG = {
       appName: 'رحلتي',
-      startDate: '2026-10-11', // الأحد 11 أكتوبر 2026
-      endDate: '2027-05-31',   // 31 مايو 2027
+      startDate: '2026-10-11',
+      endDate: '2027-05-31',
       baselineWeight: null,
       targetWeight: null,
       gender: 'male',
@@ -1435,6 +1490,40 @@
 
     let deferredPrompt = null;
     let dbInstance = null;
+
+    /* قائمة تمارين الدمبل المستخرجة من صورتك */
+    const DUMBBELL_EXERCISES = {
+      shoulder: [
+        { id: 'sh1', name: 'رفرفة كتف خلفي بالدمبل منحني (Bent-over Rear Fly)' },
+        { id: 'sh2', name: 'ضغط أكتاف بالدمبل وقوفاً (Standing Shoulder Press)' },
+        { id: 'sh3', name: 'رفرفة جانبية وأمامية للكتف (Lateral & Front Raise)' }
+      ],
+      back: [
+        { id: 'bk1', name: 'تجديف دمبل مزدوج منحني (Bent-over Dumbbell Row)' },
+        { id: 'bk2', name: 'سحب دمبل فردي منحنياً (One-Arm Dumbbell Row)' },
+        { id: 'bk3', name: 'ديدليفت روماني بالدمبل للظهر السفلي (Romanian Deadlift)' }
+      ],
+      chest: [
+        { id: 'ch1', name: 'ضغط صدر أرضي بالدمبل (Dumbbell Floor Press)' },
+        { id: 'ch2', name: 'ضغط صدر أرضي قبضة ضيقة (Close-Grip Hex Press)' },
+        { id: 'ch3', name: 'تفتيح صدر أرضي بالدمبل (Dumbbell Floor Fly)' }
+      ],
+      arms: [
+        { id: 'ar1', name: 'تبادل بايسبس بالدمبل واقفاً (Bicep Curls)' },
+        { id: 'ar2', name: 'هامر كيرل للذراع والساعد (Hammer Curls)' },
+        { id: 'ar3', name: 'ترايسبس خلفي بالدمبل (Overhead Tricep Extension)' }
+      ],
+      legs: [
+        { id: 'lg1', name: 'طعنات بالدمبل للأرجل (Dumbbell Walking Lunges)' },
+        { id: 'lg2', name: 'سكوات أمامي بالدمبل (Dumbbell Front Squat)' },
+        { id: 'lg3', name: 'سكوات حقيبة جانبي (Suitcase / Goblet Squat)' }
+      ]
+    };
+
+    let workoutTimerInterval = null;
+    let workoutSecondsElapsed = 0;
+    let isTimerRunning = false;
+    let currentActiveMuscle = 'shoulder';
 
     /* ==========================================
        2. قاعدة البيانات المحلية المتطورة IndexedDB
@@ -1551,7 +1640,6 @@
 
     function normalizeNumber(num) {
       if (typeof num === 'string') {
-        // تحويل الأرقام المشرقية إلى قياسية
         num = num.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
       }
       const val = parseFloat(num);
@@ -1562,7 +1650,6 @@
        4. تهيئة التطبيق عند الفتح
        ========================================== */
     document.addEventListener('DOMContentLoaded', async () => {
-      // استرجاع الإعدادات البسيطة من localStorage
       const savedConfig = localStorage.getItem('rahlati_config');
       if (savedConfig) {
         try {
@@ -1572,12 +1659,10 @@
         }
       }
 
-      // تهيئة حقول التاريخ الافتراضية
       document.getElementById('inputWeightDate').value = getTodayDateString();
       document.getElementById('inputPhotoDate').value = getTodayDateString();
       document.getElementById('calorieDateSelector').value = appState.activeDate;
 
-      // فتح IndexedDB وتحميل السجلات
       try {
         await initIndexedDB();
         await loadAllDatabaseRecords();
@@ -1585,19 +1670,10 @@
         showToast('تعذر تهيئة قاعدة البيانات المحلية', 'danger');
       }
 
-      // ملء واجهة الإعدادات بالقيم الحالية
       fillSettingsUI();
-
-      // تحديث كل أجزاء التطبيق
       refreshAllUI();
-
-      // تفعيل المقارنة المنزلقة للصور
       initSplitSlider();
-
-      // فحص دعم PWA
       initPwaHandling();
-
-      // فحص مساحة التخزين التقديرية
       checkStorageEstimate();
     });
 
@@ -1627,7 +1703,6 @@
       const startDate = parseISODate(appState.config.startDate);
       const endDate = parseISODate(appState.config.endDate);
 
-      // إجمالي مدة التحدي بدقة
       const totalDays = Math.max(1, Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)));
 
       let daysPassed = 0;
@@ -1650,7 +1725,6 @@
 
       const percent = Math.min(100, Math.max(0, Math.round((daysPassed / totalDays) * 100)));
 
-      // تحديث عناصر DOM
       document.getElementById('daysPassedVal').textContent = daysPassed;
       document.getElementById('daysLeftVal').textContent = daysLeft;
       document.getElementById('totalChallengeDaysVal').textContent = totalDays;
@@ -1661,7 +1735,6 @@
       document.getElementById('startDateDisplay').textContent = appState.config.startDate;
       document.getElementById('endDateDisplay').textContent = appState.config.endDate;
 
-      // حساب موعد أقرب يوم جمعة (5 = Friday)
       const dayOfWeek = now.getDay();
       let daysUntilFriday = (5 - dayOfWeek + 7) % 7;
       if (daysUntilFriday === 0) {
@@ -1672,7 +1745,6 @@
         document.getElementById('fridayReminderCard').style.display = 'none';
       }
 
-      // هيدر التاريخ
       document.getElementById('headerSubtitle').textContent = formatArabicDate(getTodayDateString());
     }
 
@@ -1683,17 +1755,14 @@
       const today = getTodayDateString();
       document.getElementById('todaySummaryDate').textContent = (appState.activeDate === today) ? 'اليوم' : appState.activeDate;
 
-      // سعرات الطعام لليوم
       const todayMeals = appState.meals.filter(m => m.date === today);
       const foodCal = todayMeals.reduce((sum, m) => sum + normalizeNumber(m.calories), 0);
       document.getElementById('dashFoodCal').textContent = foodCal;
 
-      // حرق التمارين لليوم
       const todayWorkouts = appState.workouts.filter(w => w.date === today);
       const burnCal = todayWorkouts.reduce((sum, w) => sum + normalizeNumber(w.calories), 0);
       document.getElementById('dashBurnCal').textContent = burnCal;
 
-      // سعرات المحافظة
       const maint = normalizeNumber(appState.config.maintenanceCalories);
       if (maint > 0) {
         document.getElementById('dashMaintenanceCal').textContent = maint;
@@ -1719,7 +1788,6 @@
         document.getElementById('dashDeficitDesc').textContent = 'أدخل سعرات المحافظة في الإعدادات لحساب العجز بدقة.';
       }
 
-      // ملخص الوزن
       const baseW = normalizeNumber(appState.config.baselineWeight);
       document.getElementById('dashBaselineWeight').textContent = baseW > 0 ? `${baseW} كغ` : 'غير محدد';
 
@@ -1758,7 +1826,6 @@
         return showToast('يرجى إدخال وزن وتاريخ صحيحين', 'danger');
       }
 
-      // فحص إذا كان هناك وزن مسجل بنفس التاريخ
       const existing = appState.weights.find(w => w.date === dateVal);
       if (existing) {
         if (!confirm(`يوجد وزن مسجل بالفعل في تاريخ (${dateVal}) وهو ${existing.weight} كغ. هل تريد تحديثه بالوزن الجديد؟`)) {
@@ -1776,7 +1843,6 @@
         showToast('تم تسجيل الوزن بنجاح');
       }
 
-      // إذا لم يكن هناك وزن أساسي محدد، نعتمد هذا كأول وزن أساسي
       if (!appState.config.baselineWeight) {
         appState.config.baselineWeight = weightVal;
         saveConfig();
@@ -1829,12 +1895,10 @@
         document.getElementById('weightStatTotalLoss').textContent = '-';
       }
 
-      // بناء قائمة السجلات بالعكس (الأحدث أولاً)
       let html = '';
       const reversedWeights = [...appState.weights].reverse();
 
-      reversedWeights.forEach((w, index) => {
-        // حساب الفارق عن القياس الأسبق
+      reversedWeights.forEach((w) => {
         const originalIndex = appState.weights.findIndex(x => x.id === w.id);
         let diffBadge = '';
         if (originalIndex > 0) {
@@ -1869,14 +1933,12 @@
       drawWeightCanvas(appState.weights);
     }
 
-    /* رسم بياني أصلي تفاعلي مستقل على HTML5 Canvas */
     function drawWeightCanvas(data) {
       const canvas = document.getElementById('weightCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       const dpr = window.devicePixelRatio || 1;
 
-      // ضبط الحجم بدقة وفق الشاشة
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
@@ -1906,7 +1968,6 @@
       minW = Math.floor(minW - 1);
       maxW = Math.ceil(maxW + 1);
 
-      // خطوط الشبكة الأفقية
       ctx.strokeStyle = '#222';
       ctx.lineWidth = 1;
       ctx.fillStyle = '#777';
@@ -1924,14 +1985,12 @@
         ctx.fillText(val.toFixed(1), padding.left - 6, y + 3);
       }
 
-      // رسم المنحنى البياني
       const points = data.map((d, i) => {
         const x = data.length === 1 ? padding.left + plotW / 2 : padding.left + (i / (data.length - 1)) * plotW;
         const y = padding.top + plotH - ((d.weight - minW) / (maxW - minW)) * plotH;
         return { x, y, data: d };
       });
 
-      // مسار التدرج اللوني أسفل المنحنى
       const grad = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
       grad.addColorStop(0, 'rgba(148, 27, 61, 0.45)');
       grad.addColorStop(1, 'rgba(148, 27, 61, 0.0)');
@@ -1944,7 +2003,6 @@
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // الخط الرئيسي للمنحنى
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
       for (let i = 1; i < points.length; i++) {
@@ -1957,7 +2015,6 @@
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // نقاط القياسات
       points.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
@@ -1968,7 +2025,6 @@
         ctx.stroke();
       });
 
-      // تفاعل اللمس والنقر لعرض التاريخ والوزن
       canvas.onclick = (e) => {
         const clickRect = canvas.getBoundingClientRect();
         const clickX = e.clientX - clickRect.left;
@@ -2098,7 +2154,6 @@
         document.getElementById('calorieDateLabel').textContent = formatArabicDate(appState.activeDate);
       }
 
-      // قائمة وجبات التاريخ النشط
       const dateMeals = appState.meals.filter(m => m.date === appState.activeDate);
       const mealsContainer = document.getElementById('todayMealsList');
       const totalFood = dateMeals.reduce((sum, m) => sum + normalizeNumber(m.calories), 0);
@@ -2121,7 +2176,6 @@
         `).join('');
       }
 
-      // قائمة أنشطة التاريخ النشط
       const dateWorkouts = appState.workouts.filter(w => w.date === appState.activeDate);
       const workoutsContainer = document.getElementById('todayWorkoutsList');
       const totalBurn = dateWorkouts.reduce((sum, w) => sum + normalizeNumber(w.calories), 0);
@@ -2134,7 +2188,7 @@
           <div class="history-item">
             <div class="item-meta">
               <div class="item-main-title">${w.name}</div>
-              <div class="item-subtitle">${w.duration ? `${w.duration} دقيقة` : 'نشاط بدني'}</div>
+              <div class="item-subtitle">${w.details ? `${w.details} • ` : ''}${w.duration ? `${w.duration} دقيقة` : 'نشاط بدني'}</div>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <span class="item-badge badge-loss">${w.calories} سعرة حرق</span>
@@ -2144,7 +2198,6 @@
         `).join('');
       }
 
-      // حساب العجز الحراري
       const maint = normalizeNumber(appState.config.maintenanceCalories);
       const deficitEl = document.getElementById('energyDeficitDisplay');
       const formulaEl = document.getElementById('energyFormulaDisplay');
@@ -2171,12 +2224,10 @@
         formulaEl.textContent = `لم يتم تحديد سعرات المحافظة. توجه للإعدادات لحساب العجز اليومي.`;
       }
 
-      // الإحصاء الأسبوعي
       computeWeeklyAverages();
     }
 
     function computeWeeklyAverages() {
-      // حصر آخر 7 أيام تحتوي على بيانات
       const uniqueDays = [...new Set(appState.meals.map(m => m.date))];
       if (uniqueDays.length === 0) {
         document.getElementById('weekAvgIntake').textContent = '0';
@@ -2207,7 +2258,134 @@
     }
 
     /* ==========================================
-       9. سجل الصور ومقارنة التحول المنزلقة
+       9. نظام تمرين الدمبل الذكي والمؤقت (من صورتك)
+       ========================================== */
+    function openDumbbellWorkoutModal() {
+      openModal('smartDumbbellModal');
+      selectMuscleGroup('shoulder');
+      calculateLiveWorkoutCalories();
+    }
+
+    function closeDumbbellWorkoutModal() {
+      closeModal('smartDumbbellModal');
+    }
+
+    function selectMuscleGroup(muscleKey, elementBtn = null) {
+      currentActiveMuscle = muscleKey;
+      if (elementBtn) {
+        const parent = elementBtn.parentElement;
+        parent.querySelectorAll('.preset-chip').forEach(c => {
+          c.style.background = '#202020';
+          c.style.color = 'var(--text-muted)';
+        });
+        elementBtn.style.background = 'var(--maroon-primary)';
+        elementBtn.style.color = '#fff';
+      }
+
+      const select = document.getElementById('selectedExerciseName');
+      select.innerHTML = DUMBBELL_EXERCISES[muscleKey].map(ex => `
+        <option value="${ex.name}">${ex.name}</option>
+      `).join('');
+
+      calculateLiveWorkoutCalories();
+    }
+
+    function stepVal(inputId, step) {
+      const el = document.getElementById(inputId);
+      let val = parseFloat(el.value) || 0;
+      val = Math.max(1, val + step);
+      el.value = val;
+      calculateLiveWorkoutCalories();
+    }
+
+    function setReps(count) {
+      document.getElementById('repsCountInput').value = count;
+      calculateLiveWorkoutCalories();
+    }
+
+    function toggleWorkoutTimer() {
+      const btn = document.getElementById('timerToggleBtn');
+      if (isTimerRunning) {
+        clearInterval(workoutTimerInterval);
+        isTimerRunning = false;
+        btn.textContent = '▶ استئناف المؤقت';
+        btn.className = 'btn btn-maroon btn-sm';
+      } else {
+        isTimerRunning = true;
+        btn.textContent = '⏸ إيقاف مؤقت';
+        btn.className = 'btn btn-secondary btn-sm';
+        workoutTimerInterval = setInterval(() => {
+          workoutSecondsElapsed++;
+          updateTimerDisplay();
+          calculateLiveWorkoutCalories();
+        }, 1000);
+      }
+    }
+
+    function resetWorkoutTimer() {
+      clearInterval(workoutTimerInterval);
+      isTimerRunning = false;
+      workoutSecondsElapsed = 0;
+      updateTimerDisplay();
+      document.getElementById('timerToggleBtn').textContent = '▶ بدء المؤقت';
+      document.getElementById('timerToggleBtn').className = 'btn btn-maroon btn-sm';
+      calculateLiveWorkoutCalories();
+    }
+
+    function updateTimerDisplay() {
+      const mins = String(Math.floor(workoutSecondsElapsed / 60)).padStart(2, '0');
+      const secs = String(workoutSecondsElapsed % 60).padStart(2, '0');
+      document.getElementById('workoutTimerDisplay').textContent = `${mins}:${secs}`;
+    }
+
+    function calculateLiveWorkoutCalories() {
+      const userWeight = normalizeNumber(appState.config.baselineWeight) || 80;
+      const dumbbellWeight = normalizeNumber(document.getElementById('dumbbellWeightInput').value) || 7.5;
+      const sets = normalizeNumber(document.getElementById('setsCountInput').value) || 3;
+      const reps = normalizeNumber(document.getElementById('repsCountInput').value) || 12;
+
+      const durationHours = Math.max(workoutSecondsElapsed, 120) / 3600;
+      const baseTimeCalories = 5.0 * userWeight * durationHours;
+
+      const totalWeightMoved = sets * reps * (dumbbellWeight * 2);
+      const mechanicalWorkCalories = (totalWeightMoved * 0.045); 
+
+      const totalBurned = Math.round(baseTimeCalories + mechanicalWorkCalories);
+
+      document.getElementById('liveBurnedCaloriesDisplay').innerHTML = `${totalBurned} <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">سعرة</span>`;
+      return totalBurned;
+    }
+
+    async function finishAndSaveDumbbellWorkout() {
+      const burned = calculateLiveWorkoutCalories();
+      const exName = document.getElementById('selectedExerciseName').value;
+      const dumbbellWeight = document.getElementById('dumbbellWeightInput').value;
+      const sets = document.getElementById('setsCountInput').value;
+      const reps = document.getElementById('repsCountInput').value;
+      const durationMins = Math.max(1, Math.round(workoutSecondsElapsed / 60));
+
+      const workoutRecord = {
+        date: appState.activeDate,
+        name: `دمبل: ${exName}`,
+        duration: durationMins,
+        calories: burned,
+        details: `${sets} جولات × ${reps} عدة (وزن: ${dumbbellWeight} كغ)`
+      };
+
+      const id = await dbPut('workouts', workoutRecord);
+      workoutRecord.id = id;
+      appState.workouts.push(workoutRecord);
+
+      resetWorkoutTimer();
+      closeDumbbellWorkoutModal();
+      showToast(`تم تسجيل ${burned} سعرة حرق من تمرين الدمبل بنجاح!`);
+
+      renderCalorieTab();
+      updateDashboardSummary();
+    }
+
+    /* ==========================================
+       10. سجل الصور ومقارنة التحول المنزلقة
        ========================================== */
     function previewSelectedImage(event) {
       const file = event.target.files[0];
@@ -2220,7 +2398,6 @@
       reader.readAsDataURL(file);
     }
 
-    // ضغط الصورة برمجياً عبر Canvas لتوفير مساحة التخزين وحمايتها
     function compressImageFile(file, maxDimension = 1000) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -2309,7 +2486,6 @@
     }
 
     function renderPhotosTab() {
-      // فرز الصور: البداية ثم النهاية أو الأحدث
       const baselinePhoto = appState.photos.find(p => p.type === 'baseline') || appState.photos[appState.photos.length - 1];
       const finalPhoto = appState.photos.find(p => p.type === 'final') || (appState.photos.length > 1 ? appState.photos[0] : null);
 
@@ -2326,7 +2502,6 @@
         placeholder.style.display = 'block';
       }
 
-      // معرض الصور المصغرة
       const grid = document.getElementById('photosTimelineGrid');
       if (appState.photos.length === 0) {
         grid.innerHTML = '<div class="empty-state" style="grid-column: span 2;"><p>لم يتم رفع أي صور حتى الآن.</p></div>';
@@ -2346,7 +2521,6 @@
       }
     }
 
-    /* أداة المقارنة التفاعلية بسحب الفاصل */
     function initSplitSlider() {
       const container = document.getElementById('splitSliderBox');
       const wrapper = document.getElementById('splitAfterWrapper');
@@ -2376,7 +2550,7 @@
     }
 
     /* ==========================================
-       10. نظام أوسمة الانضباط والتحفيز
+       11. نظام أوسمة الانضباط والتحفيز
        ========================================== */
     function renderBadges() {
       const totalDays = Math.max(1, Math.round((parseISODate(appState.config.endDate) - parseISODate(appState.config.startDate)) / 86400000));
@@ -2443,7 +2617,7 @@
     }
 
     /* ==========================================
-       11. الإعدادات وحساب السعرات التلقائي
+       12. الإعدادات وحساب السعرات التلقائي
        ========================================== */
     function fillSettingsUI() {
       const c = appState.config;
@@ -2464,7 +2638,6 @@
       const height = normalizeNumber(document.getElementById('cfgHeight').value);
       const activity = normalizeNumber(document.getElementById('cfgActivity').value);
 
-      // نعتمد آخر وزن مسجل أو الوزن الأساسي
       let currentW = 0;
       if (appState.weights.length > 0) {
         currentW = appState.weights[appState.weights.length - 1].weight;
@@ -2476,7 +2649,6 @@
         return showToast('يرجى التأكد من ملء الوزن والطول والعمر لحساب السعرات', 'danger');
       }
 
-      // معادلة Mifflin-St Jeor
       let bmr = (10 * currentW) + (6.25 * height) - (5 * age);
       if (gender === 'male') {
         bmr += 5;
@@ -2510,7 +2682,7 @@
     }
 
     /* ==========================================
-       12. النسخ الاحتياطي الكامل والاستيراد
+       13. النسخ الاحتياطي الكامل والاستيراد
        ========================================== */
     async function exportFullBackup() {
       const backupData = {
@@ -2628,7 +2800,7 @@
     }
 
     /* ==========================================
-       13. تثبيت التطبيق PWA والتنقل
+       14. تثبيت التطبيق PWA والتنقل
        ========================================== */
     function initPwaHandling() {
       if ('serviceWorker' in navigator) {
@@ -2656,7 +2828,7 @@
           document.getElementById('pwaInstallBtn').style.display = 'none';
         });
       } else {
-        alert('لتثبيت التطبيق على آيفون (iOS): اضغط على زر المشاركة ثم اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).\n\nعلى أندرويد: افتح قائمة خيارات المتصفح واختر "تثبيت التطبيق".');
+        alert('لتثبيت التطبيق على آيفون (iOS): اضغط على زر المشاركة ثم اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).\n\nعلى أندرويد: افتح خيارات المتصفح واختر "تثبيت التطبيق".');
       }
     }
 
