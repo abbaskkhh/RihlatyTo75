@@ -22,6 +22,14 @@ button{cursor:pointer}
 .sub,.lbl{font-size:.76rem;color:var(--mu)}
 .acc{color:var(--pink)}
 
+/* أيقونات احترافية موحدة */
+.h-ic,.ct-ic,.al-ic svg,.btn-ic svg{display:inline-block;vertical-align:middle;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.ct-ic{width:18px;height:18px;margin-inline-end:6px;stroke:var(--pink)}
+.h-ic{width:20px;height:20px;margin-inline-end:6px;stroke:var(--pink)}
+.al-ic{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn-ic{display:inline-flex;align-items:center;justify-content:center;margin-inline-end:6px}
+.btn-ic svg{width:17px;height:17px;stroke:currentColor}
+
 /* ========== 2. الهيكل: الرأس والتنقل ========== */
 header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top,0px)) 18px 12px;background:rgba(8,8,8,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
 .brand{display:flex;align-items:center;gap:12px}
@@ -33,10 +41,11 @@ main>section{display:none}
 main>section.on{display:block;animation:in .3s ease}
 @keyframes in{from{opacity:0;transform:translateY(8px)}}
 nav{position:fixed;inset:auto 0 0;z-index:100;display:flex;height:calc(66px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:rgba(18,18,18,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--bd)}
-nav button{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:0;color:var(--mu);font-size:.72rem}
-nav i{font-style:normal;font-size:1.25rem;filter:grayscale(1);opacity:.7}
+nav button{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:0;color:var(--mu);font-size:.72rem;transition:color .2s}
+nav i{display:flex;align-items:center;justify-content:center;width:24px;height:24px;transition:all .25s ease}
+nav i svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.65;transition:all .25s ease}
 nav .on{color:var(--tx)}
-nav .on i{filter:none;opacity:1}
+nav .on i svg{stroke:var(--pink);opacity:1;filter:drop-shadow(0 0 8px rgba(255,77,121,.5));transform:translateY(-1px) scale(1.08)}
 nav .on::after{content:'';position:absolute;top:0;width:24px;height:2px;background:var(--m2);box-shadow:0 0 8px var(--m2);border-radius:2px}
 
 /* ========== 3. المكونات ========== */
@@ -61,6 +70,7 @@ nav .on::after{content:'';position:absolute;top:0;width:24px;height:2px;backgrou
 .btn.sm{width:auto;padding:6px 12px;font-size:.78rem;border-radius:8px}
 .btn.danger{color:#ef4444;border-color:rgba(239,68,68,.35);background:transparent}
 .acts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.acts .btn{padding:12px 10px;font-size:.85rem}
 .list{display:flex;flex-direction:column;gap:10px}
 .item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px}
 .item .meta{flex:1;min-width:0}
@@ -82,8 +92,9 @@ nav .on::after{content:'';position:absolute;top:0;width:24px;height:2px;backgrou
 canvas{width:100%;height:220px;display:block}
 .ach{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:var(--card2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;opacity:.55}
 .ach.on{opacity:1;border-color:var(--m2);background:linear-gradient(145deg,#220811,var(--card2));box-shadow:0 0 14px var(--glow)}
-.ach i{font-style:normal;font-size:1.4rem;width:48px;height:48px;border-radius:50%;background:#202020;display:flex;align-items:center;justify-content:center}
-.ach.on i{background:var(--m1);box-shadow:0 0 12px var(--m2)}
+.ach i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#202020;color:var(--mu);transition:all .3s ease}
+.ach.on i{background:var(--m1);color:#fff;box-shadow:0 0 16px var(--glow)}
+.ach.on i svg{stroke:#fff;filter:drop-shadow(0 0 4px rgba(255,255,255,.4))}
 .empty{text-align:center;padding:24px 12px;color:var(--mu)}
 
 /* ========== 4. النماذج والنوافذ ========== */
@@ -96,6 +107,7 @@ canvas{width:100%;height:220px;display:block}
 .sheet{width:100%;max-width:600px;max-height:92vh;overflow-y:auto;background:var(--card);border-top:2px solid var(--m2);border-radius:24px 24px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom,0px));animation:up .3s cubic-bezier(.16,1,.3,1)}
 @keyframes up{from{transform:translateY(100%)}}
 .mh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.mh h3{display:flex;align-items:center;gap:8px}
 .x{width:32px;height:32px;flex:none;border-radius:50%;border:0;background:#252525;color:var(--mu)}
 .toasts{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:300;width:90%;max-width:400px;display:flex;flex-direction:column;gap:8px;pointer-events:none}
 .toast{background:#1c1c1c;border:1px solid var(--bd);border-right:4px solid var(--m2);border-radius:8px;padding:12px 16px;font-size:.86rem;box-shadow:0 10px 30px #000;animation:in .3s}
@@ -144,7 +156,15 @@ canvas{width:100%;height:220px;display:block}
   <!-- الرئيسية -->
   <section id="home" class="on">
     <div class="quote">"الانضباط هو الجسر بين ما أنت عليه الآن، وما تريد أن تصبح عليه."</div>
-    <div class="alert" id="friAlert"><span style="font-size:1.6rem">⚖️</span><div><b>اليوم الجمعة: موعد القياس الأسبوعي!</b><div class="sub">سجل وزنك بعد الاستيقاظ مباشرة لمتابعة تقدمك بدقة.</div></div></div>
+    <div class="alert" id="friAlert">
+      <span class="al-ic">
+        <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--pink)" fill="none" stroke-width="2">
+          <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/>
+          <path d="M7 21h10M12 3v18M3 7h18"/>
+        </svg>
+      </span>
+      <div><b>اليوم الجمعة: موعد القياس الأسبوعي!</b><div class="sub">سجل وزنك بعد الاستيقاظ مباشرة لمتابعة تقدمك بدقة.</div></div>
+    </div>
 
     <div class="card hl">
       <div class="ct"><span>مسار التحدي الرئيسي</span><b class="acc" id="pct">0%</b></div>
@@ -159,12 +179,30 @@ canvas{width:100%;height:220px;display:block}
     </div>
 
     <div class="acts">
-      <button class="btn ai" onclick="openScan()">📸 تصوير وجبتي بالذكاء</button>
-      <button class="btn m" onclick="openDb()">🏋️‍♂️ تمارين الدمبل</button>
-      <button class="btn" onclick="openM('m-meal')">🥗 إضافة وجبة يدوية</button>
-      <button class="btn" onclick="openM('m-weight')">⚖️ وزن اليوم</button>
-      <button class="btn" onclick="openM('m-workout')">🔥 نشاط آخر</button>
-      <button class="btn" onclick="go('photos')">📸 توثيق صورة</button>
+      <button class="btn ai" onclick="openScan()">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/><path d="m19 2 1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="var(--pink)" stroke="none"/></svg></span>
+        تصوير وجبتي بالذكاء
+      </button>
+      <button class="btn m" onclick="openDb()">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M4 9l2-2 3 3-2 2zM15 20l2-2 3 3-2 2zM2 11l2-2 3 3-2 2zM17 18l2-2 3 3-2 2zM9 4l2-2 3 3-2 2zM10 15l2-2 3 3-2 2z"/></svg></span>
+        تمارين الدمبل
+      </button>
+      <button class="btn" onclick="openM('m-meal')">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M18 2v20M2 7v6a4 4 0 0 0 4 4v5M6 2v5M2 2v5M10 2v5"/></svg></span>
+        إضافة وجبة يدوية
+      </button>
+      <button class="btn" onclick="openM('m-weight')">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10M12 3v18M3 7h18"/></svg></span>
+        وزن اليوم
+      </button>
+      <button class="btn" onclick="openM('m-workout')">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+        نشاط آخر
+      </button>
+      <button class="btn" onclick="go('photos')">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg></span>
+        توثيق صورة
+      </button>
     </div>
 
     <div class="card">
@@ -184,14 +222,26 @@ canvas{width:100%;height:220px;display:block}
     </div>
 
     <div class="card">
-      <div class="ct"><span>💧 الماء اليوم</span><b class="acc" id="wtrTxt">0</b></div>
+      <div class="ct">
+        <span>
+          <svg class="ct-ic" viewBox="0 0 24 24" style="stroke:var(--p)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          الماء اليوم
+        </span>
+        <b class="acc" id="wtrTxt">0</b>
+      </div>
       <div class="bar"><i id="wtrBar" style="width:0"></i></div>
       <div style="display:flex;gap:8px"><button class="btn m sm" style="flex:1" onclick="addWater(250)">+ كوب 250 مل</button><button class="btn sm" style="flex:1" onclick="addWater(500)">+ 500 مل</button><button class="btn sm" onclick="addWater(-250)">−</button></div>
       <div class="sub" id="streak" style="text-align:center;margin-top:10px;font-weight:700"></div>
     </div>
 
     <div class="card">
-      <div class="ct"><span>👣 خطوات اليوم</span><b class="acc" id="stTxt">0</b></div>
+      <div class="ct">
+        <span>
+          <svg class="ct-ic" viewBox="0 0 24 24" style="stroke:var(--c)"><path d="M4 17.5V14c0-1.5 1-3 2.5-3.5L13 8l3 3.5h3.5a2 2 0 0 1 2 2v4a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 17.5z"/><path d="M7 11V7a2 2 0 0 1 2-2h1M4 18h17"/></svg>
+          خطوات اليوم
+        </span>
+        <b class="acc" id="stTxt">0</b>
+      </div>
       <div class="bar"><i id="stBar" style="width:0"></i></div>
       <div style="display:flex;gap:8px"><input class="in" id="stIn" type="number" inputmode="numeric" placeholder="إجمالي خطواتك اليوم" style="flex:1"><button class="btn m sm" onclick="saveSteps()">حفظ</button></div>
       <div class="sub" id="stCal" style="text-align:center;margin-top:8px"></div>
@@ -252,11 +302,29 @@ canvas{width:100%;height:220px;display:block}
       </div>
     </div>
     <div class="card">
-      <div class="ct"><span>الوجبات (<span id="cFood">0</span> سعرة)</span><div style="display:flex;gap:6px"><button class="btn ai sm" onclick="openScan()">📸 مسح</button><button class="btn m sm" onclick="openM('m-meal')">+ يدوي</button></div></div>
+      <div class="ct">
+        <span>الوجبات (<span id="cFood">0</span> سعرة)</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn ai sm" onclick="openScan()">
+            <span class="btn-ic"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg></span>
+            مسح
+          </button>
+          <button class="btn m sm" onclick="openM('m-meal')">+ يدوي</button>
+        </div>
+      </div>
       <div class="list" id="mList"></div>
     </div>
     <div class="card">
-      <div class="ct"><span>النشاط (<span id="cBurn">0</span> سعرة)</span><div style="display:flex;gap:6px"><button class="btn m sm" onclick="openDb()">🏋️‍♂️ دمبل</button><button class="btn sm" onclick="openM('m-workout')">+ مخصص</button></div></div>
+      <div class="ct">
+        <span>النشاط (<span id="cBurn">0</span> سعرة)</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn m sm" onclick="openDb()">
+            <span class="btn-ic"><svg viewBox="0 0 24 24" width="14" height="14"><path d="m6.5 6.5 11 11M4 9l2-2 3 3-2 2zM15 20l2-2 3 3-2 2zM2 11l2-2 3 3-2 2zM17 18l2-2 3 3-2 2zM9 4l2-2 3 3-2 2zM10 15l2-2 3 3-2 2z"/></svg></span>
+            دمبل
+          </button>
+          <button class="btn sm" onclick="openM('m-workout')">+ مخصص</button>
+        </div>
+      </div>
       <div class="list" id="kList"></div>
     </div>
     <div class="card">
@@ -279,7 +347,12 @@ canvas{width:100%;height:220px;display:block}
         <span class="tag" style="right:12px;color:#aaa">البداية</span>
         <span class="tag" style="left:12px;color:#ff6b8b">الآن</span>
       </div>
-      <div class="empty" id="splitMsg" style="display:none">📷<br>ارفع صورة البداية وصورة تقدم لتفعيل المقارنة.</div>
+      <div class="empty" id="splitMsg" style="display:none">
+        <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--mu)" fill="none" stroke-width="1.5" style="margin-bottom:8px">
+          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/>
+        </svg>
+        <br>ارفع صورة البداية وصورة تقدم لتفعيل المقارنة.
+      </div>
     </div>
     <div class="card"><div class="ct">ألبوم التوثيق</div><div class="pgrid" id="pGrid"></div></div>
   </section>
@@ -302,18 +375,37 @@ canvas{width:100%;height:220px;display:block}
           <option value="gemini-1.5-pro">gemini-1.5-pro</option>
         </select>
       </label>
-      <div style="display:flex;gap:8px"><button class="btn sm" onclick="saveSettings()">💾 حفظ</button><button class="btn ai sm" id="testBtn" onclick="testKey()">⚡ فحص المفتاح</button></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn sm" onclick="saveSettings()">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"/></svg></span>
+          حفظ
+        </button>
+        <button class="btn ai sm" id="testBtn" onclick="testKey()">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          فحص المفتاح
+        </button>
+      </div>
       <div class="kbox" id="keyBox"></div>
     </div>
 
     <div class="card">
-      <div class="ct">🔔 التنبيهات</div>
+      <div class="ct">
+        <span>
+          <svg class="ct-ic" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          التنبيهات
+        </span>
+      </div>
       <p class="sub" style="margin-bottom:10px">قياس الجمعة الساعة 8 صباحاً، وتذكير الماء كل ساعتين من 10 صباحاً إلى 8 مساءً. تعمل والتطبيق مفتوح أو في الخلفية.</p>
       <button class="btn m" id="ntBtn" onclick="toggleNotify()"></button>
     </div>
 
     <div class="card">
-      <div class="ct">إعدادات الملف الشخصي</div>
+      <div class="ct">
+        <span>
+          <svg class="ct-ic" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          إعدادات الملف الشخصي
+        </span>
+      </div>
       <div class="grid">
         <label class="fg"><span>الوزن الأساسي (كغ)</span><input class="in" type="number" step="0.1" id="cBase"></label>
         <label class="fg"><span>الوزن المستهدف (كغ)</span><input class="in" type="number" step="0.1" id="cTarget"></label>
@@ -325,11 +417,26 @@ canvas{width:100%;height:220px;display:block}
     </div>
 
     <div class="card">
-      <div class="ct">البيانات والنسخ الاحتياطي</div>
+      <div class="ct">
+        <span>
+          <svg class="ct-ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          البيانات والنسخ الاحتياطي
+        </span>
+      </div>
       <div class="list">
-        <button class="btn" onclick="exportBackup()">📥 تصدير نسخة احتياطية (JSON)</button>
-        <label class="btn">📤 استيراد نسخة احتياطية<input type="file" accept=".json" hidden onchange="importBackup(event)"></label>
-        <button class="btn danger" onclick="resetAll()">مسح جميع البيانات والبدء من جديد</button>
+        <button class="btn" onclick="exportBackup()">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
+          تصدير نسخة احتياطية (JSON)
+        </button>
+        <label class="btn">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></span>
+          استيراد نسخة احتياطية
+          <input type="file" accept=".json" hidden onchange="importBackup(event)">
+        </label>
+        <button class="btn danger" onclick="resetAll()">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/></svg></span>
+          مسح جميع البيانات والبدء من جديد
+        </button>
       </div>
     </div>
   </section>
@@ -339,22 +446,53 @@ canvas{width:100%;height:220px;display:block}
 
 <!-- ماسح الطعام الذكي -->
 <div class="modal" id="m-scan"><div class="sheet" style="max-height:94vh">
-  <div class="mh"><div><h3>📸 التصوير الذكي للطعام</h3><div class="sub">تحليل مكونات الطبق والقيم الغذائية</div></div><button class="x" onclick="closeM('m-scan')">✕</button></div>
+  <div class="mh">
+    <div>
+      <h3>
+        <svg class="h-ic" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/><path d="m19 2 1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="var(--pink)" stroke="none"/></svg>
+        التصوير الذكي للطعام
+      </h3>
+      <div class="sub">تحليل مكونات الطبق والقيم الغذائية</div>
+    </div>
+    <button class="x" onclick="closeM('m-scan')">✕</button>
+  </div>
 
   <div class="step on" id="s-cap">
     <div style="border:2px dashed var(--m2);border-radius:14px;padding:26px 16px;text-align:center;background:rgba(101,15,39,.08)">
-      <div style="font-size:2.6rem">🍽️</div><b>صوّر وجبتك بكاميرا الهاتف</b>
+      <div style="margin-bottom:12px">
+        <svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="var(--pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="5 3"/>
+          <circle cx="24" cy="24" r="11" stroke="var(--m2)" fill="rgba(101,15,39,.25)"/>
+          <path d="M17 21v6M31 21v6M21 24h6"/>
+          <path d="m34 10 1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="var(--pink)" stroke="none"/>
+        </svg>
+      </div>
+      <b>صوّر وجبتك بكاميرا الهاتف</b>
       <p class="sub" style="margin:6px 0 16px">التقط صورة واضحة وسيحسب الذكاء الاصطناعي السعرات والماكروز تلقائياً.</p>
       <div class="list">
-        <label class="btn ai">📷 التقاط بالكاميرا<input hidden type="file" accept="image/*" capture="environment" onchange="scanFile(event)"></label>
-        <label class="btn">🖼️ اختيار من المعرض<input hidden type="file" accept="image/*" onchange="scanFile(event)"></label>
+        <label class="btn ai">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          التقاط بالكاميرا
+          <input hidden type="file" accept="image/*" capture="environment" onchange="scanFile(event)">
+        </label>
+        <label class="btn">
+          <span class="btn-ic"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="4"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+          اختيار من المعرض
+          <input hidden type="file" accept="image/*" onchange="scanFile(event)">
+        </label>
       </div>
     </div>
   </div>
 
   <div class="step" id="s-load">
     <div class="hero"><img id="scanImg1" alt=""><div class="laser"></div></div>
-    <div class="empty"><b class="acc">الذكاء الاصطناعي يحلل مكونات الطبق... 🤖</b><div class="sub">فحص الأصناف وتقدير الأوزان والماكروز ⏳</div></div>
+    <div class="empty">
+      <b class="acc" style="display:flex;align-items:center;justify-content:center;gap:6px">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        الذكاء الاصطناعي يحلل مكونات الطبق...
+      </b>
+      <div class="sub">فحص الأصناف وتقدير الأوزان والماكروز ⏳</div>
+    </div>
   </div>
 
   <div class="step" id="s-res">
@@ -379,13 +517,31 @@ canvas{width:100%;height:220px;display:block}
       <button type="button" class="btn ai sm" style="width:100%;margin-top:8px" onclick="scanRetry()">🔁 أعد التحليل بهذه الملاحظة</button>
     </div>
     <label class="fg"><span>ملاحظات اختيارية</span><input class="in" id="scanNotes"></label>
-    <div style="display:flex;gap:8px"><button class="btn" onclick="scanReset()">🔄 إعادة تصوير</button><button class="btn m" id="scanSaveBtn" onclick="scanSave()">+ إضافة إلى يومي</button></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="scanReset()">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>
+        إعادة تصوير
+      </button>
+      <button class="btn m" id="scanSaveBtn" onclick="scanSave()">
+        <span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        إضافة إلى يومي
+      </button>
+    </div>
   </div>
 </div></div>
 
 <!-- تمارين الدمبل -->
 <div class="modal" id="m-db"><div class="sheet" style="max-height:94vh">
-  <div class="mh"><div><h3>🏋️‍♂️ تمارين الدمبل للجسم كامل</h3><div class="sub">3 تمارين لكل عضلة مع طريقة الأداء</div></div><button class="x" onclick="closeDb()">✕</button></div>
+  <div class="mh">
+    <div>
+      <h3>
+        <svg class="h-ic" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M4 9l2-2 3 3-2 2zM15 20l2-2 3 3-2 2zM2 11l2-2 3 3-2 2zM17 18l2-2 3 3-2 2zM9 4l2-2 3 3-2 2zM10 15l2-2 3 3-2 2z"/></svg>
+        تمارين الدمبل للجسم كامل
+      </h3>
+      <div class="sub">3 تمارين لكل عضلة مع طريقة الأداء</div>
+    </div>
+    <button class="x" onclick="closeDb()">✕</button>
+  </div>
   <div class="card hl" style="text-align:center">
     <div class="grid">
       <div><div class="sub">وقت الجلسة</div><b id="tm" style="font-size:1.8rem;font-family:monospace">00:00</b></div>
@@ -412,13 +568,21 @@ const DEF = { startDate:'2026-10-11', endDate:'2027-05-31', baselineWeight:null,
 const STORES = ['weights','meals','workouts','photos'];
 const MEALS = ['غداء','فطور','عشاء','سناك','أخرى'];
 const MODELS = ['gemini-2.5-flash','gemini-2.0-flash','gemini-1.5-flash','gemini-1.5-flash-latest'];
-const TABS = [['home','🏠','الرئيسية'],['weight','⚖️','الوزن'],['cal','🔥','السعرات'],['photos','📸','الصور'],['prog','📊','التقدم']];
+
+/* أيقونات شريط التنقل SVG الفاخرة */
+const TABS = [
+  ['home', '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v10a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 20.5z"/><path d="M9 22V12h6v10"/></svg>', 'الرئيسية'],
+  ['weight', '<svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10M12 3v18M3 7h18"/></svg>', 'الوزن'],
+  ['cal', '<svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>', 'السعرات'],
+  ['photos', '<svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg>', 'الصور'],
+  ['prog', '<svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>', 'التقدم']
+];
+
 const PROMPT = `أنت خبير تغذية سريري. حلل الطبق بدقة وفكك مكوناته لأصناف منفصلة (مثل: تمن، دجاج، مرق، سلطة، صمون، لحم).
 إذا كانت بعض الأجزاء غير واضحة في الصورة فقدّر بحذر، واذكر في notes بالتحديد ما لم يتضح لك، وخفّض confidence إلى "متوسطة" أو "منخفضة".
 أجب بصيغة JSON فقط بهذا الشكل:
 {"meal_name":"اسم الوجبة","suggested_type":"غداء","confidence":"عالية","notes":"ملاحظات سريعة","items":[{"name":"اسم الصنف","grams":150,"calories":200,"protein":15,"carbs":25,"fat":5}]}`;
 
-/* [الاسم، الإنجليزي، البداية، الحركة] */
 const MUSCLES = {
   shoulder:['أكتاف',[
     ['رفرفة كتف خلفي منحنياً','Bent-Over Rear Delt Fly','انحنِ بالجذع 45° والظهر مستقيم.','ارفع الذراعين جانباً كالجناحين واعصر لوحي الكتف.'],
@@ -528,12 +692,34 @@ function go(id) {
 const fld = (l, h) => `<label class="fg"><span>${l}</span>${h}</label>`;
 const inp = (id, t = 'text', x = '') => `<input class="in" id="${id}" type="${t}" ${x}>`;
 const sel = (id, o) => `<select class="in" id="${id}">${o.map(v => Array.isArray(v) ? `<option value="${v[0]}">${v[1]}</option>` : `<option>${v}</option>`).join('')}</select>`;
+
 const FORMS = {
-  meal:['إضافة وجبة يدوية', 'saveMeal', fld('نوع الوجبة', sel('mType', MEALS.slice(0, 4))) + fld('اسم الوجبة', inp('mName', 'text', 'required placeholder="مثال: صدر دجاج مع تمن"')) + `<div class="grid">${fld('السعرات *', inp('mCal', 'number', 'required min="1"'))}${fld('الوصف / الحصة', inp('mPortion'))}</div>`, '💾 حفظ الوجبة'],
-  weight:['تسجيل قياس الوزن', 'saveWeight', fld('الوزن (كغ) *', inp('wVal', 'number', 'step="0.05" required')) + fld('التاريخ *', inp('wDate', 'date', 'required')), 'حفظ القياس'],
-  workout:['تسجيل نشاط رياضي', 'saveWorkout', fld('اسم النشاط *', inp('kName', 'text', 'required')) + `<div class="grid">${fld('المدة (دقيقة)', inp('kDur', 'number'))}${fld('السعرات المحروقة *', inp('kCal', 'number', 'required min="1"'))}</div>`, 'حفظ النشاط'],
-  photo:['توثيق صورة', 'savePhoto', fld('نوع الصورة', sel('pType', [['progress', 'صورة تقدم'], ['baseline', 'صورة البداية'], ['final', 'صورة النهاية']])) + fld('الصورة', inp('pFile', 'file', 'accept="image/*" required')), 'حفظ الصورة']
+  meal:[
+    '<svg class="h-ic" viewBox="0 0 24 24"><path d="M18 2v20M2 7v6a4 4 0 0 0 4 4v5M6 2v5M2 2v5M10 2v5"/></svg> إضافة وجبة يدوية',
+    'saveMeal',
+    fld('نوع الوجبة', sel('mType', MEALS.slice(0, 4))) + fld('اسم الوجبة', inp('mName', 'text', 'required placeholder="مثال: صدر دجاج مع تمن"')) + `<div class="grid">${fld('السعرات *', inp('mCal', 'number', 'required min="1"'))}${fld('الوصف / الحصة', inp('mPortion'))}</div>`,
+    '💾 حفظ الوجبة'
+  ],
+  weight:[
+    '<svg class="h-ic" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10M12 3v18M3 7h18"/></svg> تسجيل قياس الوزن',
+    'saveWeight',
+    fld('الوزن (كغ) *', inp('wVal', 'number', 'step="0.05" required')) + fld('التاريخ *', inp('wDate', 'date', 'required')),
+    'حفظ القياس'
+  ],
+  workout:[
+    '<svg class="h-ic" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> تسجيل نشاط رياضي',
+    'saveWorkout',
+    fld('اسم النشاط *', inp('kName', 'text', 'required')) + `<div class="grid">${fld('المدة (دقيقة)', inp('kDur', 'number'))}${fld('السعرات المحروقة *', inp('kCal', 'number', 'required min="1"'))}</div>`,
+    'حفظ النشاط'
+  ],
+  photo:[
+    '<svg class="h-ic" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg> توثيق صورة',
+    'savePhoto',
+    fld('نوع الصورة', sel('pType', [['progress', 'صورة تقدم'], ['baseline', 'صورة البداية'], ['final', 'صورة النهاية']])) + fld('الصورة', inp('pFile', 'file', 'accept="image/*" required')),
+    'حفظ الصورة'
+  ]
 };
+
 function buildUI() {
   $('nav').innerHTML = TABS.map(([id, i, t]) => `<button data-t="${id}" class="${id === 'home' ? 'on' : ''}" onclick="go('${id}')"><i>${i}</i>${t}</button>`).join('');
   Object.entries(FORMS).forEach(([k, [title, fn, body, btn]]) => {
@@ -698,18 +884,19 @@ function initSlider() {
 function renderBadges() {
   const passed = Math.max(0, Math.round((new Date() - parse(st.cfg.startDate)) / 864e5));
   const B = [
-    ['🚀', 'بداية الرحلة', 'انطلاق التحدي', true],
-    ['⚖️', 'أول قياس وزن', 'تسجيل أول قراءة', st.weights.length >= 1],
-    ['🔥', 'أسبوع انضباط', 'إكمال 7 أيام', passed >= 7],
-    ['🛡️', 'شهر التزام', '4 قياسات أو 30 يوماً', st.weights.length >= 4 || passed >= 30],
-    ['📸', 'عين على الهدف', 'توثيق أول صورة', st.photos.length >= 1]
+    ['<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>', 'بداية الرحلة', 'انطلاق التحدي', true],
+    ['<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10M12 3v18M3 7h18"/></svg>', 'أول قياس وزن', 'تسجيل أول قراءة', st.weights.length >= 1],
+    ['<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>', 'أسبوع انضباط', 'إكمال 7 أيام', passed >= 7],
+    ['<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>', 'شهر التزام', '4 قياسات أو 30 يوماً', st.weights.length >= 4 || passed >= 30],
+    ['<svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg>', 'عين على الهدف', 'توثيق أول صورة', st.photos.length >= 1]
   ];
   $('badges').innerHTML = B.map(([i, n, d, u]) => `<div class="ach ${u ? 'on' : ''}"><i>${i}</i><b style="font-size:.88rem">${n}</b><span class="sub">${d}</span></div>`).join('');
 }
 
 /* ========== 5ب. الخطوات والتنبيهات ========== */
 const getSteps = () => { try { return JSON.parse(localStorage.getItem('rahlati_steps') || '{}'); } catch { return {}; } };
-const stepCal = d => Math.round((getSteps()[d] || 0) * 0.0004 * (st.weights.at(-1)?.weight || num(st.cfg.baselineWeight) || 80));
+const curWeight = (d = today()) => (st.weights.filter(w => w.date <= d).at(-1) || st.weights[0])?.weight || num(st.cfg.baselineWeight) || 80;
+const stepCal = d => Math.round((getSteps()[d] || 0) * 0.0004 * curWeight(d));
 function setSteps(d, v) {
   const all = getSteps(), n = Math.max(0, Math.round(num(v)));
   if (n) all[d] = n; else delete all[d];
@@ -726,7 +913,11 @@ function renderSteps() {
 }
 
 const ntOn = () => st.cfg.notify && 'Notification' in window && Notification.permission === 'granted';
-const renderNotify = () => { $('ntBtn').textContent = ntOn() ? '🔕 إيقاف التنبيهات' : '🔔 تفعيل التنبيهات'; };
+const renderNotify = () => {
+  $('ntBtn').innerHTML = ntOn() 
+    ? '<span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M13.73 21a2 2 0 0 1-3.46 0M18.63 13A17.89 17.89 0 0 1 18 8M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14M1 1l22 22"/></svg></span> إيقاف التنبيهات'
+    : '<span class="btn-ic"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span> تفعيل التنبيهات';
+};
 async function notify(title, body) {
   try {
     const r = await navigator.serviceWorker?.getRegistration();
@@ -940,7 +1131,7 @@ function toggleTimer() {
 }
 function resetTimer() { clearInterval(timer); timer = null; secs = 0; $('tm').textContent = '00:00'; $('tBtn').textContent = '▶ بدء المؤقت'; calcBurn(); }
 function calcBurn() {
-  const w = num(st.cfg.baselineWeight) || 80, db = num($('dbW').value) || 7.5, sets = num($('dbS').value) || 5, reps = num($('dbR').value) || 30;
+  const w = curWeight(st.date), db = num($('dbW').value) || 7.5, sets = num($('dbS').value) || 5, reps = num($('dbR').value) || 30;
   const b = Math.round(5.2 * w * Math.max(secs, 120) / 3600 + sets * reps * db * 2 * .045);
   $('burn').innerHTML = `${b} <small style="font-size:.85rem;font-weight:400" class="sub">سعرة</small>`;
   return b;
