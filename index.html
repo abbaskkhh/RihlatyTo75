@@ -29,6 +29,9 @@
       --success: #22c55e;
       --warning: #f59e0b;
       --danger: #ef4444;
+      --protein-color: #38bdf8;
+      --carbs-color: #fbbf24;
+      --fat-color: #f87171;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
@@ -328,6 +331,33 @@
       border: 1px solid var(--border-subtle);
     }
 
+    .btn-ai-scanner {
+      background: linear-gradient(135deg, #400619, #800e2e, #b81b47);
+      border: 1.5px solid #ff4d79;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(184, 27, 71, 0.45);
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-ai-scanner::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: rotate(30deg);
+      animation: scanShine 3s infinite linear;
+    }
+
+    @keyframes scanShine {
+      0% { transform: translate(-100%, -100%) rotate(30deg); }
+      100% { transform: translate(100%, 100%) rotate(30deg); }
+    }
+
     .btn-outline-danger {
       background: transparent;
       color: var(--danger);
@@ -379,16 +409,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       transition: border-color 0.2s ease;
     }
 
-    .item-meta { display: flex; flex-direction: column; gap: 2px; }
+    .item-meta { display: flex; flex-direction: column; gap: 3px; flex: 1; }
     .item-main-title { font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
-    .item-subtitle { font-size: 0.76rem; color: var(--text-muted); }
-    .item-badge { font-size: 0.8rem; padding: 4px 10px; border-radius: 8px; font-weight: 700; }
+    .item-subtitle { font-size: 0.76rem; color: var(--text-muted); line-height: 1.4; }
+    .item-badge { font-size: 0.8rem; padding: 4px 10px; border-radius: 8px; font-weight: 700; white-space: nowrap; }
     .badge-loss { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
     .badge-gain { background: rgba(239, 68, 68, 0.15); color: #f87171; }
     .badge-same { background: rgba(255, 255, 255, 0.08); color: #d4d4d4; }
+
+    .food-thumb-img {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--maroon-border);
+    }
+
+    .macro-mini-pill {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+      font-weight: 600;
+    }
+    .macro-p { background: rgba(56, 189, 248, 0.15); color: var(--protein-color); }
+    .macro-c { background: rgba(251, 191, 36, 0.15); color: var(--carbs-color); }
+    .macro-f { background: rgba(248, 113, 113, 0.15); color: var(--fat-color); }
 
     .date-nav-bar {
       display: flex;
@@ -437,6 +488,22 @@
     .energy-val.surplus { color: #f87171; text-shadow: 0 0 16px rgba(248, 113, 113, 0.3); }
     .energy-val.neutral { color: var(--text-muted); }
 
+    /* شريط الماكروز الكلي اليومي */
+    .macros-summary-bar {
+      width: 100%;
+      background: #181818;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .macro-col { display: flex; flex-direction: column; gap: 2px; }
+    .macro-col-val { font-size: 1.1rem; font-weight: 800; font-feature-settings: "tnum"; }
+    .macro-col-lbl { font-size: 0.68rem; color: var(--text-muted); font-weight: 600; }
+
     .food-presets-container {
       display: flex;
       flex-wrap: wrap;
@@ -462,7 +529,90 @@
       box-shadow: 0 0 10px var(--maroon-glow);
     }
 
-    /* أنماط بطاقات التمارين الثلاثة التفاعلية */
+    /* أنماط ماسح الطعام الذكي AI Scanner */
+    .scanner-view-step { display: none; }
+    .scanner-view-step.active { display: block; }
+
+    .scanner-hero-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--maroon-border);
+      background: #000;
+      margin-bottom: 14px;
+    }
+
+    .scanner-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .scanner-laser-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff4d79, transparent);
+      box-shadow: 0 0 14px #ff4d79;
+      animation: laserMove 2s infinite ease-in-out;
+    }
+
+    @keyframes laserMove {
+      0% { top: 0%; opacity: 0.3; }
+      50% { top: 95%; opacity: 1; }
+      100% { top: 0%; opacity: 0.3; }
+    }
+
+    .macro-ratio-bar {
+      height: 8px;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      width: 100%;
+      margin: 8px 0;
+      background: #222;
+    }
+    .macro-ratio-p { background: var(--protein-color); height: 100%; }
+    .macro-ratio-c { background: var(--carbs-color); height: 100%; }
+    .macro-ratio-f { background: var(--fat-color); height: 100%; }
+
+    /* بطاقة كل صنف قابل للتعديل */
+    .scanner-item-card {
+      background: #191919;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+    .scanner-item-card:hover { border-color: var(--maroon-border); }
+    .scanner-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .scanner-input-compact {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #fff;
+      padding: 6px 8px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      width: 100%;
+    }
+    .scanner-input-compact:focus {
+      border-color: var(--maroon-accent);
+      outline: none;
+    }
+
+    /* أنماط بطاقات تمارين الدمبل الـ 15 */
     .exercise-cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -483,18 +633,12 @@
       align-items: center;
       gap: 6px;
     }
-
-    .exercise-select-card:hover {
-      border-color: var(--maroon-border);
-      background: #202020;
-    }
-
+    .exercise-select-card:hover { border-color: var(--maroon-border); background: #202020; }
     .exercise-select-card.selected {
       border-color: var(--maroon-accent);
       background: linear-gradient(180deg, #2a0b14, #181818);
       box-shadow: 0 0 12px var(--maroon-glow);
     }
-
     .exercise-card-num {
       background: rgba(255,255,255,0.08);
       color: var(--text-muted);
@@ -503,12 +647,10 @@
       padding: 2px 6px;
       border-radius: 4px;
     }
-
     .exercise-select-card.selected .exercise-card-num {
       background: var(--maroon-primary);
       color: #fff;
     }
-
     .exercise-card-name {
       font-size: 0.78rem;
       font-weight: 700;
@@ -520,7 +662,6 @@
       justify-content: center;
     }
 
-    /* نافذة العرض البصري لحركة التمرين */
     .exercise-visual-display {
       background: #0f0f0f;
       border: 1px solid var(--maroon-border);
@@ -609,7 +750,6 @@
       font-weight: 700;
       z-index: 5;
     }
-
     .split-badge.start { right: 12px; color: #aaa; }
     .split-badge.end { left: 12px; color: #ff6b8b; }
 
@@ -831,7 +971,7 @@
 
   <main class="container">
 
-    <!-- 1. صفحة لوحة التحكم (الرئيسية) -->
+    <!-- 1. لوحة التحكم (الرئيسية) -->
     <section id="pageDashboard" class="page-section active">
       <div id="motivationalQuote" class="quote-box">
         "الانضباط هو الجسر بين ما أنت عليه الآن، وما تريد أن تصبح عليه."
@@ -880,12 +1020,16 @@
         </div>
       </div>
 
+      <!-- أزرار الإجراءات السريعة (تتضمن زر التصوير الذكي للطعام) -->
       <div class="quick-actions-row">
+        <button class="btn btn-ai-scanner" onclick="openFoodScannerModal()">
+          <span>📸</span> تصوير وجبتي بالذكاء
+        </button>
         <button class="btn btn-maroon" onclick="openDumbbellWorkoutModal()">
           <span>🏋️‍♂️</span> تمارين الدمبل
         </button>
         <button class="btn btn-secondary" onclick="openModal('addMealModal')">
-          <span>🥗</span> إضافة وجبة
+          <span>🥗</span> إضافة وجبة يدوية
         </button>
         <button class="btn btn-secondary" onclick="openModal('addWeightModal')">
           <span>⚖️</span> وزن اليوم
@@ -900,7 +1044,7 @@
 
       <div class="card">
         <div class="card-title">
-          <span>ملخص طاقة اليوم (<span id="todaySummaryDate">اليوم</span>)</span>
+          <span>ملخص طاقة وقيم اليوم (<span id="todaySummaryDate">اليوم</span>)</span>
           <button class="btn btn-secondary btn-sm" onclick="navigateTo('calories')">التفاصيل</button>
         </div>
 
@@ -923,7 +1067,23 @@
           </div>
         </div>
 
-        <div id="dashDeficitDesc" style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 4px;">
+        <!-- شريط الماكروز اليومي المتكامل -->
+        <div class="macros-summary-bar">
+          <div class="macro-col">
+            <span class="macro-col-val" id="dashTotalProtein" style="color: var(--protein-color);">0g</span>
+            <span class="macro-col-lbl">البروتين</span>
+          </div>
+          <div class="macro-col">
+            <span class="macro-col-val" id="dashTotalCarbs" style="color: var(--carbs-color);">0g</span>
+            <span class="macro-col-lbl">الكاربوهيدرات</span>
+          </div>
+          <div class="macro-col">
+            <span class="macro-col-val" id="dashTotalFat" style="color: var(--fat-color);">0g</span>
+            <span class="macro-col-lbl">الدهون</span>
+          </div>
+        </div>
+
+        <div id="dashDeficitDesc" style="font-size: 0.78rem; text-align: center; color: var(--text-muted); margin-top: 8px;">
           قم بإعداد سعرات المحافظة في الإعدادات لحساب العجز الحراري تلقائياً.
         </div>
       </div>
@@ -1011,15 +1171,31 @@
         <div id="energyFormulaDisplay" style="font-size: 0.78rem; color: var(--text-muted);">
           إجمالي الطاقة المتوفرة (0) − طعام اليوم (0)
         </div>
-        <div style="margin-top: 10px; font-size: 0.72rem; color: var(--text-sub); max-width: 480px;">
-          * الحسابات تقديرية وتعتمد على دقة إدخال الطعام ومعادلة الطاقة اليومية وليست فحصاً طبياً مخبرياً.
+        
+        <!-- تفاصيل الماكروز لليوم -->
+        <div class="macros-summary-bar" style="max-width: 440px; margin-top: 14px;">
+          <div class="macro-col">
+            <span class="macro-col-val" id="calTabProtein" style="color: var(--protein-color);">0g</span>
+            <span class="macro-col-lbl">البروتين</span>
+          </div>
+          <div class="macro-col">
+            <span class="macro-col-val" id="calTabCarbs" style="color: var(--carbs-color);">0g</span>
+            <span class="macro-col-lbl">الكاربوهيدرات</span>
+          </div>
+          <div class="macro-col">
+            <span class="macro-col-val" id="calTabFat" style="color: var(--fat-color);">0g</span>
+            <span class="macro-col-lbl">الدهون</span>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title">
           <span>الوجبات المستهلكة (<span id="totalFoodCalToday">0</span> سعرة)</span>
-          <button class="btn btn-maroon btn-sm" onclick="openModal('addMealModal')">+ وجبة</button>
+          <div style="display: flex; gap: 6px;">
+            <button class="btn btn-ai-scanner btn-sm" onclick="openFoodScannerModal()">📸 مسح وجبة</button>
+            <button class="btn btn-maroon btn-sm" onclick="openModal('addMealModal')">+ يدوي</button>
+          </div>
         </div>
         <div id="todayMealsList" class="history-list"></div>
       </div>
@@ -1095,6 +1271,28 @@
       <div class="card maroon-glow-card">
         <div class="card-title">أوسمة الانضباط والالتزام</div>
         <div class="badge-grid" id="badgesContainer"></div>
+      </div>
+
+      <!-- إعدادات الذكاء الاصطناعي (Gemini Vision API) -->
+      <div class="card" style="border: 1px solid #941B3D;">
+        <div class="card-title" style="color: #ff94af;">
+          <span>🤖 إعدادات الذكاء الاصطناعي (AI Food Scanner)</span>
+          <span style="font-size: 0.72rem; background: #650F27; padding: 2px 8px; border-radius: 4px;">مجاني 100%</span>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5;">
+          يتيح لك فحص صور الوجبات وفصل مكوناتها وتقدير القيم الغذائية. مفتاحك محفوظ محلياً على جهازك فقط.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">مفتاح API الخاص بك (Gemini API Key)</label>
+          <input type="password" id="cfgApiKey" class="form-control" placeholder="ألصق المفتاح هنا (AIzaSy...)">
+          <div style="font-size: 0.73rem; color: #ff85a0; margin-top: 6px;">
+            💡 يمكنك إنشاء مفتاحك المجاني في ثوانٍ من: 
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #4ade80; text-decoration: underline;">Google AI Studio اضغط هنا</a>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" onclick="saveApiKeyOnly()">💾 حفظ مفتاح الذكاء الاصطناعي</button>
       </div>
 
       <div class="card">
@@ -1221,8 +1419,201 @@
   </nav>
 
   <!-- ============================================================
-       نافذة تمارين الدمبل المنزلية الـ 15 مع الرؤية البصرية والحركية
+       نافذة التصوير الذكي المتطورة: AI Food Scanner
        ============================================================ -->
+  <div id="aiFoodScannerModal" class="modal-overlay">
+    <div class="modal-sheet" style="max-height: 94vh;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800;">📸 التصوير الذكي للطعام AI Scanner</h3>
+          <div style="font-size: 0.74rem; color: #ff85a0;">تحليل مكونات الطبق وفصل الأصناف والقيم الغذائية</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeFoodScannerModal()">✕</button>
+      </div>
+
+      <!-- الخطوة 1: اختيار / التقاط الصورة -->
+      <div id="scannerStepCapture" class="scanner-view-step active">
+        <div style="border: 2px dashed var(--maroon-accent); border-radius: var(--radius-md); padding: 28px 16px; text-align: center; background: rgba(101,15,39,0.08); margin-bottom: 16px;">
+          <div style="font-size: 2.8rem; margin-bottom: 10px;">🍽️</div>
+          <div style="font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 4px;">صوّر وجبتك بكاميرا الهاتف</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.4;">
+            التقط صورة واضحة لطبقك وسيقوم الذكاء الاصطناعي بالتعرف على المكونات وحساب السعرات والماكروز تلقائياً.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label class="btn btn-ai-scanner" style="cursor: pointer; margin-bottom: 0;">
+              <span>📷</span> التقاط صورة مباشرة بالكاميرا
+              <input type="file" id="scannerCameraInput" accept="image/*" capture="environment" style="display: none;" onchange="onFoodScannerFileChosen(event)">
+            </label>
+
+            <label class="btn btn-secondary" style="cursor: pointer; margin-bottom: 0;">
+              <span>🖼️</span> اختيار صورة من المعرض
+              <input type="file" id="scannerGalleryInput" accept="image/*" style="display: none;" onchange="onFoodScannerFileChosen(event)">
+            </label>
+          </div>
+        </div>
+
+        <div style="font-size: 0.74rem; color: var(--text-sub); text-align: center; line-height: 1.4;">
+          * يدعم الأطعمة العربية والعراقية المركبة (تمن، مرق، كباب، دجاج، مسكوف، صمون، إلخ).
+        </div>
+      </div>
+
+      <!-- الخطوة 2: شاشة المسح والتحليل الجاري -->
+      <div id="scannerStepLoading" class="scanner-view-step">
+        <div class="scanner-hero-img-wrap">
+          <img id="scannerLoadingImg" class="scanner-hero-img" src="" alt="طبق الطعام">
+          <div class="scanner-laser-line"></div>
+        </div>
+        <div style="text-align: center; padding: 12px 0;">
+          <div style="font-size: 1.05rem; font-weight: 800; color: #ff6b8b; margin-bottom: 6px;" id="scannerStatusTitle">
+            جاري فحص الطبق وفصل المكونات...
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);" id="scannerStatusDesc">
+            يتم التعرف على الأصناف وطريقة الطهي وتقدير الغرامات والسعرات ⏳
+          </div>
+        </div>
+      </div>
+
+      <!-- الخطوة 3: نتائج التحليل والتعديل التفاعلي قبل الحفظ -->
+      <div id="scannerStepResults" class="scanner-view-step">
+        <div class="scanner-hero-img-wrap" style="height: 150px; margin-bottom: 12px;">
+          <img id="scannerResultImg" class="scanner-hero-img" src="" alt="الطبق المحلل">
+          <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; color: #4ade80;" id="scannerConfidenceBadge">
+            دقة التحليل: عالية ✓
+          </div>
+        </div>
+
+        <!-- اقتراح وتحديد نوع الوجبة -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #ff85a0;" id="scannerMealTypePrompt">أين تريد تسجيل هذه الوجبة؟</span>
+            <span id="suggestedTypeTag" style="font-size: 0.72rem; background: var(--maroon-primary); padding: 2px 8px; border-radius: 4px;">مقترح: غداء</span>
+          </div>
+
+          <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;" id="scannerMealTypeButtonsRow">
+            <button type="button" class="preset-chip active" onclick="setScannerMealType('غداء', this)">🍛 الغداء</button>
+            <button type="button" class="preset-chip" onclick="setScannerMealType('فطور', this)">🍳 الفطور</button>
+            <button type="button" class="preset-chip" onclick="setScannerMealType('عشاء', this)">🌙 العشاء</button>
+            <button type="button" class="preset-chip" onclick="setScannerMealType('سناك', this)">🍎 وجبة خفيفة</button>
+            <button type="button" class="preset-chip" onclick="setScannerMealType('أخرى', this)">✏️ أخرى</button>
+          </div>
+        </div>
+
+        <!-- الإجمالي الكبير والماكروز -->
+        <div style="background: linear-gradient(145deg, #1f0711, #121212); border: 1px solid var(--maroon-border); border-radius: var(--radius-md); padding: 14px; text-align: center; margin-bottom: 14px;">
+          <div style="font-size: 0.76rem; color: var(--text-muted);">إجمالي سعرات الوجبة التقديرية</div>
+          <div id="scannerTotalCaloriesDisplay" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 2px 0;">0 <span style="font-size: 0.9rem; font-weight: normal; color: #ff85a0;">Kcal</span></div>
+          
+          <div class="macro-ratio-bar">
+            <div id="ratioP" class="macro-ratio-p" style="width: 33%;"></div>
+            <div id="ratioC" class="macro-ratio-c" style="width: 33%;"></div>
+            <div id="ratioF" class="macro-ratio-f" style="width: 34%;"></div>
+          </div>
+
+          <div style="display: flex; justify-content: space-around; font-size: 0.78rem; font-weight: 700; margin-top: 6px;">
+            <span style="color: var(--protein-color);">بروتين: <strong id="scannerTotalP">0</strong>g</span>
+            <span style="color: var(--carbs-color);">كارب: <strong id="scannerTotalC">0</strong>g</span>
+            <span style="color: var(--fat-color);">دهون: <strong id="scannerTotalF">0</strong>g</span>
+          </div>
+        </div>
+
+        <!-- تفاصيل الأصناف المفككة القابلة للتعديل -->
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label class="form-label" style="margin-bottom: 0;">الأصناف والمكونات في الطبق:</label>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="addScannerEmptyItem()" style="padding: 2px 8px; font-size: 0.74rem;">+ إضافة صنف آخر</button>
+          </div>
+
+          <div id="scannerItemsContainer">
+            <!-- يتم تعبئة الأصناف برمجياً -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ملاحظات اختيارية عن الوجبة</label>
+          <input type="text" id="scannerMealNotes" class="form-control" placeholder="مثال: بعد تمرين الأكتاف، مع رشة زيت زيتون خفيفة">
+        </div>
+
+        <div style="font-size: 0.72rem; color: var(--text-sub); text-align: center; margin-bottom: 12px; line-height: 1.4;">
+          ⚠️ تنبيه: الأوزان والسعرات تقديرية تقريبية مبنية على الرؤية البصرية وليست فحصاً مخبرياً.
+        </div>
+
+        <!-- زر الحفظ وإضافة الوجبة لليوم -->
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn btn-secondary" onclick="resetFoodScannerToCapture()">🔄 إعادة تصوير</button>
+          <button type="button" id="saveScannerMealBtn" class="btn btn-maroon" onclick="saveScannerMealToDay()">
+            <span>+</span> إضافة الوجبة إلى يومي
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- النوافذ المنبثقة الأخرى: إضافة يدوية، تمرين دمبل، وزن، نشاط مخصص، صورة -->
+  <div id="addMealModal" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem; font-weight: 800;">إضافة وجبة طعام يدوية</h3>
+        <button class="modal-close-btn" onclick="closeModal('addMealModal')">✕</button>
+      </div>
+      <form onsubmit="handleSaveMealManual(event)">
+        <div class="form-group">
+          <label class="form-label">نوع الوجبة</label>
+          <select id="inputMealType" class="form-control">
+            <option value="غداء">غداء</option>
+            <option value="فطور">فطور</option>
+            <option value="عشاء">عشاء</option>
+            <option value="سناك">سناك / خفيفة</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">اسم الوجبة أو المكونات *</label>
+          <input type="text" id="inputMealName" class="form-control" required placeholder="مثال: صدر دجاج مع تمن وسلطة">
+        </div>
+
+        <div style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 4px;">أمثلة سريعة:</div>
+        <div class="food-presets-container">
+          <span class="preset-chip" onclick="applyFoodPreset('صدر دجاج مشوي 150غ', 245)">دجاج مشوي (245 سعرة)</span>
+          <span class="preset-chip" onclick="applyFoodPreset('تمن عنبر أبيض مطبوخ 150غ', 195)">تمن أبيض (195 سعرة)</span>
+          <span class="preset-chip" onclick="applyFoodPreset('بيضتان مسلوقتان', 140)">بيضتان (140 سعرة)</span>
+          <span class="preset-chip" onclick="applyFoodPreset('سلطة خضراء مع زيت زيتون', 110)">سلطة خضراء (110 سعرة)</span>
+          <span class="preset-chip" onclick="applyFoodPreset('صمون عراقي حبة واحدة', 210)">صمون عراقي (210 سعرة)</span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="form-group">
+            <label class="form-label">السعرات التقديرية *</label>
+            <input type="number" id="inputMealCal" class="form-control" required placeholder="مثال: 450">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الكمية أو الوصف التقديري</label>
+            <input type="text" id="inputMealPortion" class="form-control" placeholder="مثال: صحن متوسط">
+          </div>
+        </div>
+
+        <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 8px;">
+          <div class="form-group">
+            <label class="form-label" style="color: var(--protein-color);">بروتين (غ)</label>
+            <input type="number" id="inputMealProtein" class="form-control" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="color: var(--carbs-color);">كارب (غ)</label>
+            <input type="number" id="inputMealCarbs" class="form-control" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="color: var(--fat-color);">دهون (غ)</label>
+            <input type="number" id="inputMealFat" class="form-control" placeholder="0">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-maroon" style="margin-top: 8px;">💾 حفظ في سجل اليوم</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- نافذة تمارين الدمبل الـ 15 كاملة -->
   <div id="smartDumbbellModal" class="modal-overlay">
     <div class="modal-sheet" style="max-height: 94vh;">
       <div class="modal-header">
@@ -1233,7 +1624,6 @@
         <button class="modal-close-btn" onclick="closeDumbbellWorkoutModal()">✕</button>
       </div>
 
-      <!-- المؤقت الحي وحرق الطاقة المباشر -->
       <div style="background: linear-gradient(135deg, #220710, #111); border: 1px solid var(--maroon-accent); border-radius: var(--radius-md); padding: 14px; text-align: center; margin-bottom: 14px;">
         <div style="display: flex; justify-content: space-around; align-items: center;">
           <div>
@@ -1253,7 +1643,6 @@
         </div>
       </div>
 
-      <!-- تبويبات العضلات الخمسة من دليلك المصور -->
       <div class="form-group" style="margin-bottom: 8px;">
         <label class="form-label">اختر العضلة المستهدفة:</label>
         <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
@@ -1265,34 +1654,27 @@
         </div>
       </div>
 
-      <!-- شبكة عرض التمارين الثلاثة الخاصة بالعضلة -->
       <div class="form-group" style="margin-bottom: 10px;">
         <label class="form-label" style="display: flex; justify-content: space-between;">
           <span>التمارين الثلاثة المتاحة للعضلة:</span>
           <span style="color: #ff6b8b; font-weight: normal;">(اضغط على التمرين لرؤية طريقة الأداء)</span>
         </label>
-        <div class="exercise-cards-grid" id="muscleExerciseCardsRow">
-          <!-- يتم حقن التمارين الثلاثة برمجياً هنا -->
-        </div>
+        <div class="exercise-cards-grid" id="muscleExerciseCardsRow"></div>
       </div>
 
-      <!-- شاشة العرض الحركية التفاعلية لشرح طريقة التمرين بالرسم والخطوات -->
       <div class="exercise-visual-display">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
           <strong id="displayExerciseTitle" style="color: #ff7597; font-size: 0.95rem;">-</strong>
           <span id="targetRepsTag" style="font-size: 0.72rem; background: #650F27; padding: 2px 8px; border-radius: 4px; font-weight: bold;">30erps / 5</span>
         </div>
 
-        <div id="exerciseSvgContainer">
-          <!-- يتم عرض الرسم الحركي والتوضيحي للوضعية والمسار -->
-        </div>
+        <div id="exerciseSvgContainer"></div>
 
         <div class="exercise-instruction-box" id="exerciseInstructions">
           جاري تجهيز الشرح التكنيكي...
         </div>
       </div>
 
-      <!-- عداد وزن الدمبل والجولات والتكرارات -->
       <div class="stats-grid" style="margin-bottom: 10px;">
         <div class="form-group" style="margin-bottom: 0;">
           <label class="form-label">وزن الدمبل لليد (كغ)</label>
@@ -1336,7 +1718,6 @@
     </div>
   </div>
 
-  <!-- النوافذ الأخرى: وزن، وجبة، نشاط، صورة -->
   <div id="addWeightModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1361,52 +1742,6 @@
     </div>
   </div>
 
-  <div id="addMealModal" class="modal-overlay">
-    <div class="modal-sheet">
-      <div class="modal-header">
-        <h3 style="font-size: 1.1rem; font-weight: 800;">إضافة وجبة طعام</h3>
-        <button class="modal-close-btn" onclick="closeModal('addMealModal')">✕</button>
-      </div>
-      <form onsubmit="handleSaveMeal(event)">
-        <div class="form-group">
-          <label class="form-label">نوع الوجبة</label>
-          <select id="inputMealType" class="form-control">
-            <option value="غداء">غداء</option>
-            <option value="فطور">فطور</option>
-            <option value="عشاء">عشاء</option>
-            <option value="سناك">سناك / خفيفة</option>
-            <option value="أخرى">أخرى</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">اسم الوجبة أو المادة الغذائية *</label>
-          <input type="text" id="inputMealName" class="form-control" required placeholder="مثال: صدر دجاج مع رز وسلطة">
-        </div>
-
-        <div style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 4px;">أمثلة سريعة:</div>
-        <div class="food-presets-container">
-          <span class="preset-chip" onclick="applyFoodPreset('صدر دجاج مشوي 150غ', 245)">دجاج مشوي (245 سعرة)</span>
-          <span class="preset-chip" onclick="applyFoodPreset('رز أبيض مطبوخ 150غ', 195)">رز أبيض (195 سعرة)</span>
-          <span class="preset-chip" onclick="applyFoodPreset('بيضتان مسلوقتان', 140)">بيضتان (140 سعرة)</span>
-          <span class="preset-chip" onclick="applyFoodPreset('سلطة خضراء مع زيت زيتون', 110)">سلطة خضراء (110 سعرة)</span>
-          <span class="preset-chip" onclick="applyFoodPreset('شوفان بالحليب 50غ', 260)">شوفان وحليب (260 سعرة)</span>
-        </div>
-
-        <div class="stats-grid">
-          <div class="form-group">
-            <label class="form-label">السعرات التقديرية *</label>
-            <input type="number" id="inputMealCal" class="form-control" required placeholder="مثال: 450">
-          </div>
-          <div class="form-group">
-            <label class="form-label">الكمية أو الوصف</label>
-            <input type="text" id="inputMealPortion" class="form-control" placeholder="مثال: صحن متوسط">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-maroon" style="margin-top: 8px;">حفظ في سجل اليوم</button>
-      </form>
-    </div>
-  </div>
-
   <div id="addWorkoutModal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-header">
@@ -1418,7 +1753,6 @@
           <label class="form-label">اسم التمرين / النشاط *</label>
           <input type="text" id="inputWorkoutName" class="form-control" required placeholder="مثال: مشي سريع، دراجة">
         </div>
-
         <div class="stats-grid">
           <div class="form-group">
             <label class="form-label">المدة بالدقائق</label>
@@ -1474,7 +1808,7 @@
   </div>
 
   <!-- ============================================================
-       المنطق البرمجي وقاعدة البيانات المستمرة IndexedDB
+       المنطق البرمجي، قاعدة البيانات المستمرة IndexedDB، والذكاء الاصطناعي
        ============================================================ -->
   <script>
     const DEFAULT_CONFIG = {
@@ -1487,7 +1821,8 @@
       age: 28,
       height: 175,
       activity: 1.375,
-      maintenanceCalories: null
+      maintenanceCalories: null,
+      geminiApiKey: ''
     };
 
     let appState = {
@@ -1502,9 +1837,18 @@
     let deferredPrompt = null;
     let dbInstance = null;
 
-    /* ============================================================
-       قائمة التمارين الـ 15 كاملة (3 تمارين لكل عضلة) مع الرسوم الحركية التفاعلية
-       ============================================================ */
+    /* حالة الماسح الذكي الحالية */
+    let scannerCurrentData = {
+      imageDataUrl: null,
+      mealName: '',
+      mealType: 'غداء',
+      notes: '',
+      confidence: 'عالية',
+      items: []
+    };
+    let isSavingScannerMeal = false;
+
+    /* قاعدة بيانات تمارين الدمبل الـ 15 كاملة */
     const DUMBBELL_DATA = {
       shoulder: [
         {
@@ -1663,7 +2007,6 @@
     function initIndexedDB() {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open('RahlatiDB', 1);
-
         request.onupgradeneeded = (e) => {
           const db = e.target.result;
           if (!db.objectStoreNames.contains('weights')) {
@@ -1684,11 +2027,7 @@
             pStore.createIndex('date', 'date', { unique: false });
           }
         };
-
-        request.onsuccess = (e) => {
-          dbInstance = e.target.result;
-          resolve(dbInstance);
-        };
+        request.onsuccess = (e) => { dbInstance = e.target.result; resolve(dbInstance); };
         request.onerror = (e) => reject(e);
       });
     }
@@ -1764,22 +2103,17 @@
     }
 
     function normalizeNumber(num) {
-      if (typeof num === 'string') {
-        num = num.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-      }
+      if (typeof num === 'string') num = num.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
       const val = parseFloat(num);
       return isNaN(val) ? 0 : val;
     }
 
-    /* تشغيل التطبيق */
+    /* تشغيل وتهيئة الصفحة */
     document.addEventListener('DOMContentLoaded', async () => {
       const savedConfig = localStorage.getItem('rahlati_config');
       if (savedConfig) {
-        try {
-          appState.config = { ...DEFAULT_CONFIG, ...JSON.parse(savedConfig) };
-        } catch (e) {
-          appState.config = { ...DEFAULT_CONFIG };
-        }
+        try { appState.config = { ...DEFAULT_CONFIG, ...JSON.parse(savedConfig) }; }
+        catch (e) { appState.config = { ...DEFAULT_CONFIG }; }
       }
 
       document.getElementById('inputWeightDate').value = getTodayDateString();
@@ -1822,21 +2156,14 @@
 
       const startDate = parseISODate(appState.config.startDate);
       const endDate = parseISODate(appState.config.endDate);
-
       const totalDays = Math.max(1, Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)));
 
-      let daysPassed = 0;
-      let daysLeft = totalDays;
-      let statusText = 'مستمر';
+      let daysPassed = 0, daysLeft = totalDays, statusText = 'مستمر';
 
       if (now < startDate) {
-        daysPassed = 0;
-        daysLeft = totalDays;
-        statusText = 'لم يبدأ بعد';
+        daysPassed = 0; daysLeft = totalDays; statusText = 'لم يبدأ بعد';
       } else if (now > endDate) {
-        daysPassed = totalDays;
-        daysLeft = 0;
-        statusText = 'اكتمل التحدي';
+        daysPassed = totalDays; daysLeft = 0; statusText = 'اكتمل التحدي';
       } else {
         daysPassed = Math.round((now - startDate) / (1000 * 60 * 60 * 24));
         daysLeft = Math.max(0, Math.round((endDate - now) / (1000 * 60 * 60 * 24)));
@@ -1851,7 +2178,6 @@
       document.getElementById('challengeProgressBar').style.width = percent + '%';
       document.getElementById('challengePercentText').textContent = percent + '%';
       document.getElementById('challengeStatusBadge').textContent = statusText;
-
       document.getElementById('startDateDisplay').textContent = appState.config.startDate;
       document.getElementById('endDateDisplay').textContent = appState.config.endDate;
 
@@ -1880,20 +2206,30 @@
       const burnCal = todayWorkouts.reduce((sum, w) => sum + normalizeNumber(w.calories), 0);
       document.getElementById('dashBurnCal').textContent = burnCal;
 
+      // مجموع الماكروز لليوم
+      const totalP = Math.round(todayMeals.reduce((s, m) => s + normalizeNumber(m.protein || 0), 0));
+      const totalC = Math.round(todayMeals.reduce((s, m) => s + normalizeNumber(m.carbs || 0), 0));
+      const totalF = Math.round(todayMeals.reduce((s, m) => s + normalizeNumber(m.fat || 0), 0));
+
+      document.getElementById('dashTotalProtein').textContent = `${totalP}g`;
+      document.getElementById('dashTotalCarbs').textContent = `${totalC}g`;
+      document.getElementById('dashTotalFat').textContent = `${totalF}g`;
+
       const maint = normalizeNumber(appState.config.maintenanceCalories);
       if (maint > 0) {
         document.getElementById('dashMaintenanceCal').textContent = maint;
         const totalEnergy = maint + burnCal;
         const deficit = totalEnergy - foodCal;
+        const remainingTarget = Math.max(0, maint - foodCal);
         
         if (deficit > 0) {
           document.getElementById('dashDeficitVal').textContent = `+${deficit}`;
           document.getElementById('dashDeficitVal').style.color = '#4ade80';
-          document.getElementById('dashDeficitDesc').textContent = `عجز حراري ممتاز لليوم يُقدر بـ ${deficit} سعرة.`;
+          document.getElementById('dashDeficitDesc').textContent = `عجز ممتاز (+${deficit} سعرة). المتبقي من سعرات المحافظة اليومية: ${remainingTarget} سعرة.`;
         } else if (deficit < 0) {
           document.getElementById('dashDeficitVal').textContent = `${deficit}`;
           document.getElementById('dashDeficitVal').style.color = '#f87171';
-          document.getElementById('dashDeficitDesc').textContent = `فائض حراري لليوم يُقدر بـ ${Math.abs(deficit)} سعرة.`;
+          document.getElementById('dashDeficitDesc').textContent = `فائض حراري لليوم بمقدار ${Math.abs(deficit)} سعرة.`;
         } else {
           document.getElementById('dashDeficitVal').textContent = `0`;
           document.getElementById('dashDeficitVal').style.color = 'var(--text-main)';
@@ -1911,7 +2247,6 @@
       if (appState.weights.length > 0) {
         const latest = appState.weights[appState.weights.length - 1];
         document.getElementById('dashLatestWeight').textContent = `${latest.weight} كغ`;
-        
         if (baseW > 0) {
           const diff = (latest.weight - baseW).toFixed(1);
           if (diff < 0) {
@@ -1931,7 +2266,351 @@
     }
 
     /* ============================================================
-       منطق نافذة تمارين الدمبل التفاعلية الـ 15 مع طريقة التمرين الحركية
+       نظام التصوير الذكي للطعام AI Food Scanner
+       ============================================================ */
+    function openFoodScannerModal() {
+      resetFoodScannerToCapture();
+      openModal('aiFoodScannerModal');
+    }
+
+    function closeFoodScannerModal() {
+      closeModal('aiFoodScannerModal');
+    }
+
+    function resetFoodScannerToCapture() {
+      showScannerStep('scannerStepCapture');
+      document.getElementById('scannerCameraInput').value = '';
+      document.getElementById('scannerGalleryInput').value = '';
+      isSavingScannerMeal = false;
+      const saveBtn = document.getElementById('saveScannerMealBtn');
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>+</span> إضافة الوجبة إلى يومي';
+      }
+    }
+
+    function showScannerStep(stepId) {
+      document.querySelectorAll('.scanner-view-step').forEach(s => s.classList.remove('active'));
+      const activeEl = document.getElementById(stepId);
+      if (activeEl) activeEl.classList.add('active');
+    }
+
+    async function onFoodScannerFileChosen(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const apiKey = appState.config.geminiApiKey || localStorage.getItem('gemini_api_key');
+      if (!apiKey) {
+        alert('⚠️ يرجى أولاً إدخال مفتاح Gemini API المجاني الخاص بك في شاشة الإعدادات لتفعيل التحليل بالذكاء الاصطناعي.');
+        navigateTo('progress');
+        closeFoodScannerModal();
+        return;
+      }
+
+      showScannerStep('scannerStepLoading');
+      document.getElementById('scannerStatusTitle').textContent = 'جاري ضغط وقراءة صورة الطبق...';
+
+      try {
+        const compressedBase64 = await compressImageFile(file, 900);
+        document.getElementById('scannerLoadingImg').src = compressedBase64;
+        document.getElementById('scannerResultImg').src = compressedBase64;
+        scannerCurrentData.imageDataUrl = compressedBase64;
+
+        document.getElementById('scannerStatusTitle').textContent = 'الذكاء الاصطناعي يحلل مكونات الطبق... 🤖';
+        document.getElementById('scannerStatusDesc').textContent = 'فصل الأصناف (تمن، لحوم، سلطات)، تقدير الأوزان بالغرام، وحساب الماكروز بدقة...';
+
+        const rawBase64 = compressedBase64.split(',')[1];
+        await analyzeMealWithGeminiVision(rawBase64, apiKey);
+      } catch (err) {
+        console.error(err);
+        showToast('فشل تحليل الصورة: تحقق من اتصالك أو صحة مفتاح API', 'danger');
+        resetFoodScannerToCapture();
+      }
+    }
+
+    async function analyzeMealWithGeminiVision(base64Image, apiKey) {
+      const prompt = `أنت خبير تغذية سريري متخصص في تحليل وجبات الطعام بصرياً وتفكيك مكونات الأطباق الشرق أوسطية والعربية والعراقية (مثل: التمن بأنواعه، الدجاج، الكباب، المسكوف، المرق، التشريب، الصمون، الدولمة، السلطات، الزيوت، والصلصات).
+انظر للصورة بتمعن وفكك محتوياتها إلى أصناف منفصلة بدقة ولا تجمع كل شيء في صنف واحد مجهول.
+
+أجب بصيغة JSON نظيفة وصحيحة 100% فقط بدون أي علامات ماركداون (لا تضع \`\`\`json ولا تضع أي نص خارج الأقواس المعقوفة).
+الهيكل المطلوب حصراً:
+{
+  "meal_name": "اسم الوجبة العام",
+  "suggested_type": "غداء", 
+  "confidence": "عالية",
+  "notes": "ملاحظة سريعة عن طريقة الطهي أو الدهون الظاهرة",
+  "items": [
+    {
+      "name": "اسم الصنف الأول (مثال: تمن أبيض مطبوخ)",
+      "portion_desc": "صحن متوسط",
+      "grams": 200,
+      "calories": 260,
+      "protein": 5,
+      "carbs": 56,
+      "fat": 2,
+      "fiber": 1.5,
+      "sugar": 0.2
+    },
+    {
+      "name": "اسم الصنف الثاني (مثال: صدر دجاج مشوي)",
+      "portion_desc": "قطعة متوسطة",
+      "grams": 150,
+      "calories": 240,
+      "protein": 46,
+      "carbs": 0,
+      "fat": 5,
+      "fiber": 0,
+      "sugar": 0
+    }
+  ]
+}
+قواعد صارمة:
+- نوع الوجبة يجب أن يكون حصراً أحد: "فطور" أو "غداء" أو "عشاء" أو "سناك" أو "أخرى".
+- إذا كان هناك رز ودجاج وسلطة، اجعل كل واحد منها عنصراً منفصلاً في قائمة items.
+- قدّر الأوزان بالغرام والسعرات والماكروز بقيم واقعية طبية.`;
+
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: prompt },
+              { inline_data: { mime_type: 'image/jpeg', data: base64Image } }
+            ]
+          }]
+        })
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err?.error?.message || 'فشل الاتصال بالذكاء الاصطناعي');
+      }
+
+      const resData = await response.json();
+      let rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+      const parsed = JSON.parse(rawText);
+
+      scannerCurrentData.mealName = parsed.meal_name || 'وجبة طعام متنوعة';
+      scannerCurrentData.mealType = parsed.suggested_type || 'غداء';
+      scannerCurrentData.confidence = parsed.confidence || 'عالية';
+      scannerCurrentData.notes = parsed.notes || '';
+      scannerCurrentData.items = Array.isArray(parsed.items) && parsed.items.length > 0 ? parsed.items : [
+        { name: 'طبق طعام', portion_desc: 'حصة متوسطة', grams: 250, calories: 400, protein: 20, carbs: 45, fat: 12, fiber: 3, sugar: 2 }
+      ];
+
+      renderScannerResultsUI();
+    }
+
+    function renderScannerResultsUI() {
+      showScannerStep('scannerStepResults');
+
+      document.getElementById('scannerConfidenceBadge').textContent = `دقة التحليل: ${scannerCurrentData.confidence} ✓`;
+      document.getElementById('suggestedTypeTag').textContent = `مقترح: ${scannerCurrentData.mealType}`;
+      document.getElementById('scannerMealTypePrompt').textContent = `يبدو أن هذه وجبة ${scannerCurrentData.mealType}. أين تريد تسجيلها؟`;
+      document.getElementById('scannerMealNotes').value = scannerCurrentData.notes || '';
+
+      // تحديد زر نوع الوجبة المناسب
+      const mealButtons = document.querySelectorAll('#scannerMealTypeButtonsRow .preset-chip');
+      mealButtons.forEach(btn => {
+        if (btn.textContent.includes(scannerCurrentData.mealType)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      renderScannerItemsList();
+      recalculateScannerTotals();
+    }
+
+    function setScannerMealType(type, btnEl) {
+      scannerCurrentData.mealType = type;
+      document.querySelectorAll('#scannerMealTypeButtonsRow .preset-chip').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+    }
+
+    function renderScannerItemsList() {
+      const container = document.getElementById('scannerItemsContainer');
+      container.innerHTML = scannerCurrentData.items.map((item, idx) => `
+        <div class="scanner-item-card" id="scannerCardItem_${idx}">
+          <div class="scanner-item-header">
+            <input type="text" class="scanner-input-compact" style="font-weight: 700; width: 75%;" value="${item.name}" onchange="updateScannerItemProp(${idx}, 'name', this.value)">
+            <button type="button" class="btn btn-secondary btn-sm" style="color: var(--danger); padding: 2px 8px;" onclick="removeScannerItem(${idx})">✕ حذف</button>
+          </div>
+
+          <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 6px;">
+            <div>
+              <label style="font-size: 0.68rem; color: var(--text-muted); display: block;">الوزن (غرام)</label>
+              <input type="number" class="scanner-input-compact" value="${item.grams || 100}" oninput="updateScannerItemGrams(${idx}, this.value)">
+            </div>
+            <div>
+              <label style="font-size: 0.68rem; color: #ff85a0; display: block;">السعرات (Kcal)</label>
+              <input type="number" class="scanner-input-compact" value="${item.calories || 0}" oninput="updateScannerItemProp(${idx}, 'calories', this.value)">
+            </div>
+            <div>
+              <label style="font-size: 0.68rem; color: var(--protein-color); display: block;">بروتين (غ)</label>
+              <input type="number" class="scanner-input-compact" value="${item.protein || 0}" oninput="updateScannerItemProp(${idx}, 'protein', this.value)">
+            </div>
+          </div>
+
+          <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 0;">
+            <div>
+              <label style="font-size: 0.68rem; color: var(--carbs-color); display: block;">كارب (غ)</label>
+              <input type="number" class="scanner-input-compact" value="${item.carbs || 0}" oninput="updateScannerItemProp(${idx}, 'carbs', this.value)">
+            </div>
+            <div>
+              <label style="font-size: 0.68rem; color: var(--fat-color); display: block;">دهون (غ)</label>
+              <input type="number" class="scanner-input-compact" value="${item.fat || 0}" oninput="updateScannerItemProp(${idx}, 'fat', this.value)">
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateScannerItemProp(idx, prop, value) {
+      if (scannerCurrentData.items[idx]) {
+        scannerCurrentData.items[idx][prop] = (prop === 'name') ? value : normalizeNumber(value);
+        recalculateScannerTotals();
+      }
+    }
+
+    // تعديل الغرامات مع تناسب تلقائي ذكي للسعرات والماكروز
+    function updateScannerItemGrams(idx, newGrams) {
+      const item = scannerCurrentData.items[idx];
+      if (!item) return;
+      const g = normalizeNumber(newGrams);
+      const oldG = item.grams || 100;
+      if (oldG > 0 && g > 0) {
+        const factor = g / oldG;
+        item.calories = Math.round(item.calories * factor);
+        item.protein = Math.round(item.protein * factor * 10) / 10;
+        item.carbs = Math.round(item.carbs * factor * 10) / 10;
+        item.fat = Math.round(item.fat * factor * 10) / 10;
+      }
+      item.grams = g;
+      renderScannerItemsList();
+      recalculateScannerTotals();
+    }
+
+    function addScannerEmptyItem() {
+      scannerCurrentData.items.push({
+        name: 'صنف إضافي',
+        grams: 100,
+        calories: 120,
+        protein: 3,
+        carbs: 20,
+        fat: 2,
+        fiber: 1,
+        sugar: 1
+      });
+      renderScannerItemsList();
+      recalculateScannerTotals();
+    }
+
+    function removeScannerItem(idx) {
+      scannerCurrentData.items.splice(idx, 1);
+      renderScannerItemsList();
+      recalculateScannerTotals();
+    }
+
+    function recalculateScannerTotals() {
+      let totalCal = 0, totalP = 0, totalC = 0, totalF = 0;
+
+      scannerCurrentData.items.forEach(it => {
+        totalCal += normalizeNumber(it.calories);
+        totalP += normalizeNumber(it.protein);
+        totalC += normalizeNumber(it.carbs);
+        totalF += normalizeNumber(it.fat);
+      });
+
+      totalCal = Math.round(totalCal);
+      totalP = Math.round(totalP * 10) / 10;
+      totalC = Math.round(totalC * 10) / 10;
+      totalF = Math.round(totalF * 10) / 10;
+
+      document.getElementById('scannerTotalCaloriesDisplay').innerHTML = `${totalCal} <span style="font-size: 0.9rem; font-weight: normal; color: #ff85a0;">Kcal</span>`;
+      document.getElementById('scannerTotalP').textContent = totalP;
+      document.getElementById('scannerTotalC').textContent = totalC;
+      document.getElementById('scannerTotalF').textContent = totalF;
+
+      // نسب شريط الماكروز التفاعلي
+      const sumMacros = (totalP * 4) + (totalC * 4) + (totalF * 9) || 1;
+      const pPercent = Math.round(((totalP * 4) / sumMacros) * 100);
+      const cPercent = Math.round(((totalC * 4) / sumMacros) * 100);
+      const fPercent = Math.max(0, 100 - pPercent - cPercent);
+
+      document.getElementById('ratioP').style.width = pPercent + '%';
+      document.getElementById('ratioC').style.width = cPercent + '%';
+      document.getElementById('ratioF').style.width = fPercent + '%';
+    }
+
+    async function saveScannerMealToDay() {
+      if (isSavingScannerMeal) return; // حماية من التكرار
+      isSavingScannerMeal = true;
+
+      const saveBtn = document.getElementById('saveScannerMealBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '⏳ جاري إضافة الوجبة وتحديث اليوم...';
+
+      try {
+        let totalCal = 0, totalP = 0, totalC = 0, totalF = 0;
+        const itemNames = [];
+
+        scannerCurrentData.items.forEach(it => {
+          totalCal += normalizeNumber(it.calories);
+          totalP += normalizeNumber(it.protein);
+          totalC += normalizeNumber(it.carbs);
+          totalF += normalizeNumber(it.fat);
+          if (it.name) itemNames.push(`${it.name} (${it.grams || 100}غ)`);
+        });
+
+        const mealRecord = {
+          date: appState.activeDate,
+          type: scannerCurrentData.mealType || 'غداء',
+          name: scannerCurrentData.mealName || (itemNames[0] || 'وجبة متوازنة'),
+          portion: itemNames.join(' + ') || 'وجبة مصورة',
+          calories: Math.round(totalCal),
+          protein: Math.round(totalP * 10) / 10,
+          carbs: Math.round(totalC * 10) / 10,
+          fat: Math.round(totalF * 10) / 10,
+          image: scannerCurrentData.imageDataUrl || null,
+          items: scannerCurrentData.items,
+          notes: document.getElementById('scannerMealNotes').value.trim(),
+          time: new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' })
+        };
+
+        const id = await dbPut('meals', mealRecord);
+        mealRecord.id = id;
+        appState.meals.push(mealRecord);
+
+        closeFoodScannerModal();
+        showToast(`✅ تم تسجيل ${mealRecord.name} بنجاح (${mealRecord.calories} سعرة)`);
+
+        renderCalorieTab();
+        updateDashboardSummary();
+      } catch (err) {
+        console.error(err);
+        showToast('تعذر حفظ الوجبة في قاعدة البيانات', 'danger');
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>+</span> إضافة الوجبة إلى يومي';
+        isSavingScannerMeal = false;
+      }
+    }
+
+    function saveApiKeyOnly() {
+      const key = document.getElementById('cfgApiKey').value.trim();
+      if (!key) return showToast('يرجى لصق المفتاح أولاً', 'danger');
+      appState.config.geminiApiKey = key;
+      localStorage.setItem('gemini_api_key', key);
+      saveConfig();
+      showToast('تم حفظ وتفعيل مفتاح الذكاء الاصطناعي بنجاح ✨');
+    }
+
+    /* ============================================================
+       تمارين الدمبل الـ 15 كاملة
        ============================================================ */
     function openDumbbellWorkoutModal() {
       openModal('smartDumbbellModal');
@@ -1947,7 +2626,6 @@
       activeMuscleTab = muscleKey;
       selectedExerciseIndex = 0;
 
-      // تحديث أزرار العضلات
       ['shoulder', 'back', 'chest', 'arms', 'legs'].forEach(key => {
         const btn = document.getElementById(`chip-${key}`);
         if (btn) {
@@ -1962,11 +2640,9 @@
           }
         }
       });
-
       renderMuscleExerciseCards();
     }
 
-    // عرض التمارين الثلاثة التابعة للعضلة المختارة
     function renderMuscleExerciseCards() {
       const container = document.getElementById('muscleExerciseCardsRow');
       const exercises = DUMBBELL_DATA[activeMuscleTab];
@@ -2054,12 +2730,10 @@
 
       const durationHours = Math.max(workoutSecondsElapsed, 120) / 3600;
       const baseTimeCalories = 5.2 * userWeight * durationHours;
-
       const totalWeightMoved = sets * reps * (dumbbellWeight * 2);
       const mechanicalWorkCalories = (totalWeightMoved * 0.045); 
 
       const totalBurned = Math.round(baseTimeCalories + mechanicalWorkCalories);
-
       document.getElementById('liveBurnedCaloriesDisplay').innerHTML = `${totalBurned} <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">سعرة</span>`;
       return totalBurned;
     }
@@ -2087,12 +2761,11 @@
       resetWorkoutTimer();
       closeDumbbellWorkoutModal();
       showToast(`تم تسجيل ${burned} سعرة حرق من تمرين ${ex.name}!`);
-
       renderCalorieTab();
       updateDashboardSummary();
     }
 
-    /* إدارة الوزن والوجبات والصور */
+    /* إدارة الوزن والوجبات اليدوية والصور */
     async function handleSaveWeight(e) {
       e.preventDefault();
       const weightVal = normalizeNumber(document.getElementById('inputWeightVal').value);
@@ -2310,12 +2983,15 @@
       document.getElementById('inputMealCal').value = cal;
     }
 
-    async function handleSaveMeal(e) {
+    async function handleSaveMealManual(e) {
       e.preventDefault();
       const type = document.getElementById('inputMealType').value;
       const name = document.getElementById('inputMealName').value.trim();
       const cal = normalizeNumber(document.getElementById('inputMealCal').value);
       const portion = document.getElementById('inputMealPortion').value.trim();
+      const protein = normalizeNumber(document.getElementById('inputMealProtein').value);
+      const carbs = normalizeNumber(document.getElementById('inputMealCarbs').value);
+      const fat = normalizeNumber(document.getElementById('inputMealFat').value);
 
       if (!name || cal <= 0) return showToast('يرجى إدخال اسم الوجبة والسعرات', 'danger');
 
@@ -2325,6 +3001,9 @@
         name,
         calories: cal,
         portion,
+        protein,
+        carbs,
+        fat,
         time: new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' })
       };
 
@@ -2334,6 +3013,7 @@
       closeModal('addMealModal');
       document.getElementById('inputMealName').value = '';
       document.getElementById('inputMealCal').value = '';
+      document.getElementById('inputMealPortion').value = '';
       showToast('تمت إضافة الوجبة بنجاح');
       renderCalorieTab();
       updateDashboardSummary();
@@ -2384,14 +3064,29 @@
       const totalFood = dateMeals.reduce((sum, m) => sum + normalizeNumber(m.calories), 0);
       document.getElementById('totalFoodCalToday').textContent = totalFood;
 
+      // مجموع الماكروز
+      const totalP = Math.round(dateMeals.reduce((s, m) => s + normalizeNumber(m.protein || 0), 0));
+      const totalC = Math.round(dateMeals.reduce((s, m) => s + normalizeNumber(m.carbs || 0), 0));
+      const totalF = Math.round(dateMeals.reduce((s, m) => s + normalizeNumber(m.fat || 0), 0));
+
+      document.getElementById('calTabProtein').textContent = `${totalP}g`;
+      document.getElementById('calTabCarbs').textContent = `${totalC}g`;
+      document.getElementById('calTabFat').textContent = `${totalF}g`;
+
       if (dateMeals.length === 0) {
         mealsContainer.innerHTML = '<div class="empty-state" style="padding: 16px;"><p>لا توجد وجبات مسجلة لهذا اليوم.</p></div>';
       } else {
         mealsContainer.innerHTML = dateMeals.map(m => `
           <div class="history-item">
+            ${m.image ? `<img src="${m.image}" class="food-thumb-img" alt="صورة الوجبة">` : ''}
             <div class="item-meta">
               <div class="item-main-title">[${m.type}] ${m.name}</div>
               <div class="item-subtitle">${m.portion ? `${m.portion} • ` : ''}${m.time || ''}</div>
+              <div style="margin-top: 2px;">
+                <span class="macro-mini-pill macro-p">P: ${m.protein || 0}g</span>
+                <span class="macro-mini-pill macro-c">C: ${m.carbs || 0}g</span>
+                <span class="macro-mini-pill macro-f">F: ${m.fat || 0}g</span>
+              </div>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <span class="item-badge badge-same" style="color: #ff94af;">${m.calories} سعرة</span>
@@ -2656,6 +3351,7 @@
       document.getElementById('cfgHeight').value = c.height || '';
       document.getElementById('cfgActivity').value = c.activity || '1.375';
       document.getElementById('cfgMaintenance').value = c.maintenanceCalories || '';
+      document.getElementById('cfgApiKey').value = c.geminiApiKey || localStorage.getItem('gemini_api_key') || '';
     }
 
     function calculateAutoMaintenance() {
@@ -2685,6 +3381,10 @@
       appState.config.height = normalizeNumber(document.getElementById('cfgHeight').value);
       appState.config.activity = normalizeNumber(document.getElementById('cfgActivity').value);
       appState.config.maintenanceCalories = normalizeNumber(document.getElementById('cfgMaintenance').value) || null;
+      
+      const apiKey = document.getElementById('cfgApiKey').value.trim();
+      appState.config.geminiApiKey = apiKey;
+      localStorage.setItem('gemini_api_key', apiKey);
 
       saveConfig();
       showToast('تم حفظ الإعدادات بنجاح');
@@ -2749,6 +3449,7 @@
       if (prompt('اكتب كلمة "تأكيد" للبدء من جديد:') === 'تأكيد') {
         await dbClearAll();
         localStorage.removeItem('rahlati_config');
+        localStorage.removeItem('gemini_api_key');
         appState.config = { ...DEFAULT_CONFIG };
         appState.weights = [];
         appState.meals = [];
