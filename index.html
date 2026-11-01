@@ -528,7 +528,6 @@
       box-shadow: 0 0 10px var(--maroon-glow);
     }
 
-    /* أنماط ماسح الطعام الذكي AI Scanner */
     .scanner-view-step { display: none; }
     .scanner-view-step.active { display: block; }
 
@@ -1267,7 +1266,6 @@
         <div class="badge-grid" id="badgesContainer"></div>
       </div>
 
-      <!-- إعدادات الذكاء الاصطناعي (Gemini Vision API) -->
       <div class="card" style="border: 1px solid #941B3D;">
         <div class="card-title" style="color: #ff94af;">
           <span>🤖 إعدادات الذكاء الاصطناعي (AI Food Scanner)</span>
@@ -1412,9 +1410,7 @@
     </button>
   </nav>
 
-  <!-- ============================================================
-       نافذة التصوير الذكي المتطورة: AI Food Scanner
-       ============================================================ -->
+  <!-- نافذة التصوير الذكي للطعام AI Food Scanner -->
   <div id="aiFoodScannerModal" class="modal-overlay">
     <div class="modal-sheet" style="max-height: 94vh;">
       <div class="modal-header">
@@ -1425,7 +1421,6 @@
         <button class="modal-close-btn" onclick="closeFoodScannerModal()">✕</button>
       </div>
 
-      <!-- الخطوة 1: اختيار / التقاط الصورة -->
       <div id="scannerStepCapture" class="scanner-view-step active">
         <div style="border: 2px dashed var(--maroon-accent); border-radius: var(--radius-md); padding: 28px 16px; text-align: center; background: rgba(101,15,39,0.08); margin-bottom: 16px;">
           <div style="font-size: 2.8rem; margin-bottom: 10px;">🍽️</div>
@@ -1452,7 +1447,6 @@
         </div>
       </div>
 
-      <!-- الخطوة 2: شاشة المسح والتحليل الجاري -->
       <div id="scannerStepLoading" class="scanner-view-step">
         <div class="scanner-hero-img-wrap">
           <img id="scannerLoadingImg" class="scanner-hero-img" src="" alt="طبق الطعام">
@@ -1468,7 +1462,6 @@
         </div>
       </div>
 
-      <!-- الخطوة 3: نتائج التحليل والتعديل التفاعلي قبل الحفظ -->
       <div id="scannerStepResults" class="scanner-view-step">
         <div class="scanner-hero-img-wrap" style="height: 150px; margin-bottom: 12px;">
           <img id="scannerResultImg" class="scanner-hero-img" src="" alt="الطبق المحلل">
@@ -1795,7 +1788,7 @@
   </div>
 
   <!-- ============================================================
-       المنطق البرمجي، قاعدة البيانات المستمرة IndexedDB، والذكاء الاصطناعي
+       المنطق البرمجي وقاعدة البيانات المستمرة IndexedDB
        ============================================================ -->
   <script>
     const DEFAULT_CONFIG = {
@@ -2100,7 +2093,7 @@
     }
 
     /* ============================================================
-       نظام التصوير الذكي المتطور للطعام AI Food Scanner
+       نظام التصوير الذكي للطعام AI Food Scanner المحدّث
        ============================================================ */
     function openFoodScannerModal() {
       resetFoodScannerToCapture();
@@ -2206,38 +2199,72 @@
 - إذا كان هناك رز ودجاج وسلطة، اجعل كل واحد منها عنصراً منفصلاً في قائمة items.
 - قدّر الأوزان بالغرام والسعرات والماكروز بقيم واقعية طبية.`;
 
-      let response;
-      try {
-        response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${cleanKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{
-              parts: [
-                { text: prompt },
-                { inline_data: { mime_type: 'image/jpeg', data: base64Image } }
-              ]
-            }]
-          })
-        });
-      } catch (networkErr) {
-        throw new Error('فشل الاتصال: يرجى تفعيل VPN أو التأكد من اتصال الإنترنت.');
-      }
+      // قائمة النماذج لتجربتها بالترتيب لضمان التوافق التام مع حسابك
+      const candidateModels = [
+        'gemini-1.5-flash',
+        'gemini-2.0-flash',
+        'gemini-2.5-flash',
+        'gemini-1.5-pro'
+      ];
 
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        const rawMsg = err?.error?.message || `كود الخطأ: ${response.status}`;
-        
-        if (rawMsg.toLowerCase().includes('location') || rawMsg.toLowerCase().includes('not supported')) {
-          throw new Error('خدمة جوجل للذكاء الاصطناعي مقيدة جغرافياً: يرجى تشغيل تطبيق VPN للتحليل.');
-        } else if (rawMsg.toLowerCase().includes('api_key') || response.status === 400) {
-          throw new Error('مفتاح API غير صالح: تأكد من نسخه بدقة من Google AI Studio.');
-        } else {
-          throw new Error(`خطأ من جوجل: ${rawMsg}`);
+      let lastError = null;
+      let resData = null;
+
+      for (const model of candidateModels) {
+        try {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${cleanKey}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              contents: [{
+                parts: [
+                  { text: prompt },
+                  {
+                    inlineData: {
+                      mimeType: 'image/jpeg',
+                      data: base64Image
+                    }
+                  }
+                ]
+              }]
+            })
+          });
+
+          if (!response.ok) {
+            const err = await response.json().catch(() => ({}));
+            const rawMsg = err?.error?.message || `كود: ${response.status}`;
+            
+            // في حال كان النموذج غير موجود في هذا الحساب، نجرب النموذج التالي
+            if (response.status === 404 || rawMsg.toLowerCase().includes('not found')) {
+              lastError = new Error(`النموذج ${model} غير متاح`);
+              continue;
+            }
+
+            if (rawMsg.toLowerCase().includes('location') || rawMsg.toLowerCase().includes('not supported') || rawMsg.toLowerCase().includes('geographical')) {
+              throw new Error('خدمة الذكاء الاصطناعي مقيدة جغرافياً: يرجى تفعيل تطبيق VPN والمحاولة مجدداً.');
+            } else if (rawMsg.toLowerCase().includes('api_key') || rawMsg.toLowerCase().includes('key not valid')) {
+              throw new Error('مفتاح API غير صالح: تأكد من نسخه بدقة من Google AI Studio بدون مسافات.');
+            } else {
+              throw new Error(`خطأ من خادم الذكاء الاصطناعي: ${rawMsg}`);
+            }
+          }
+
+          resData = await response.json();
+          break; // نجح الطلب نخرج من الحلقة
+        } catch (callErr) {
+          if (callErr.message && (callErr.message.includes('VPN') || callErr.message.includes('مفتاح'))) {
+            throw callErr;
+          }
+          lastError = callErr;
         }
       }
 
-      const resData = await response.json();
+      if (!resData) {
+        throw (lastError || new Error('تعذر الاتصال بأي من نماذج الذكاء الاصطناعي. تأكد من تفعيل VPN أو تحديث المفتاح.'));
+      }
+
       let rawText = resData.candidates?.[0]?.content?.parts?.[0]?.text || '';
       rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
 
