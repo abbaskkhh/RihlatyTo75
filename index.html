@@ -412,7 +412,10 @@ canvas{width:100%;height:220px;display:block}
       </div>
       <label class="fg"><span>سعرات المحافظة اليومية</span><input class="in" type="number" id="cMaint"></label>
       <label class="fg"><span>هدف الماء اليومي (مل)</span><input class="in" type="number" id="cWater" placeholder="2500"></label>
-      <label class="fg"><span>هدف الخطوات اليومي</span><input class="in" type="number" id="cSteps" placeholder="8000"></label>
+      <div class="grid">
+        <label class="fg"><span>هدف الخطوات اليومي</span><input class="in" type="number" id="cSteps" placeholder="8000"></label>
+        <label class="fg"><span>طول الخطوة التقديري (سم)</span><input class="in" type="number" id="cStride" placeholder="75"></label>
+      </div>
       <button class="btn m" onclick="saveSettings()">حفظ الإعدادات</button>
     </div>
 
@@ -564,7 +567,7 @@ canvas{width:100%;height:220px;display:block}
 
 <script>
 /* ========== 1. الثوابت والحالة ========== */
-const DEF = { startDate:'2026-10-11', endDate:'2027-05-31', baselineWeight:null, targetWeight:null, maintenanceCalories:null, waterGoal:null, stepGoal:null, notify:false, geminiModel:'auto', geminiApiKey:'' };
+const DEF = { startDate:'2026-10-11', endDate:'2027-05-31', baselineWeight:null, targetWeight:null, maintenanceCalories:null, waterGoal:null, stepGoal:null, strideLength:75, notify:false, geminiModel:'auto', geminiApiKey:'' };
 const STORES = ['weights','meals','workouts','photos'];
 const MEALS = ['غداء','فطور','عشاء','سناك','أخرى'];
 const MODELS = ['gemini-2.5-flash','gemini-2.0-flash','gemini-1.5-flash','gemini-1.5-flash-latest'];
@@ -846,7 +849,8 @@ function renderCal() {
     </div>`).join('') : '<div class="empty">لا توجد وجبات مسجلة لهذا اليوم.</div>';
 
   const sn = getSteps()[st.date] || 0;
-  const rows = (sn ? `<div class="item"><div class="meta"><b>👣 المشي (${sn} خطوة)</b><div class="sub">تقدير من عدد الخطوات</div></div><span class="badge good">${stepCal(st.date)} سعرة حرق</span><button class="btn sm" onclick="editSteps()">تعديل</button></div>` : '') + d.wk.map(w => `
+  const km = stepKm(st.date);
+  const rows = (sn ? `<div class="item"><div class="meta"><b>👣 المشي (${sn} خطوة)</b><div class="sub">المسافة: ≈ ${km} كم | محسوب وفق وزنك الفعلي</div></div><span class="badge good">${stepCal(st.date)} سعرة حرق</span><button class="btn sm" onclick="editSteps()">تعديل</button></div>` : '') + d.wk.map(w => `
     <div class="item"><div class="meta"><b>${esc(w.name)}</b><div class="sub">${w.duration ? w.duration + ' دقيقة' : 'نشاط بدني'}</div></div>
       <span class="badge good">${w.calories} سعرة حرق</span><button class="btn sm danger" onclick="delRec('workouts',${w.id},'تم حذف التمرين')">✕</button></div>`).join('');
   $('kList').innerHTML = rows || '<div class="empty">لا توجد تمارين مسجلة لهذا اليوم.</div>';
@@ -893,10 +897,26 @@ function renderBadges() {
   $('badges').innerHTML = B.map(([i, n, d, u]) => `<div class="ach ${u ? 'on' : ''}"><i>${i}</i><b style="font-size:.88rem">${n}</b><span class="sub">${d}</span></div>`).join('');
 }
 
-/* ========== 5ب. الخطوات والتنبيهات ========== */
+/* ========== 5ب. الخطوات والتنبيهات (تم التحديث للمعادلة الفسيولوجية الدقيقة) ========== */
 const getSteps = () => { try { return JSON.parse(localStorage.getItem('rahlati_steps') || '{}'); } catch { return {}; } };
 const curWeight = (d = today()) => (st.weights.filter(w => w.date <= d).at(-1) || st.weights[0])?.weight || num(st.cfg.baselineWeight) || 80;
-const stepCal = d => Math.round((getSteps()[d] || 0) * 0.0004 * curWeight(d));
+
+/* حساب المسافة بالكيلومتر = (الخطوات * طول الخطوة بالمتر) / 1000 */
+const stepKm = d => {
+  const steps = getSteps()[d] || 0;
+  const strideM = (num(st.cfg.strideLength) || 75) / 100;
+  return r1(steps * strideM / 1000);
+};
+
+/* حساب الحرق الصافي الفعلي = المسافة (كم) * الوزن (كغ) * 0.70 */
+const stepCal = d => {
+  const steps = getSteps()[d] || 0;
+  if (!steps) return 0;
+  const strideM = (num(st.cfg.strideLength) || 75) / 100;
+  const distKm = steps * strideM / 1000;
+  return Math.round(distKm * curWeight(d) * 0.70);
+};
+
 function setSteps(d, v) {
   const all = getSteps(), n = Math.max(0, Math.round(num(v)));
   if (n) all[d] = n; else delete all[d];
@@ -908,7 +928,8 @@ function editSteps() { const v = prompt('عدد خطوات هذا اليوم:', 
 function renderSteps() {
   const n = getSteps()[today()] || 0, goal = num(st.cfg.stepGoal) || 8000;
   $('stBar').style.width = Math.min(100, n / goal * 100) + '%';
-  txt({ stTxt:`${n} / ${goal}`, stCal:n ? `حرق تقديري ≈ ${stepCal(today())} سعرة (محسوب ضمن العجز)` : 'أدخل إجمالي خطواتك من تطبيق الصحة أو عدّاد الهاتف' });
+  const km = stepKm(today());
+  txt({ stTxt:`${n} / ${goal}`, stCal:n ? `المسافة: ≈ ${km} كم | حرق تقديري: ≈ ${stepCal(today())} سعرة (محسوب بوزنك)` : 'أدخل إجمالي خطواتك من تطبيق الصحة أو عدّاد الهاتف' });
   if (document.activeElement !== $('stIn')) $('stIn').value = n || '';
 }
 
@@ -1147,11 +1168,13 @@ function fillSettings() {
   const c = st.cfg;
   $('cKey').value = c.geminiApiKey || ''; $('cModel').value = c.geminiModel || 'auto';
   $('cBase').value = c.baselineWeight || ''; $('cTarget').value = c.targetWeight || ''; $('cMaint').value = c.maintenanceCalories || ''; $('cWater').value = c.waterGoal || ''; $('cSteps').value = c.stepGoal || '';
+  if ($('cStride')) $('cStride').value = c.strideLength || 75;
 }
 function saveSettings(quiet) {
   Object.assign(st.cfg, {
     geminiApiKey:$('cKey').value.trim(), geminiModel:$('cModel').value,
-    baselineWeight:num($('cBase').value) || null, targetWeight:num($('cTarget').value) || null, maintenanceCalories:num($('cMaint').value) || null, waterGoal:num($('cWater').value) || null, stepGoal:num($('cSteps').value) || null
+    baselineWeight:num($('cBase').value) || null, targetWeight:num($('cTarget').value) || null, maintenanceCalories:num($('cMaint').value) || null, waterGoal:num($('cWater').value) || null, stepGoal:num($('cSteps').value) || null,
+    strideLength:num($('cStride')?.value) || 75
   });
   saveCfg(); render();
   if (quiet !== true) toast('تم حفظ الإعدادات ✨');
