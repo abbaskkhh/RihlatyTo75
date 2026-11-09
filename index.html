@@ -89,7 +89,21 @@ nav .on::after{content:'';position:absolute;top:0;width:24px;height:2px;backgrou
 .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
 .chip{flex:none;background:#202020;border:1px solid #333;color:var(--mu);border-radius:20px;font-size:.76rem;padding:6px 14px;white-space:nowrap}
 .chip.on{background:var(--m1);color:#fff;border-color:var(--m2);box-shadow:0 0 10px var(--glow)}
-canvas{width:100%;height:220px;display:block}
+canvas{width:100%;height:220px;display:block;touch-action:pan-y}
+.card{transition:border-color .2s ease,transform .2s ease}
+.btn{transition:transform .15s ease,filter .2s ease,background .2s ease}
+.btn:hover{filter:brightness(1.12)}
+button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.bmi-card{border-color:rgba(255,77,121,.28);background:linear-gradient(145deg,rgba(101,15,39,.18),var(--card) 58%)}
+.bmi-score{font-size:1.55rem!important}
+.bmi-label{font-size:.88rem;line-height:1.4;min-height:2.5em}
+.bmi-scale{height:9px;border-radius:10px;position:relative;margin:12px 4px 8px;background:linear-gradient(90deg,#38bdf8 0 11.7%,#4ade80 11.7% 41.7%,#fbbf24 41.7% 58.4%,#fb923c 58.4% 75%,#f87171 75% 100%)}
+.bmi-marker{position:absolute;top:50%;left:0;width:14px;height:14px;border:2px solid #fff;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink);transform:translate(-50%,-50%);transition:left .45s ease;display:none}
+.bmi-scale-labels{display:flex;justify-content:space-between;gap:4px;color:var(--mu);font-size:.65rem}
+.bmi-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.bmi-legend span{font-size:.68rem;color:var(--mu);display:inline-flex;align-items:center;gap:4px}
+.bmi-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 .ach{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:var(--card2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;opacity:.55}
 .ach.on{opacity:1;border-color:var(--m2);background:linear-gradient(145deg,#220811,var(--card2));box-shadow:0 0 14px var(--glow)}
 .ach i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#202020;color:var(--mu);transition:all .3s ease}
@@ -255,6 +269,27 @@ canvas{width:100%;height:220px;display:block}
       </div>
       <div class="sub" id="hWDiff" style="text-align:center;font-weight:700">سجل وزنك للبدء في تتبع التغير</div>
     </div>
+
+    <div class="card bmi-card">
+      <div class="ct"><span>مؤشر كتلة الجسم عبر الوقت</span><button class="btn sm" onclick="go('prog')">إعدادات الطول والعمر</button></div>
+      <div class="grid" style="margin-bottom:4px">
+        <div class="stat"><b class="bmi-score acc" id="bmiNow">—</b><span class="lbl">BMI الحالي</span></div>
+        <div class="stat"><b class="bmi-label" id="bmiClass">أكمل بياناتك</b><span class="lbl">التصنيف</span></div>
+      </div>
+      <div class="bmi-scale" id="bmiScale" aria-label="مقياس مؤشر كتلة الجسم"><i class="bmi-marker" id="bmiMarker"></i></div>
+      <div class="bmi-scale-labels"><span>نحافة</span><span>طبيعي</span><span>زيادة</span><span>سمنة</span></div>
+      <canvas id="bmiChart" tabindex="0" role="img" aria-label="منحنى مؤشر كتلة الجسم وفق قياسات الوزن"></canvas>
+      <div id="bmiTip" class="sub acc" style="text-align:center;min-height:20px"></div>
+      <div id="bmiNote" class="sub" style="text-align:center;margin-top:4px"></div>
+      <div class="bmi-legend" id="bmiLegend" aria-label="تصنيفات مؤشر كتلة الجسم للبالغين">
+        <span><i class="bmi-dot" style="background:#38bdf8"></i>أقل من 18.5</span>
+        <span><i class="bmi-dot" style="background:#4ade80"></i>طبيعي</span>
+        <span><i class="bmi-dot" style="background:#fbbf24"></i>زيادة وزن</span>
+        <span><i class="bmi-dot" style="background:#fb923c"></i>سمنة 1</span>
+        <span><i class="bmi-dot" style="background:#f87171"></i>سمنة 2–3</span>
+      </div>
+      <button class="btn m" style="margin-top:12px" onclick="openM('m-weight')">+ تسجيل قياس الوزن</button>
+    </div>
   </section>
 
   <!-- الوزن -->
@@ -410,6 +445,11 @@ canvas{width:100%;height:220px;display:block}
         <label class="fg"><span>الوزن الأساسي (كغ)</span><input class="in" type="number" step="0.1" id="cBase"></label>
         <label class="fg"><span>الوزن المستهدف (كغ)</span><input class="in" type="number" step="0.1" id="cTarget"></label>
       </div>
+      <div class="grid">
+        <label class="fg"><span>الطول (سم) — لحساب BMI</span><input class="in" type="number" step="0.1" min="100" max="250" id="cHeight" placeholder="مثال: 170"></label>
+        <label class="fg"><span>العمر (سنة)</span><input class="in" type="number" step="1" min="2" max="120" id="cAge" placeholder="للتصنيف المناسب"></label>
+      </div>
+      <p class="sub" style="margin:-4px 0 12px">للبالغين (20 سنة فأكثر)، التصنيف استرشادي حسب BMI. لمن هم دون 20 سنة، يعتمد التقييم الطبي على العمر الدقيق والجنس ومخططات النمو.</p>
       <label class="fg"><span>سعرات المحافظة اليومية</span><input class="in" type="number" id="cMaint"></label>
       <label class="fg"><span>هدف الماء اليومي (مل)</span><input class="in" type="number" id="cWater" placeholder="2500"></label>
       <div class="grid">
@@ -567,7 +607,7 @@ canvas{width:100%;height:220px;display:block}
 
 <script>
 /* ========== 1. الثوابت والحالة ========== */
-const DEF = { startDate:'2026-10-11', endDate:'2027-05-31', baselineWeight:null, targetWeight:null, maintenanceCalories:null, waterGoal:null, stepGoal:null, strideLength:75, notify:false, geminiModel:'auto', geminiApiKey:'' };
+const DEF = { startDate:'2026-10-11', endDate:'2027-05-31', baselineWeight:null, targetWeight:null, heightCm:null, ageYears:null, maintenanceCalories:null, waterGoal:null, stepGoal:null, strideLength:75, notify:false, geminiModel:'auto', geminiApiKey:'' };
 const STORES = ['weights','meals','workouts','photos'];
 const MEALS = ['غداء','فطور','عشاء','سناك','أخرى'];
 const MODELS = ['gemini-2.5-flash','gemini-2.0-flash','gemini-1.5-flash','gemini-1.5-flash-latest'];
@@ -616,6 +656,23 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num = v => parseFloat(String(v || 0).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))) || 0;
 const r1 = n => Math.round(n * 10) / 10;
+const bmiColor = value => value < 18.5 ? '#38bdf8' : value < 25 ? '#4ade80' : value < 30 ? '#fbbf24' : value < 35 ? '#fb923c' : '#f87171';
+function bmiCategory(value, age = num(st.cfg.ageYears)) {
+  if (age && age < 20) return 'التصنيف يحتاج مخطط نمو';
+  if (!age) return 'أدخل عمرك للتصنيف';
+  if (value < 18.5) return 'أقل من الوزن الصحي';
+  if (value < 25) return 'ضمن النطاق الصحي';
+  if (value < 30) return 'زيادة وزن';
+  if (value < 35) return 'سمنة – الدرجة الأولى';
+  if (value < 40) return 'سمنة – الدرجة الثانية';
+  return 'سمنة – الدرجة الثالثة';
+}
+function bmiForWeight(weight) {
+  const cm = num(st.cfg.heightCm), age = num(st.cfg.ageYears);
+  if (!weight || cm < 100 || cm > 250) return null;
+  const value = weight / ((cm / 100) ** 2);
+  return { value, category:bmiCategory(value, age), age, color:bmiColor(value) };
+}
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const today = () => iso(new Date());
 const parse = s => { const p = (s || '').split('-'); return new Date(p[0] || 2026, (p[1] || 1) - 1, p[2] || 1); };
@@ -690,6 +747,7 @@ function go(id) {
   document.querySelectorAll('main>section').forEach(s => s.classList.toggle('on', s.id === id));
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === id));
   if (id === 'weight') requestAnimationFrame(drawChart);
+  if (id === 'home') requestAnimationFrame(drawBmiChart);
   scrollTo(0, 0);
 }
 const fld = (l, h) => `<label class="fg"><span>${l}</span>${h}</label>`;
@@ -785,6 +843,58 @@ function renderHome() {
     txt({ hWDiff:df <= 0 ? `خسرت ${Math.abs(df)} كغ من وزنك الأساسي 👏` : `زيادة ${df} كغ عن البداية` });
     $('hWDiff').style.color = df <= 0 ? 'var(--ok)' : 'var(--bad)';
   }
+  renderBmiSummary();
+  if ($('home').classList.contains('on')) requestAnimationFrame(drawBmiChart);
+}
+
+function renderBmiSummary() {
+  const last = st.weights[st.weights.length - 1], info = last ? bmiForWeight(num(last.weight)) : null;
+  const marker = $('bmiMarker');
+  if (!info) {
+    txt({ bmiNow:'—', bmiClass:'أكمل بياناتك', bmiNote:!num(st.cfg.heightCm) ? 'أدخل طولك من الإعدادات، ثم سجّل وزنك لبدء منحنى BMI.' : 'سجّل قياس وزن لعرض مؤشر كتلة الجسم.' });
+    marker.style.display = 'none'; $('bmiScale').style.display = 'none'; $('bmiLegend').style.display = 'none';
+    return;
+  }
+  txt({ bmiNow:info.value.toFixed(1), bmiClass:info.category,
+    bmiNote:info.age && info.age < 20 ? 'مؤشر BMI معروض، لكن تصنيف من هم دون 20 سنة لا يُستنتج من حدود البالغين.' : !info.age ? 'أدخل عمرك لتحديد ما إذا كان تصنيف البالغين مناسباً.' : 'التصنيف استرشادي للبالغين ولا يُعد تشخيصاً طبياً.' });
+  const adult = info.age >= 20;
+  $('bmiScale').style.display = adult ? 'block' : 'none'; $('bmiLegend').style.display = adult ? 'flex' : 'none';
+  $('bmiNow').style.color = adult ? info.color : 'var(--pink)';
+  $('bmiClass').style.color = adult ? info.color : 'var(--mu)';
+  marker.style.display = adult ? 'block' : 'none';
+  if (adult) marker.style.left = `${Math.max(0, Math.min(100, (info.value - 15) / 30 * 100))}%`;
+}
+
+function drawBmiChart() {
+  const cv = $('bmiChart'), rect = cv.getBoundingClientRect();
+  if (!rect.width) return;
+  const ctx = cv.getContext('2d'), dpr = devicePixelRatio || 1, cm = num(st.cfg.heightCm), adult = num(st.cfg.ageYears) >= 20;
+  cv.width = rect.width * dpr; cv.height = rect.height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, rect.width, rect.height);
+  const data = cm >= 100 && cm <= 250 ? st.weights.map(d => ({ d, value:num(d.weight) / ((cm / 100) ** 2) })).filter(p => p.value > 0) : [];
+  if (!data.length) {
+    ctx.fillStyle = '#777'; ctx.font = '12px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(cm ? 'سجّل أول قياس وزن لبدء الرسم' : 'أدخل الطول من إعدادات الملف الشخصي لعرض الرسم', rect.width / 2, rect.height / 2);
+    $('bmiTip').textContent = '';
+    return;
+  }
+  const pad = { top:16, right:18, bottom:28, left:38 }, w = rect.width - pad.left - pad.right, h = rect.height - pad.top - pad.bottom;
+  const lo = Math.max(12, Math.floor(Math.min(18.5, ...data.map(p => p.value)) / 5) * 5), hi = Math.min(55, Math.ceil(Math.max(40, ...data.map(p => p.value)) / 5) * 5);
+  const y = v => pad.top + h - (v - lo) / (hi - lo) * h;
+  if (adult) [[lo,18.5,'rgba(56,189,248,.09)'],[18.5,25,'rgba(74,222,128,.08)'],[25,30,'rgba(251,191,36,.08)'],[30,35,'rgba(251,146,60,.09)'],[35,hi,'rgba(248,113,113,.08)']].forEach(([a,b,c]) => {
+    const top = Math.max(lo,a), bottom = Math.min(hi,b); if (bottom > top) { ctx.fillStyle=c; ctx.fillRect(pad.left,y(bottom),w,y(top)-y(bottom)); }
+  });
+  ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+  for (let v = Math.ceil(lo / 5) * 5; v <= hi; v += 5) {
+    ctx.strokeStyle = '#303030'; ctx.beginPath(); ctx.moveTo(pad.left,y(v)); ctx.lineTo(rect.width-pad.right,y(v)); ctx.stroke();
+    ctx.fillStyle = '#999'; ctx.fillText(String(v),pad.left-6,y(v)+3);
+  }
+  if (adult) [18.5,25,30,35,40].forEach(v => { if (v > lo && v < hi) { ctx.setLineDash([3,4]); ctx.strokeStyle='rgba(255,255,255,.22)'; ctx.beginPath(); ctx.moveTo(pad.left,y(v)); ctx.lineTo(rect.width-pad.right,y(v)); ctx.stroke(); ctx.setLineDash([]); } });
+  const pts = data.map((p,i) => ({ ...p, x:pad.left+(data.length===1?w/2:i/(data.length-1)*w), py:y(p.value) }));
+  if (pts.length > 1) { const grad=ctx.createLinearGradient(pad.left,0,rect.width-pad.right,0); grad.addColorStop(0,'#941b3d'); grad.addColorStop(1,'#ff4d79'); ctx.strokeStyle=grad; ctx.lineWidth=2.5; ctx.beginPath(); pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.py):ctx.moveTo(p.x,p.py)); ctx.stroke(); }
+  pts.forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.py,4,0,Math.PI*2); ctx.fillStyle=adult?bmiColor(p.value):'#ff4d79'; ctx.fill(); ctx.strokeStyle='#fff'; ctx.lineWidth=1.5; ctx.stroke(); });
+  cv.onclick = e => { const x=e.clientX-cv.getBoundingClientRect().left, p=pts.reduce((a,b)=>Math.abs(a.x-x)<Math.abs(b.x-x)?a:b), value=p.value.toFixed(1), cat=bmiCategory(p.value); $('bmiTip').textContent=`${p.d.date} • BMI ${value} • ${cat}`; };
+  cv.onkeydown = e => { if ((e.key==='Enter'||e.key===' ') && pts.length) { e.preventDefault(); const p=pts[pts.length-1]; $('bmiTip').textContent=`${p.d.date} • BMI ${p.value.toFixed(1)} • ${bmiCategory(p.value)}`; } };
 }
 
 function renderWeight() {
@@ -1168,12 +1278,13 @@ function fillSettings() {
   const c = st.cfg;
   $('cKey').value = c.geminiApiKey || ''; $('cModel').value = c.geminiModel || 'auto';
   $('cBase').value = c.baselineWeight || ''; $('cTarget').value = c.targetWeight || ''; $('cMaint').value = c.maintenanceCalories || ''; $('cWater').value = c.waterGoal || ''; $('cSteps').value = c.stepGoal || '';
+  $('cHeight').value = c.heightCm || ''; $('cAge').value = c.ageYears || '';
   if ($('cStride')) $('cStride').value = c.strideLength || 75;
 }
 function saveSettings(quiet) {
   Object.assign(st.cfg, {
     geminiApiKey:$('cKey').value.trim(), geminiModel:$('cModel').value,
-    baselineWeight:num($('cBase').value) || null, targetWeight:num($('cTarget').value) || null, maintenanceCalories:num($('cMaint').value) || null, waterGoal:num($('cWater').value) || null, stepGoal:num($('cSteps').value) || null,
+    baselineWeight:num($('cBase').value) || null, targetWeight:num($('cTarget').value) || null, heightCm:num($('cHeight').value) || null, ageYears:num($('cAge').value) || null, maintenanceCalories:num($('cMaint').value) || null, waterGoal:num($('cWater').value) || null, stepGoal:num($('cSteps').value) || null,
     strideLength:num($('cStride')?.value) || 75
   });
   saveCfg(); render();
@@ -1226,7 +1337,7 @@ async function resetAll() {
   try { await DB.open(); await load(); navigator.storage?.persist?.(); }
   catch { toast('تعذر تهيئة قاعدة البيانات المحلية', 1); }
   fillSettings(); render(); initSlider();
-  addEventListener('resize', drawChart);
+  addEventListener('resize', drawChart); addEventListener('resize', drawBmiChart);
   setInterval(checkReminders, 60000); document.addEventListener('visibilitychange', checkReminders); checkReminders();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});
 })();
